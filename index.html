@@ -6333,8 +6333,8 @@ document.addEventListener('keydown', e => {
 // ════════════════════════════════════════════════════════════
 
 // Speichert max. 3 beantwortete Fragen: { q, idx, selectedOrig, wasCorrect }
-let questionHistory = [];
-let reviewMode = false; // true = gerade in Rückschau
+var questionHistory = [];
+var reviewMode = false; // true = gerade in Rückschau
 
 function goBack() {
   if (questionHistory.length === 0) return;
