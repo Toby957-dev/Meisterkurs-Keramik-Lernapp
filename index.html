@@ -6088,7 +6088,6 @@ function lbFilter(btn, mode) {
   lbLoad();
 }
 
-async 
 async function lbLoad() {
 
   document.getElementById('lb-loading').style.display = 'block';
@@ -6447,51 +6446,40 @@ function exitReview() {
 <!-- ═══ NAV LOGIN BTN (injected by JS) ═══════════════════════ -->
 
 <!-- ═══ LEADERBOARD VIEW ════════════════════════════════════ -->
-<div class="view" id="leaderboard-view" style="display:none;">
-<div style="max-width:820px;margin:0 auto;padding:28px 20px;">
-
-  <div class="lb-header">
-    <div class="lb-title">🏆 <span>Bestenliste</span></div>
-    <div style="display:flex;align-items:center;gap:8px;">
-      <button class="lb-refresh" onclick="lbLoad()" title="Aktualisieren">🔄</button>
-      <div class="lb-filters">
-        <button class="lb-filter-btn active" onclick="lbFilter(this,'all')">Gesamt</button>
-        <button class="lb-filter-btn" onclick="lbFilter(this,'week')">Diese Woche</button>
-        <button class="lb-filter-btn" onclick="lbFilter(this,'today')">Heute</button>
-      </div>
+<div id="leaderboard-view">
+    <h2>Leaderboard</h2>
+    
+    <div id="filters">
+        <label for="filter">Filter by:</label>
+        <button class="lb-filter-btn active" onclick="lbFilter(this, 'all')">All</button>
+        <button class="lb-filter-btn" onclick="lbFilter(this, 'friends')">Friends</button>
+        <button class="lb-filter-btn" onclick="lbFilter(this, 'global')">Global</button>
     </div>
-  </div>
-
-  <div id="lb-login-notice" style="display:none;" class="lb-post-notice">
-    <span style="font-size:1.5rem;">👤</span>
-    <div><strong>Nicht eingeloggt</strong>Melde dich an, um dein Ergebnis zu speichern!</div>
-    <button onclick="showAuth()" style="margin-left:auto;padding:8px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.6);background:transparent;color:#fff;font-weight:800;cursor:pointer;font-family:inherit;">Login</button>
-  </div>
-
-  <div id="lb-loading" class="lb-loading">Lade Bestenliste… ⏳</div>
-
-  <table class="lb-table" id="lb-table" style="display:none;">
-    <thead>
-      <tr>
-        <th style="width:50px">#</th>
-        <th>Spieler</th>
-        <th>Ergebnis</th>
-        <th style="width:60px;text-align:right">Spiele</th>
-      </tr>
-    </thead>
-    <tbody id="lb-tbody"></tbody>
-  </table>
-
-  <div id="lb-empty" class="lb-empty" style="display:none;">
-    Noch keine Einträge – sei der Erste! 🚀
-  </div>
-
-  <div id="lb-my-scores" class="lb-my-scores" style="display:none;">
-    <h3>Meine letzten Ergebnisse</h3>
-    <div id="lb-my-list"></div>
-  </div>
-
-</div>
+    
+    <div id="lb-loading">
+        <p>Loading leaderboard...</p>
+    </div>
+    
+    <div id="lb-empty" style="display:none;">
+        <p>No scores yet</p>
+    </div>
+    
+    <table id="lb-table" style="display:none; width:100%;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Best %</th>
+                <th>Games</th>
+            </tr>
+        </thead>
+        <tbody id="lb-tbody"></tbody>
+    </table>
+    
+    <div id="lb-my-scores" style="display:none;">
+        <h3>My Scores</h3>
+        <div id="lb-my-list"></div>
+    </div>
 </div>
 
 <!-- ═══ FEHLER MELDEN MODAL ═════════════════════════════════ -->
