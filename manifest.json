@@ -2,6 +2,32 @@
   "name": "Meisterkurs Keramik",
   "short_name": "MeisterApp",
   "description": "Lernapp für den Meisterkurs Keramik",
+  "start_url": "/Meisterkurs-Keramik-Lernapp/index.html",
+  "scope": "/Meisterkurs-Keramik-Lernapp/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e75228",
+  "icons": [
+    {
+      "src": "/Meisterkurs-Keramik-Lernapp/favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/Meisterkurs-Keramik-Lernapp/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/Meisterkurs-Keramik-Lernapp/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}{
+  "name": "Meisterkurs Keramik",
+  "short_name": "MeisterApp",
+  "description": "Lernapp für den Meisterkurs Keramik",
   "start_url": "/Meisterkurs-Keramik-Lernapp/",
   "scope": "/Meisterkurs-Keramik-Lernapp/",
   "display": "standalone",
