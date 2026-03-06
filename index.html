@@ -6106,37 +6106,34 @@ async function lbLoad() {
   if (notice) notice.style.display = currentUser ? 'none' : 'block';
 
   try {
-    // Schritt 1: Scores für Survival + Speed holen
-    const scores = await sbFetch(
-      `scores?mode=in.(survival,speed)&select=num_q,mode,player_id&order=num_q.desc&limit=500`
-    );
+    // Zwei separate Queries – genau wie die funktionierende Version
+    const [dataSurvival, dataSpeed] = await Promise.all([
+      sbFetch(`scores?mode=eq.survival&select=num_q,player_id,players(username)&order=num_q.desc&limit=500`),
+      sbFetch(`scores?mode=eq.speed&select=num_q,player_id,players(username)&order=num_q.desc&limit=500`)
+    ]);
 
-    if (!scores || scores.length === 0) {
-      document.getElementById('lb-loading').style.display = 'none';
+    document.getElementById('lb-loading').style.display = 'none';
+
+    function buildTop10(data) {
+      if (!data || data.length === 0) return [];
+      const byPlayer = {};
+      data.forEach(s => {
+        const pid = s.player_id;
+        const uname = (s.players && s.players.username) ? s.players.username : 'Unbekannt';
+        if (!byPlayer[pid] || s.num_q > byPlayer[pid].bestQ)
+          byPlayer[pid] = { pid, username: uname, bestQ: s.num_q || 0 };
+      });
+      return Object.values(byPlayer).sort((a, b) => b.bestQ - a.bestQ).slice(0, 10);
+    }
+
+    const sortedSurvival = buildTop10(dataSurvival);
+    const sortedSpeed    = buildTop10(dataSpeed);
+
+    if (sortedSurvival.length === 0 && sortedSpeed.length === 0) {
       document.getElementById('lb-empty').style.display = 'block';
       return;
     }
 
-    // Schritt 2: Spielernamen separat holen
-    const playerIds = [...new Set(scores.map(s => s.player_id).filter(Boolean))];
-    const players = await sbFetch(`players?id=in.(${playerIds.join(',')})&select=id,username`);
-    const nameMap = {};
-    (players || []).forEach(p => nameMap[p.id] = p.username);
-
-    document.getElementById('lb-loading').style.display = 'none';
-
-    // Bestes Ergebnis pro Spieler pro Modus
-    const survival = {}, speed = {};
-    scores.forEach(s => {
-      const pid = s.player_id;
-      const uname = nameMap[pid] || 'Unbekannt';
-      const bucket = s.mode === 'survival' ? survival : speed;
-      if (!bucket[pid] || s.num_q > bucket[pid].bestQ)
-        bucket[pid] = { pid, username: uname, bestQ: s.num_q || 0 };
-    });
-
-    const sortedSurvival = Object.values(survival).sort((a, b) => b.bestQ - a.bestQ).slice(0, 10);
-    const sortedSpeed   = Object.values(speed).sort((a, b) => b.bestQ - a.bestQ).slice(0, 10);
     renderLeaderboard(sortedSurvival, sortedSpeed);
 
   } catch(e) {
@@ -6456,7 +6453,7 @@ function exitReview() {
   </div>
 
   <div style="margin-bottom:16px;padding:12px 16px;background:#fff4f0;border-radius:12px;font-size:0.85rem;color:#888;">
-    🎯 Nur <strong style="color:var(--rt-orange);">Survival-Modus</strong> Ergebnisse – wer schafft die meisten Fragen am Stück?
+    🏆 <strong style="color:var(--rt-orange);">Survival</strong> &amp; <strong style="color:var(--rt-orange);">Speed</strong> – wer schafft die meisten Fragen?
   </div>
 
   <div id="lb-login-notice" style="display:none;padding:14px 16px;background:#f9f9f9;border-radius:12px;margin-bottom:16px;text-align:center;font-size:0.88rem;color:#888;">
@@ -6467,17 +6464,22 @@ function exitReview() {
   <div id="lb-empty" style="display:none;text-align:center;padding:40px;color:#bbb;font-size:1.1rem;">Noch keine Survival-Ergebnisse 🎮</div>
 
   <div id="lb-tables-wrap" style="display:none;">
-    <h3 style="font-size:1rem;font-weight:800;color:var(--rt-dark);margin:0 0 10px;">❤️ Survival – meiste Fragen</h3>
-    <table class="lb-table" style="margin-bottom:28px;">
-      <thead><tr><th style="width:44px;">#</th><th>Spieler</th><th style="text-align:right;">Fragen</th></tr></thead>
-      <tbody id="lb-tbody-survival"></tbody>
-    </table>
-
-    <h3 style="font-size:1rem;font-weight:800;color:var(--rt-dark);margin:0 0 10px;">⚡ Speed – meiste Fragen</h3>
-    <table class="lb-table">
-      <thead><tr><th style="width:44px;">#</th><th>Spieler</th><th style="text-align:right;">Fragen</th></tr></thead>
-      <tbody id="lb-tbody-speed"></tbody>
-    </table>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div>
+        <h3 style="font-size:1rem;font-weight:800;color:var(--rt-dark);margin:0 0 10px;">❤️ Survival</h3>
+        <table class="lb-table">
+          <thead><tr><th style="width:36px;">#</th><th>Spieler</th><th style="text-align:right;">Fragen</th></tr></thead>
+          <tbody id="lb-tbody-survival"></tbody>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-size:1rem;font-weight:800;color:var(--rt-dark);margin:0 0 10px;">⚡ Speed</h3>
+        <table class="lb-table">
+          <thead><tr><th style="width:36px;">#</th><th>Spieler</th><th style="text-align:right;">Fragen</th></tr></thead>
+          <tbody id="lb-tbody-speed"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 
