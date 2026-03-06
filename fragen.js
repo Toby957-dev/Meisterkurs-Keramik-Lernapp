@@ -360,14 +360,14 @@ const BANK = [
   e:"Textur: Tonminerale richten sich durch unterschiedliche Fließgeschwindigkeiten aus → Spannungen, Drachenzähne."}, 
 
 {c:"Fertigungstechnik", d:1, q:"Was ist der Unterschied zwischen Trockenrissen und Brennrissen?",
-  o:["Trockenrisse: scharf & glatt; Brennrisse: stumpf & rau","Trockenrisse: stumpf & rau (zu schnelles Trocknen); Brennrisse: scharf & glatt (Aufheizen/Abkühlen)","Beide sehen gleich aus","Trockenrisse entstehen beim Brand, Brennrisse beim Trocknen"], a:1,
+  o:["Trockenrisse: scharf & glatt; Brennrisse: stumpf & rau","Trockenrisse: stumpf & rau ; Brennrisse: scharf & glatt ","Beide sehen gleich aus","Trockenrisse entstehen beim Brand, Brennrisse beim Trocknen"], a:1,
   e:"Trockenrisse: stumpf + rau, zu schnelles Trocknen. Brennrisse: scharf + glatt, beim Aufheizen oder Abkühlen."}, 
 
 {c:"Fertigungstechnik", d:2, q:"Was sind Nadelstiche (Pinholes) in der Glasur?",
   o:["Glasur zu dünn aufgetragen","Winzige Krater durch Gase aus dem Scherben (Organik) die durch die Glasur entweichen","WAK der Glasur zu groß","Verunreinigung verhindert Haftung der Glasur"], a:1,
   e:"Pinholes/Nadelstiche: Gase aus organischen Resten im Scherben stechen beim Brand durch die Glasur."}, 
 
-{c:"Fertigungstechnik", d:1, q:"Was ist der Glühbrand (Biskuitbrand)?",
+{c:"Fertigungstechnik", d:1, q:"Was ist der Schrübrand (Biskuitbrand)?",
   o:["Erster Brand bei ca. 800–900°C: verfestigt, aber noch porös → nimmt Glasur auf", "Zweiter Brand zum Einschmelzen der Glasur bei hoher Temperatur", "Spezialbrand für Farben und Dekore", "Brand bei über 1300°C für Hartporzellan"], a:0,
   e:"Glühbrand: erster Brand, ca. 800–900°C. Entfernt Organik und chem. Wasser. Scherben fest aber porös → ideal zum Glasieren."}, 
 
@@ -384,23 +384,23 @@ const BANK = [
   e:"Presslagen: eingeschlossene Luft beim axialen Pressen erzeugt Gefügestörungen → Schwachstellen im Scherben."}, 
 
 {c:"Fertigungstechnik", d:2, q:"Was ist ZTA-Keramik?",
-  o:["Zinnoxid-Titanat-Aluminium-Verbundwerkstoff","Zirconia Toughened Alumina: Al₂O₃-Matrix mit fein verteiltem ZrO₂ → höhere Bruchzähigkeit","Zement-Ton-Aggregat für Baukeramik","Zink-Titan-Aluminat als Farbkörper"], a:1,
+  o:["Zinnoxid-Titanat-Aluminium-Verbundwerkstoff"," Al₂O₃-Matrix mit fein verteiltem ZrO₂ → höhere Bruchzähigkeit","Zement-Ton-Aggregat für Baukeramik","Zink-Titan-Aluminat als Farbkörper"], a:1,
   e:"ZTA: Al₂O₃ (hart, verschleißfest) + ZrO₂ (zäh, rissfest) → vereint beides: höhere Bruchzähigkeit + gute Härte."}, 
 
 {c:"Fertigungstechnik", d:2, q:"Wie wird SiC (Siliciumcarbid) nach dem Acheson-Verfahren hergestellt?",
-  o:["SiO₂ + Kalk → SiC + CO₂","SiO₂ + 3C → SiC + 2CO (carbothermische Reduktion bei ca. 2000–2500°C)","Si + C → SiC bei 500°C","Al₂O₃ + C → SiC + Al₂O"], a:1,
+  o:["SiO₂ + Kalk → SiC + CO₂","SiO₂ + 3C → SiC + 2CO ","Si + C → SiC bei 500°C","Al₂O₃ + C → SiC + Al₂O"], a:1,
   e:"Acheson-Verfahren: SiO₂ + 3C → SiC + 2CO. Im Widerstandsofen bei 2000–2500°C. Grün = hochrein, schwarz = verunreinigt."}, 
 
 {c:"Fertigungstechnik", d:1, q:"Was ist ein Abroller in der Glasur?",
   o:["Verunreinigung auf dem Scherben verhindert Haftung der Glasur → Glasur rollt ab", "Glasur reißt durch falsche WAK-Abstimmung", "Glasur zu dick aufgetragen", "Zu hohe Sintertemperatur bei der Glasur"], a:0,
   e:"Abroller: Verunreinigung (Fett, Staub, Fingerabdrücke) auf dem Scherben → Glasur haftet nicht → rollt beim Brand ab."}, 
 
-{c:"Fertigungstechnik", d:2, q:"Was sind Tunnelofenzonen?",
-  o:["Einfahrt, Mitte, Ausfahrt","Vorwärmzone (I), Brennzone (II), Kühlzone (III)","Trocknungszone, Glühbrandzone, Glasurzone","Reduktionszone, Sinterzone, Abkühlungszone"], a:1,
-  e:"Tunnelofen: Vorwärmzone I → Brennzone II → Kühlzone III. Ware fährt auf Wagen kontinuierlich durch."}, 
+{c:"Fertigungstechnik", d:2, q:"Was sind die Zonen bei einem Tunnelofen?",
+  o:["Einfahrt, Mitte, Ausfahrt","Vorwärmzone, Brennzone , Kühlzone ","Trocknungszone, Glühbrandzone, Glasurzone","Reduktionszone, Sinterzone, Abkühlungszone"], a:1,
+  e:"Tunnelofen: Vorwärmzone  → Brennzone  → Kühlzone . Ware fährt auf Wagen kontinuierlich durch."}, 
 
-{c:"Fertigungstechnik", d:2, q:"Was ist das Winkler-Diagramm in der Baukeramik?",
-  o:["Diagramm zur Einordnung von Tonen nach Plastizität und Körnung für Baukeramik-Eignung", "Diagramm für optimale Brennkurven", "Diagramm für WAK-Berechnung", "Diagramm für Glasurzusammensetzungen"], a:0,
+{c:"Fertigungstechnik", d:2, q:"Wofür ist das Winkler-Diagramm ?",
+  o:["Diagramm zur Einordnung von Tonen nach Plastizität und Körnung ", "Diagramm für optimale Brennkurven", "Diagramm für WAK-Berechnung", "Diagramm für Glasurzusammensetzungen"], a:0,
   e:"Winkler-Diagramm: zeigt Eignung von Tonen für Baukeramik basierend auf Plastizitätsindex und Korngrößenverteilung."}, 
 
 {c:"Fertigungstechnik", d:1, q:"Was ist der Unterschied zwischen Mühlentechnologie und Mischtechnologie?",
@@ -484,7 +484,7 @@ const BANK = [
   e:"Isotope = gleiches Element (gleiche Protonenzahl), aber verschiedene Neutronenzahl → verschiedene Massezahl."}, 
 
 {c:"Rohstoffe", d:2, q:"Was ist der Glühverlust (GV)?",
-  o:["Masseverlust beim Trocknen bei 105°C", "Wasserverlust beim Mahlen", "Schwindung beim Brennen", "Masseverlust beim Erhitzen auf 1000°C (Wasser + Organik + CO₂)"], a:3,
+  o:["Masseverlust beim Trocknen bei 105°C", "Wasserverlust beim Mahlen", "Schwindung beim Brennen", "Masseverlust beim Erhitzen auf 1000°C"], a:3,
   e:"GV = Masseverlust bei ~1000°C. Erfasst chemisch gebundenes Wasser, Organik und CO₂ aus Carbonaten."}, 
 
 {c:"Rohstoffe", d:2, q:"Was ist der Unterschied zwischen primärer und sekundärer Tonlagerstätte?",
@@ -511,16 +511,16 @@ const BANK = [
   o:["Gewicht von 1 Liter getrocknetem Ton","Dichte einer Suspension; Bestimmung mit Überlaufkolben + Waage","Schüttdichte eines Pulvers","Wassergehalt pro Liter Schlicker"], a:1,
   e:"Litergewicht = Dichte der Suspension [g/l]. Mit Überlaufkolben (exakt 1 l) und Waage. Kein Luftblasen im Schlicker!"}, 
 
-{c:"Betriebstechnik", d:2, q:"Was ist der Kollergang und was macht ihn effektiv?",
-  o:["Trommelmühle mit hoher Drehzahl","Schwere Walzen rollen auf einem Teller – zerreibende + scherende Wirkung durch Druck + Scherkräfte","Pneumatische Förderanlage","Homogenisierer ohne Zerkleinerung"], a:1,
-  e:"Kollergang: schwere Walzen auf Teller. Effektiv durch Kombination von Druck- und Scherkräften. Besonders für plastische Massen."}, 
+{c:"Betriebstechnik", d:2, q:"Was ist ein Kollergang und was macht ihn effektiv?",
+  o:["Trommelmühle mit hoher Drehzahl","Schwere Walzen rollen auf einer Mahlbahn","Pneumatische Förderanlage","Homogenisierer ohne Zerkleinerung"], a:1,
+  e:"Kollergang: schwere Walzen auf Mahlbahn. Effektiv durch Kombination von Druck- und Scherkräften. Besonders für plastische Massen."}, 
 
 {c:"Betriebstechnik", d:1, q:"Was ist der Unterschied zwischen Stirnrad- und Kegelradgetriebe?",
   o:["Stirnrad: kreuzende Wellen; Kegelrad: parallele Wellen","Stirnrad: parallele Wellen; Kegelrad: sich schneidende Wellen (meist 90°)","Beide für parallele Wellen","Beide für kreuzende Wellen"], a:1,
   e:"Stirnradgetriebe: parallele Wellen. Kegelradgetriebe: sich schneidende Wellen (meist 90° Winkel) → Richtungsänderung."}, 
 
 {c:"Betriebstechnik", d:2, q:"Was bedeutet 'selbsthemmend' beim Schneckengetriebe?",
-  o:["Das Getriebe blockiert bei Überlast","Der Abtrieb kann den Antrieb nicht zurückdrehen (Abtriebsmoment erzeugt keine Rückdrehung)","Das Getriebe benötigt keinen Motor","Die Übersetzung ist stufenlos regelbar"], a:1,
+  o:["Das Getriebe blockiert bei Überlast","Der Abtrieb kann den Antrieb nicht zurückdrehen ","Das Getriebe benötigt keinen Motor","Die Übersetzung ist stufenlos regelbar"], a:1,
   e:"Selbsthemmend: Antrieb treibt Abtrieb an, aber NICHT umgekehrt. Vorteil: Haltebremse nicht nötig (z.B. Hebebühnen)."}, 
 
 {c:"MSR", d:2, q:"Was ist der D-Anteil des PID-Reglers und sein Nachteil?",
@@ -551,20 +551,20 @@ const BANK = [
   o:["Q = m·c·ΔT","Q = V·Hu","Q = η·P","Q = λ·A·ΔT/d"], a:1,
   e:"Q = V · Hu. V = Volumen Brenngas [m³n], Hu = unterer Heizwert [kWh/m³n oder kJ/m³n]."}, 
 
-{c:"Fertigungstechnik", d:2, q:"Was ist ein Saggare (Kapselscherben)?",
-  o:["Feuerfeste Schutzhülle für Porzellanware im Ofen – schützt vor Flamme/Rauchgasen", "Magerungsmittel aus vorgebranntem Ton", "Brennhilfsmittel-Pfosten zum Stapeln", "Glasurbehälter im Sprühturm"], a:0,
+{c:"Fertigungstechnik", d:2, q:"Was ist ein Saggar (Brennkapsel)?",
+  o:["Feuerfeste Schutzhülle für Porzellanware im Ofen", "Magerungsmittel aus vorgebranntem Ton", "Brennhilfsmittel-Pfosten zum Stapeln", "Glasurbehälter im Sprühturm"], a:0,
   e:"Saggare: feuerfeste Schachtel um die Ware. Schützt vor direkter Flamme und Rauchgasen → gleichmäßige Wärme, reinere Ware."}, 
 
 {c:"Fertigungstechnik", d:1, q:"Was sind Brennhilfsmittel (BHM)?",
-  o:["Chemische Zusätze die den Brand beschleunigen", "Farbkörper die erst beim Brand aktiviert werden", "Glasuradditive für bessere Haftung", "Feuerfeste Hilfsmittel (Platten, Pfosten, Kapseln) zum Stapeln und Stützen der Ware im Ofen"], a:3,
+  o:["Chemische Zusätze die den Brand beschleunigen", "Farbkörper die erst beim Brand aktiviert werden", "Glasuradditive für bessere Haftung", "Feuerfeste Hilfsmittel zum Stapeln und Stützen der Ware im Ofen"], a:3,
   e:"BHM: feuerfeste Keramik (Platten, Pfosten, Kapseln, Ringe) zum Aufstapeln der Ware. Verschleiß durch Thermoschock."}, 
 
 {c:"Fertigungstechnik", d:2, q:"Was ist Biskuitporzellan?",
-  o:["Glasiertes Weichporzellan","Unglasiertes, matt gebranntes Porzellan nach Glühbrand – porös aber fest","Porzellan mit Biskuit-Glasur","Hochgebranntes Porzellan mit Kristallglasur"], a:1,
+  o:["Glasiertes Weichporzellan","Unglasiertes, matt gebranntes Porzellan nach Glühbrand","Porzellan mit Biskuit-Glasur","Hochgebranntes Porzellan mit Kristallglasur"], a:1,
   e:"Biskuitporzellan: nach Glühbrand, unglasiert, weiß-matt, leicht porös. Für Figuren, Kunst. Spürt sich samtig an."}, 
 
-{c:"Fertigungstechnik", d:2, q:"Was ist ZTA-Keramik und was sind ihre Vorteile?",
-  o:["Zinn-Titan-Aluminium – für Hochtemperaturisolierung", "Zement-Ton-Aggregat für Baukeramik", "Zirconia Toughened Alumina: Al₂O₃-Matrix + ZrO₂ → höhere Bruchzähigkeit + gute Härte", "Zugabe von ZnO zu Al₂O₃ für elektrische Leitfähigkeit"], a:2,
+{c:"Fertigungstechnik", d:2, q:"Was ist eine ZTA-Keramik?",
+  o:["Zinn-Titan-Aluminium – für Hochtemperaturisolierung", "Zement-Ton-Aggregat für Baukeramik", "Zirconia Toughened Alumina: Al₂O₃-Matrix + ZrO₂", "Zugabe von ZnO zu Al₂O₃ für elektrische Leitfähigkeit"], a:2,
   e:"ZTA: Al₂O₃ (hart, verschleißfest, aber spröde) + ZrO₂ (zäh, rissfest) → Kompromiss mit verbessertem Eigenschaftsprofil."}, 
 
 {c:"Fertigungstechnik", d:1, q:"Was ist der Ablauf des keramischen Prozesses in der Feinkeramik?",
@@ -583,35 +583,31 @@ const BANK = [
   o:["Joule","Watt","Newton","Pascal"], a:2,
   e:"Kraft: Newton [N = kg·m/s²]."}, 
 
-{c:"Physik & Mathe", d:1, q:"Was ist Druck p?",
+{c:"Physik & Mathe", d:1, q:"Wie wird Druck (p) berechnet ?",
   o:["Kraft × Fläche", "Arbeit × Zeit", "Masse / Volumen", "Kraft / Fläche"], a:3,
   e:"Druck p = F/A [Pascal = N/m²]."}, 
 
-{c:"Physik & Mathe", d:1, q:"Was ist Wirkungsgrad η?",
+{c:"Physik & Mathe", d:1, q:"Was ist der Wirkungsgrad η?",
   o:["Verlust/Eingang","Nutzleistung/aufgewendete Leistung","Summe aller Leistungen","Differenz aus Ein- und Ausgang"], a:1,
   e:"η = P_nutz/P_zu. Immer ≤ 1 (≤ 100%)."}, 
 
-{c:"Physik & Mathe", d:1, q:"Einheit Energie?",
+{c:"Physik & Mathe", d:1, q:"Was ist die Einheit für Energie?",
   o:["Newton","Watt","Joule","Pascal"], a:2,
   e:"Energie in Joule [J = N·m = W·s]."}, 
 
-{c:"Physik & Mathe", d:1, q:"Newtonsches 2. Gesetz?",
+{c:"Physik & Mathe", d:1, q:"Was ist das 2. Newtonsche Gesetz?",
   o:["F = m/a","F = m·a","F = m+a","a = m·F"], a:1,
   e:"F = m·a."}, 
 
-{c:"Physik & Mathe", d:1, q:"Dichte ρ?",
+{c:"Physik & Mathe", d:1, q:"Formel für Berechnugn der Dichte ρ?",
   o:["ρ = m · V","ρ = m / V","ρ = V / m","ρ = F / A"], a:1,
   e:"Dichte ρ = m/V [kg/m³]."}, 
 
-{c:"Physik & Mathe", d:1, q:"SI-Einheit Druck?",
+{c:"Physik & Mathe", d:1, q:"Nenne die SI-Einheit für Druck?",
   o:["Newton","Joule","Pascal","Bar"], a:2,
   e:"Pascal [Pa = N/m²]."}, 
 
-{c:"Physik & Mathe", d:1, q:"Reibungskraft F_R?",
-  o:["F_R = μ·m·g","F_R = m·a","F_R = F·s","F_R = p·A"], a:0,
-  e:"F_R = μ·F_N = μ·m·g."}, 
-
-{c:"Physik & Mathe", d:1, q:"Gewichtskraft?",
+{c:"Physik & Mathe", d:1, q:"Formel für die Gewichtskraft?",
   o:["F_G = m²·g","F_G = m·g","F_G = m/g","F_G = g/m"], a:1,
   e:"F_G = m·g."}, 
 
@@ -619,43 +615,35 @@ const BANK = [
   o:["2,718","3,141","3,302","2,303"], a:1,
   e:"π ≈ 3,14159…"}, 
 
-{c:"Physik & Mathe", d:1, q:"Einheit Drehmoment M?",
+{c:"Physik & Mathe", d:1, q:"Einheit für das Drehmoment M?",
   o:["Newton","Watt","Nm","Joule/s"], a:2,
   e:"Drehmoment M = F·r in Nm."}, 
 
-{c:"Physik & Mathe", d:2, q:"Formel Drehmoment?",
+{c:"Physik & Mathe", d:2, q:"Formel für das Drehmoment?",
   o:["M = F/r","M = F·r","M = P/r","M = r/F"], a:1,
   e:"M = F·r (Hebelarm)."}, 
 
-{c:"Physik & Mathe", d:2, q:"Ohmsches Gesetz?",
+{c:"Physik & Mathe", d:2, q:"Wie lautet das Ohmsche Gesetz?",
   o:["U = R·I", "U = R/I", "R = U·I", "I = U·R"], a:0,
   e:"U = R·I."}, 
 
-{c:"Physik & Mathe", d:2, q:"15% von Wert = 90. Welcher Wert?",
-  o:["135","600","750","6000"], a:1,
-  e:"Wert = 90/0,15 = 600."}, 
+{c:"Physik & Mathe", d:2, q:"Wie viel sind 15% von 90?",
+  o:["13,5","27","75,0","600,0"], a:1,
+  e:"Wert = 90*0,15 = 13,5"}, 
 
-{c:"Physik & Mathe", d:2, q:"Einheit WAK α?",
+{c:"Physik & Mathe", d:2, q:"Einheit für den WAK α?",
   o:["1/K", "K", "°C", "m/K"], a:0,
   e:"α in 1/K (K⁻¹)."}, 
 
-{c:"Physik & Mathe", d:3, q:"σ = E·α·ΔT: E=200 000 MPa, α=12·10⁻⁶/K, ΔT=200 K?",
-  o:["240 MPa","480 MPa","2400 MPa","48 MPa"], a:1,
-  e:"σ = 200 000·12·10⁻⁶·200 = 480 MPa."}, 
-
-{c:"Physik & Mathe", d:2, q:"Fliehkraft: m=10 kg, ω=10 rad/s, r=0,5 m?",
-  o:["50 N","100 N","500 N","1000 N"], a:2,
-  e:"F_Z = m·ω²·r = 10·100·0,5 = 500 N."}, 
-
 {c:"Wärmelehre", d:1, q:"Was beschreibt spezifische Wärmekapazität c?",
-  o:["Energie pro kg und Grad", "Energie pro Grad", "Leitfähigkeit", "Strahlungsleistung"], a:0,
+  o:["Energie pro kg und Kelvin", "Energie pro Grad", "Leitfähigkeit", "Strahlungsleistung"], a:0,
   e:"c [kJ/(kg·K)] – Wärme, die 1 kg um 1 K erwärmt."}, 
 
 {c:"Wärmelehre", d:1, q:"Formel für Wärme Q?",
   o:["Q = m/c·ΔT", "Q = c/(m·ΔT)", "Q = m·c·ΔT", "Q = m·c/ΔT"], a:2,
   e:"Q = m·c·ΔT."}, 
 
-{c:"Wärmelehre", d:1, q:"Wärmekapazität Wasser?",
+{c:"Wärmelehre", d:1, q:"Was ist die Wärmekapazität von Wasser?",
   o:["0,84 kJ/(kg·K)","2,09 kJ/(kg·K)","4,18 kJ/(kg·K)","1,0 kJ/(kg·K)"], a:2,
   e:"c_Wasser ≈ 4,18 kJ/(kg·K)."}, 
 
@@ -663,15 +651,11 @@ const BANK = [
   o:["Wärme für Phasenwechsel fest→flüssig", "Wärme zum Verdampfen", "Wärme für Temperaturerhöhung", "Strahlungswärme"], a:0,
   e:"Schmelzwärme q_s: Phasenwechsel bei const. T. Wasser: 334 kJ/kg."}, 
 
-{c:"Wärmelehre", d:1, q:"Verdampfungswärme Wasser?",
-  o:["334 kJ/kg","1000 kJ/kg","2257 kJ/kg","4180 kJ/kg"], a:2,
-  e:"q_v(Wasser) = 2257 kJ/kg."}, 
-
-{c:"Wärmelehre", d:2, q:"Welche Energie wird benötigt, um 2 kg Eis (0°C) zu schmelzen? (q_s = 334 kJ/kg)",
+{c:"Wärmelehre", d:2, q:"Welche Energie wird benötigt, um 2 kg Eis (0°C) zu schmelzen? (Q_sch = 334 kJ/kg)",
   o:["167 kJ","334 kJ","668 kJ","2257 kJ"], a:2,
   e:"Q = 2·334 = 668 kJ."}, 
 
-{c:"Wärmelehre", d:1, q:"Drei Arten Wärmeübertragung?",
+{c:"Wärmelehre", d:1, q:"welche 3 Arten der Wärmeübertragung gibt es?",
   o:["Leitung, Strahlung, Konduktion","Konvektion, Leitung, Strahlung","Diffusion, Konvektion, Leitung","Strahlung, Absorption, Reflexion"], a:1,
   e:"Wärmeleitung, Konvektion, Strahlung."}, 
 
@@ -679,7 +663,7 @@ const BANK = [
   o:["Wärme durch Strahlung","Wärme durch Materialkontakt","Wärme durch Strömung von Fluiden","Wärme durch Elektrizität"], a:2,
   e:"Konvektion: Wärmemitnahme durch strömende Flüssigkeiten/Gase."}, 
 
-{c:"Wärmelehre", d:1, q:"Stefan-Boltzmann-Gesetz?",
+{c:"Wärmelehre", d:1, q:"Was ist das Stefan-Boltzmann-Gesetz?",
   o:["Fouriersches Gesetz","Q̇ = σ·A·T⁴ (Strahlung)","Newton'sches Abkühlungsgesetz","Kirchhoffsches Gesetz"], a:1,
   e:"Wärmestrahlung steigt mit 4. Potenz der absoluten Temperatur: Q̇ = σ·A·T⁴."}, 
 
@@ -687,59 +671,39 @@ const BANK = [
   o:["Keine Wärmeübertragung","Isothermer Prozess","Gleicher Druck","Gleiche Entropie"], a:0,
   e:"Adiabatisch: kein Wärmeaustausch mit Umgebung (Q=0)."}, 
 
-{c:"Wärmelehre", d:1, q:"1. Hauptsatz Thermodynamik?",
+{c:"Wärmelehre", d:1, q:"Was ist der 1. Hauptsatz der Thermodynamik?",
   o:["Wärme fließt von kalt nach warm", "Entropie nimmt zu", "Energie kann nicht erzeugt/vernichtet werden", "Wirkungsgrad immer 100%"], a:2,
   e:"Energieerhaltung: ΔU = Q − W."}, 
 
-{c:"Wärmelehre", d:1, q:"Was besagt der 2. Hauptsatz der Thermodynamik?",
+{c:"Wärmelehre", d:1, q:"Was ist der 2. Hauptsatz der Thermodynamik?",
   o:["Energie kann nicht erzeugt oder vernichtet werden", "Wärme fließt spontan immer von der wärmeren zur kälteren Region – nicht umgekehrt", "Alle thermodynamischen Prozesse sind reversibel", "Der Wirkungsgrad einer Maschine kann 100% erreichen"], a:1,
-  e:"2. Hauptsatz: Irreversibilität. Wärme fließt spontan nur von warm nach kalt. Ein Wirkungsgrad von 100% ist physikalisch unmöglich."}, 
+  e:"2. Hauptsatz: Irreversibilität. Wärme fließt spontan nur von warm nach kalt. Ein Wirkungsgrad von 100% ist physikalisch unmöglich."},  
 
-{c:"Wärmelehre", d:2, q:"Wärmekapazität Schamotte?",
-  o:["0,84 kJ/(kg·K)", "0,42 kJ/(kg·K)", "4,18 kJ/(kg·K)", "1,67 kJ/(kg·K)"], a:0,
-  e:"c_Schamotte ≈ 0,84 kJ/(kg·K)."}, 
-
-{c:"Wärmelehre", d:2, q:"300°C in Kelvin?",
+{c:"Wärmelehre", d:2, q:"Wie viel sind 300°C in Kelvin?",
   o:["27 K","300 K","573 K","−273 K"], a:2,
   e:"T[K] = 300+273 = 573 K."}, 
 
-{c:"Wärmelehre", d:2, q:"Wärmeleitfähigkeit Luft (ca.)?",
-  o:["0,026 W/(m·K)","0,6 W/(m·K)","15 W/(m·K)","200 W/(m·K)"], a:0,
-  e:"λ_Luft ≈ 0,026 W/(m·K)."}, 
-
-{c:"Wärmelehre", d:2, q:"Wärmeleitfähigkeit Aluminium (ca.)?",
-  o:["0,2 W/(m·K)","15 W/(m·K)","80 W/(m·K)","200 W/(m·K)"], a:3,
-  e:"λ_Al ≈ 200 W/(m·K)."}, 
-
-{c:"Wärmelehre", d:2, q:"Isotherm bedeutet?",
+{c:"Wärmelehre", d:2, q:"Was bedeutet Isotherm ?",
   o:["Kein Wärmeaustausch", "Konstanter Druck", "Konstante Temperatur", "Konstantes Volumen"], a:2,
-  e:"Isotherm: T = konstant."}, 
+  e:"Isotherm: Temperatur bleibt konstant."}, 
 
 {c:"Wärmelehre", d:2, q:"Was ist absoluter Nullpunkt?",
   o:["0°C","−100°C","−273°C (0 K)","−373 K"], a:2,
   e:"0 K = −273,15°C. Tiefste Temperatur."}, 
 
-{c:"Wärmelehre", d:2, q:"Wärmekapazität Eis?",
-  o:["0,84 kJ/(kg·K)","2,09 kJ/(kg·K)","4,18 kJ/(kg·K)","334 kJ/kg"], a:1,
-  e:"c_Eis ≈ 2,09 kJ/(kg·K)."}, 
-
-{c:"Wärmelehre", d:2, q:"Wärmekapazität Stahl?",
-  o:["0,45 kJ/(kg·K)","0,84 kJ/(kg·K)","1,0 kJ/(kg·K)","4,18 kJ/(kg·K)"], a:0,
-  e:"c_Stahl ≈ 0,45 kJ/(kg·K)."}, 
-
-{c:"Wärmelehre", d:2, q:"Was passiert bei Phasenwechsel mit Temperatur?",
-  o:["Steigt linear","Bleibt konstant","Sinkt","Schwankt"], a:1,
+{c:"Wärmelehre", d:2, q:"Was passiert bei Phasenwechsel mit der Temperatur?",
+  o:["Sie steigt linear","Sie bleibt konstant","Sie sinkt","Sie schwankt"], a:1,
   e:"T bleibt konstant – Energie für Phasenwechsel."}, 
 
-{c:"Wärmelehre", d:2, q:"Was unterscheidet den unteren (H_u) vom oberen Heizwert (H_o) eines Brennstoffs?",
-  o:["H_u berücksichtigt Kondensationswärme, H_o nicht", "H_u gilt für feste, H_o für gasförmige Brennstoffe", "H_u ist die nutzbare Wärme ohne Kondensationsanteil des Abgaswasserdampfes", "Beide Werte sind identisch – nur unterschiedliche Bezeichnungen"], a:2,
-  e:"H_u (unterer Heizwert): Wasser im Abgas bleibt dampfförmig – Kondensationswärme nicht genutzt. H_o schließt diese ein. In der Praxis wird H_u verwendet."}, 
+{c:"Wärmelehre", d:2, q:"Was unterscheidet den Brennwert(Ho) vom Heizwert (Hu) eines Brennstoffs?",
+  o:["Hu berücksichtigt Kondensationswärme, Ho nicht", "H_u gilt für feste, H_o für gasförmige Brennstoffe", "Hu ist die nutzbare Wärme ohne Kondensationsanteil des Abgaswasserdampfes", "Beide Werte sind identisch – nur unterschiedliche Bezeichnungen"], a:2,
+  e:"Hu (unterer Heizwert): Wasser im Abgas bleibt dampfförmig – Kondensationswärme nicht genutzt. Ho schließt diese ein. In der Praxis wird Hu verwendet."}, 
 
 {c:"Wärmelehre", d:2, q:"Was ist Rekuperation?",
   o:["Nachverbrennung","Wärmerückgewinnung aus Abgasen","Abgasfilterung","Abkühlung des Ofens"], a:1,
   e:"Rekuperation: Abgaswärme heizt Verbrennungsluft vor. Energieeinsparung 20–30%."}, 
 
-{c:"Wärmelehre", d:2, q:"Was beschreibt die Entropie S in der Thermodynamik?",
+{c:"Wärmelehre", d:2, q:"Was beschreibt die Entropie in der Thermodynamik?",
   o:["Die kinetische Energie der Moleküle bei einer bestimmten Temperatur", "Den Druckverlust in einem Strömungssystem", "Ein Maß für die Unordnung eines Systems (S = Q/T bei reversibler Änderung)", "Die Wärmemenge, die zwischen zwei Körpern ausgetauscht wird"], a:2,
   e:"Entropie S [J/K]: S = Q_rev/T. In isolierten Systemen nimmt S zu (2. Hauptsatz). Je höher S, desto ungeordneter das System."}, 
 
@@ -767,11 +731,11 @@ const BANK = [
   o:["Synthetische Al-Verbindung", "Calciumsilikat", "Magnesiumoxid", "Kristallines Al₂O₃"], a:3,
   e:"Korund = α-Al₂O₃. Mohshärte 9, Schmelzpunkt 2050°C."}, 
 
-{c:"Rohstoffe", d:1, q:"Hauptbestandteil Quarz?",
+{c:"Rohstoffe", d:1, q:"Hauptbestandteil von Quarz?",
   o:["Al₂O₃","CaO","SiO₂","TiO₂"], a:2,
   e:"Quarz = kristallines SiO₂."}, 
 
-{c:"Rohstoffe", d:2, q:"Quarzumwandlung bei?",
+{c:"Rohstoffe", d:2, q:"Quarzumwandlung bei welcher Temperatur?",
   o:["200°C", "1713°C", "870°C", "573°C"], a:3,
   e:"α↔β-Quarz bei 573°C mit ~2% Volumenänderung."}, 
 
@@ -783,23 +747,23 @@ const BANK = [
   o:["MgCO₃ → MgO (gebrannt)","CaCO₃","Al₂O₃","SiO₂·MgO"], a:0,
   e:"Magnesit MgCO₃ → MgO (Periklas). Schmelzpunkt MgO 2852°C."}, 
 
-{c:"Rohstoffe", d:1, q:"'Saure' Feuerfestkeramik?",
+{c:"Rohstoffe", d:1, q:" Was ist eine 'Saure' Feuerfestkeramik?",
   o:["Carbide","SiO₂ oder Al₂O₃-SiO₂","MgO oder CaO","Sulfate"], a:1,
   e:"Sauer = SiO₂-reich. Empfindlich gegen basische Schlacken."}, 
 
-{c:"Rohstoffe", d:1, q:"'Basische' Feuerfestkeramik?",
+{c:"Rohstoffe", d:1, q:"Was ist eine 'Basische' Feuerfestkeramik?",
   o:["SiO₂-dominierend","MgO, CaO dominierend","Carbid-basiert","Al₂O₃ > 80%"], a:1,
   e:"Basisch = MgO, CaO, Dolomit. Beständig gegen basische Schlacken."}, 
 
-{c:"Rohstoffe", d:2, q:"Periklas = ?",
+{c:"Rohstoffe", d:2, q:"Was ist Periklas?",
   o:["SiO₂","Al₂O₃","MgO (kristallin)","CaO"], a:2,
   e:"Periklas = kubisches MgO. Schmelzpunkt 2852°C."}, 
 
-{c:"Rohstoffe", d:2, q:"Schmelzpunkt Al₂O₃?",
+{c:"Rohstoffe", d:2, q:"Wie hoch ist der Schmelzpunkt von Al₂O₃?",
   o:["1250°C","1710°C","2050°C","2852°C"], a:2,
   e:"Al₂O₃ schmilzt bei ~2050°C."}, 
 
-{c:"Rohstoffe", d:2, q:"Schmelzpunkt SiO₂?",
+{c:"Rohstoffe", d:2, q:"Wie hoch ist der Schmelzpunkt von SiO₂?",
   o:["573°C","1250°C","1713°C","2050°C"], a:2,
   e:"SiO₂ schmilzt bei ~1713°C."}, 
 
@@ -827,7 +791,7 @@ const BANK = [
   o:["Sehr hohe Dichte und gute elektrische Leitfähigkeit", "Extrem hoher Schmelzpunkt von >2800°C", "Sehr niedriger WAK (~2·10⁻⁶/K) → hervorragende Temperaturwechselbeständigkeit", "Hohe Korrosionsbeständigkeit gegen Säuren"], a:2,
   e:"Cordierit: WAK ≈ 2·10⁻⁶/K – einer der niedrigsten keramischer Werkstoffe. Daher top TWB. Einsatz: Katalysatorträger, Kochfelder."}, 
 
-{c:"Rohstoffe", d:2, q:"Wozu dient Feldspat?",
+{c:"Rohstoffe", d:2, q:"Wozu dient ein Feldspat?",
   o:["Magerungsmittel","Plastizitätserhöhung","Flussmittel (Glasphase)","Färbemittel"], a:2,
   e:"Feldspat: Flussmittel. Schmilzt ~1200°C, füllt Poren."}, 
 
@@ -838,10 +802,6 @@ const BANK = [
 {c:"Rohstoffe", d:1, q:"Welche Funktion hat ein Magerungsmittel in der Keramikmasse?",
   o:["Erhöht die Plastizität der Masse", "Wirkt als Flussmittel beim Sintern", "Reduziert Schwindung und Rissbildung beim Trocknen und Brennen", "Verbessert die Haftung der Glasur"], a:2,
   e:"Magerungsmittel (z.B. Schamottemehl, Quarzsand): verringert Schwindung und Rissrisiko bei Trocknung und Brand."}, 
-
-{c:"Rohstoffe", d:2, q:"WAK Schamotte ca.?",
-  o:["5–6·10⁻⁶/K", "0,5·10⁻⁶/K", "12·10⁻⁶/K", "18·10⁻⁶/K"], a:0,
-  e:"WAK Schamotte ≈ 5–6·10⁻⁶/K."}, 
 
 {c:"Rohstoffe", d:2, q:"Was kennzeichnet Siliziumcarbid (SiC) als technische Keramik?",
   o:["Weich (Mohshärte 3), gut spanbar, niedriger Schmelzpunkt", "Sehr hohe Härte (Mohs 9,5), λ ≈ 100 W/(m·K), beständig bis ~1600°C in Luft", "Basisches Oxid, beständig gegen Säuren", "Niedrige Wärmeleitfähigkeit, ideal als Dämmmaterial"], a:1,
@@ -855,11 +815,11 @@ const BANK = [
   o:["Kaolin→Glasphase→Cristobalit", "Kaolin→Calcit", "Kaolin→Korund", "Kaolin→Metakaolin→Mullit+Glasphase"], a:3,
   e:"Kaolinit (550°C)→Metakaolin→Mullit+Glasphase (>1100°C)."}, 
 
-{c:"Rohstoffe", d:2, q:"Was ist Brennschwund?",
+{c:"Rohstoffe", d:2, q:"Was ist die Brennschwindung?",
   o:["Masseverlust durch Verbrennung","Schwindung beim Brand","Ofenrückstand","Thermische Ausdehnung"], a:1,
   e:"Brennschwund = Schwindung beim Brennen (Sintern, Gasabgabe)."}, 
 
-{c:"Rohstoffe", d:2, q:"Was ist Bentonit?",
+{c:"Rohstoffe", d:2, q:"Was ist ein Bentonit?",
   o:["Reines Kaolin","Quelltonmineral (Smektit), plastisch","Natürliches SiO₂","Mg-Al-Silikat ohne Quellvermögen"], a:1,
   e:"Bentonit: quillt stark, Plastifizierungszusatz."}, 
 
@@ -867,11 +827,11 @@ const BANK = [
   o:["Mullit ist SiO₂-reicher als Schamotte", "Mullit ist die definierte Phase 3Al₂O₃·2SiO₂; Schamotte ist gebrannter Ton mit variabler Zusammensetzung", "Schamotte hat einen höheren Schmelzpunkt als Mullit", "Schamotte enthält MgO, Mullit nicht"], a:1,
   e:"Schamotte = gebrannter Ton (inhomogen, variabel). Mullit = definierte Phase 3Al₂O₃·2SiO₂, hochfeuerfest (~1840°C)."}, 
 
-{c:"Rohstoffe", d:2, q:"Ton: primär vs. sekundär?",
+{c:"Rohstoffe", d:2, q:"Unterschied primärer & sekundärer Lagerstätte?",
   o:["Kaolin=primär (am Entstehungsort), Sekundärton=transportiert, plastischer","Kaolin plastischer","Sekundärton mehr Al₂O₃","Kein Unterschied"], a:0,
   e:"Kaolin primär (Verwitterung in situ). Sekundärton transportiert, mehr Verunreinigungen, plastischer."}, 
 
-{c:"Rohstoffe", d:2, q:"Was verleiht Ton seine Plastizität?",
+{c:"Rohstoffe", d:2, q:"Was verleiht dem Ton seine Plastizität?",
   o:["Quarz","Feldspat","Tonminerale (Kaolinit)","Calcit"], a:2,
   e:"Tonminerale: Schichtstruktur mit H₂O → Gleitebenen → Plastizität."}, 
 
@@ -879,20 +839,20 @@ const BANK = [
   o:["Gesintertes SiO₂","Gesintertes Al₂O₃ >99%","Mg-Al-Spinell","Mullit-Variante"], a:1,
   e:"Sinterkorund: Al₂O₃ > 99%, Schmelzpunkt 2050°C."}, 
 
-{c:"Rohstoffe", d:2, q:"Was ist Glasphase in Keramik?",
+{c:"Rohstoffe", d:2, q:"Was ist eine Glasphase in Keramik?",
   o:["Vollständig kristalline Struktur", "Reine SiO₂-Schicht", "Amorphe Schmelzphase aus Flussmitteln", "Porenfüllung mit Wasser"], a:2,
   e:"Glasphase aus Flussmitteln (Feldspat). Verbindet Körner, füllt Poren."}, 
 
-{c:"Rohstoffe", d:2, q:"Klinker?",
-  o:["Hart gesinterter Ziegel, WA<6%, frost-/witterungsbeständig", "Roher Ziegel", "Weich gebrannter Dachziegel", "Lehmstein"], a:0,
+{c:"Rohstoffe", d:2, q:"Was ist ein Klinker?",
+  o:["Hart gesinterter Ziegel,frost-/witterungsbeständig", "Roher roter Ziegel", "Weich gebrannter Dachziegel", "Lehmstein getrocknet"], a:0,
   e:"Klinker: dicht gesintert, sehr hart, chemisch beständig."}, 
 
 {c:"Rohstoffe", d:2, q:"Was ist Gips (CaSO₄)?",
-  o:["Calciumcarbonat","Calciumsulfat – poröses Bindemittel, Gussformen","Magnesiumsulfat","Aluminiumsulfat"], a:1,
+  o:["Calciumcarbonat","Calciumsulfat – poröses Bindemittel,","Magnesiumsulfat","Aluminiumsulfat"], a:1,
   e:"Gips CaSO₄·½H₂O: nimmt Wasser auf → Scherbenbildung. Für Gussformen."}, 
 
 {c:"Rohstoffe", d:2, q:"Was ist Si₃N₄?",
-  o:["Siliziumoxid","Siliziumnitrid: hohe Festigkeit, gute TWB","Siliziumcarbid","Calciumnitrid"], a:1,
+  o:["Siliziumoxid","Siliziumnitrid","Siliziumcarbid","Calciumnitrid"], a:1,
   e:"Si₃N₄: hohe Zähigkeit, TWB, bis ~1300°C. Schneidwerkzeuge, Turbinenteile."}, 
 
 {c:"Rohstoffe", d:3, q:"Was ist eutektisches Gemisch?",
@@ -911,19 +871,19 @@ const BANK = [
   o:["Abgabe von Elektronen","Aufnahme von Elektronen / Entzug von O₂","Säure-Base-Reaktion","Neutralisierung"], a:1,
   e:"Reduktion = Elektronenaufnahme."}, 
 
-{c:"Chemie", d:1, q:"Säure nach Brønsted?",
+{c:"Chemie", d:1, q:"Besonders an Säure nach Brønsted?",
   o:["Protonenakzeptor","Protonendonor (gibt H⁺ ab)","Elektronendonor","Oxidationsmittel"], a:1,
   e:"Säure gibt H⁺ ab."}, 
 
-{c:"Chemie", d:1, q:"Neutralisationsprodukte?",
+{c:"Chemie", d:1, q:"Was sind Neutralisationsprodukte?",
   o:["Salz + Wasser","Säure + Base","H₂ + O₂","CO₂ + H₂O"], a:0,
   e:"Säure + Base → Salz + Wasser."}, 
 
-{c:"Chemie", d:1, q:"Verbrennung von Kohlenstoff?",
+{c:"Chemie", d:1, q:"Was entsthet bei der Verbrennung von Kohlenstoff?",
   o:["CO + CO₂","SO₂","H₂O","N₂"], a:0,
   e:"C + O₂ → CO₂ (vollst.) oder 2C + O₂ → 2CO (unvollst.)."}, 
 
-{c:"Chemie", d:2, q:"CaCO₃ beim Erhitzen?",
+{c:"Chemie", d:2, q:"Was passiert mit CaCO₃ beim Erhitzen?",
   o:["CaCO₃ + H₂O → Ca(OH)₂","CaCO₃ → CaO + CO₂","CaO + SiO₂ → CaSiO₃","Ca + O₂ → CaO"], a:1,
   e:"Calcination: CaCO₃ → CaO + CO₂ ab ~850°C."}, 
 
@@ -931,11 +891,11 @@ const BANK = [
   o:["Bei 200°C → Metacristobalit entsteht", "Bei 873°C → Spinell-Phase entsteht", "Bei 450–600°C → Metakaolin entsteht (irreversibel)", "Bei 1100°C → Mullit entsteht"], a:2,
   e:"Kaolinit gibt bei ~550°C Kristallwasser ab: Al₂Si₂O₅(OH)₄ → Al₂Si₂O₇ + 2H₂O. Irreversibler Prozess, Metakaolin entsteht."}, 
 
-{c:"Chemie", d:2, q:"Molare Masse SiO₂?",
+{c:"Chemie", d:2, q:"Molare Masse von SiO₂?",
   o:["60 g/mol", "44 g/mol", "76 g/mol", "102 g/mol"], a:0,
   e:"M(SiO₂) = 28+2·16 = 60 g/mol."}, 
 
-{c:"Chemie", d:2, q:"Molare Masse Al₂O₃?",
+{c:"Chemie", d:2, q:"Molare Masse von Al₂O₃?",
   o:["54 g/mol","70 g/mol","102 g/mol","130 g/mol"], a:2,
   e:"M(Al₂O₃) = 2·27+3·16 = 102 g/mol."}, 
 
@@ -967,11 +927,11 @@ const BANK = [
   o:["Niedrige Härte, leicht zerspanbar, niedriger Schmelzpunkt (~1000°C)", "Gute elektrische Leitfähigkeit, ideal für Kondensatoren", "Sehr hohe Härte (Mohs 9,5), hohe Wärmeleitfähigkeit (~100 W/(m·K)), Oxidationsbeständig bis ~1600°C", "Basisches Oxid mit guter Schlackenbeständigkeit"], a:2,
   e:"SiC: Mohs 9,5, λ ≈ 100 W/(m·K), Schmelzpunkt ~2700°C, oxidationsbeständig bis ~1600°C. Brennhilfsmittel, Heizstäbe."}, 
 
-{c:"Chemie", d:2, q:"Was passiert im Keramik-Glühbrand bei ~900°C?",
+{c:"Chemie", d:2, q:"Was passiert beim Schrühbrand ( ~900°C) ?",
   o:["Feldspat schmilzt und bildet Glasphase", "Nur Kristallwasser entweicht", "Erste Sinterbrücken entstehen, Material verdichtet sich vollständig", "Organische Bestandteile verbrennen, Carbonate zersetzen sich (CO₂-Abgabe)"], a:3,
   e:"Glühbrand ~800–950°C: Organik verbrennt (C + O₂ → CO₂), Carbonate zersetzen sich (CaCO₃ → CaO + CO₂), Bindemittel abbrennen."}, 
 
-{c:"Chemie", d:3, q:"Stabile Phase im System Al₂O₃-SiO₂ bei hohen T?",
+{c:"Chemie", d:3, q:"DIe stabile Phase im System von Al₂O₃-SiO₂ bei hohen Temperaturen?",
   o:["Kaolinit","Mullit (3Al₂O₃·2SiO₂) + Schmelze","Reines Al₂O₃","Cristobalit + Al₂O₃"], a:1,
   e:"Mullit = einzige stabile Zwischenphase im Al₂O₃-SiO₂-System."}, 
 
@@ -987,7 +947,7 @@ const BANK = [
   o:["Mechanischer Verschleiß", "Spannungsrisskorrosion", "Elektrochemischer Angriff", "Chemischer Angriff durch Schlacken/Schmelzen"], a:3,
   e:"Keramikkorrosion: Auflösung durch Schlacken. Basische Schlacken greifen saure Keramik an."}, 
 
-{c:"Chemie", d:3, q:"Koksherstellung?",
+{c:"Chemie", d:3, q:"Wie läuft die Koksherstellung ab?",
   o:["Oxidation von Kohle", "Reduktion Eisenerz", "Trockendestillation ohne O₂ → Koks + Gas", "Ammoniaksynthese"], a:2,
   e:"Koks: Pyrolyse von Steinkohle bei 900–1100°C ohne Luft."}, 
 
@@ -995,27 +955,27 @@ const BANK = [
   o:["Die Zusammensetzung mit dem höchsten Schmelzpunkt", "Ein reiner Stoff mit definiertem Schmelzpunkt", "Eine Legierung mit maximaler Festigkeit", "Die Zusammensetzung mit dem niedrigsten Schmelzpunkt im System"], a:3,
   e:"Eutektikum: tiefstschmelzende Zusammensetzung eines Phasensystems. Wichtig für Glasuren und Schlackenchemie."}, 
 
-{c:"Chemie", d:2, q:"Molare Masse H₂O?",
+{c:"Chemie", d:2, q:"Was ist die Molare Masse von H₂O?",
   o:["10 g/mol","16 g/mol","18 g/mol","20 g/mol"], a:2,
   e:"M(H₂O) = 2·1 + 16 = 18 g/mol."}, 
 
-{c:"Chemie", d:2, q:"CO₂ in Wasser?",
+{c:"Chemie", d:2, q:"Was ist CO₂ in Wasser?",
   o:["HCl","HNO₃","H₂CO₃ (Kohlensäure)","H₂SO₄"], a:2,
   e:"CO₂ + H₂O ⇌ H₂CO₃ (schwache Säure)."}, 
 
 {c:"Chemie", d:2, q:"Was ist Oxidation von Eisen?",
-  o:["FeO","Fe₂O₃ (Eisenoxid/Rost)","Fe₃O₄","Fe(OH)₂"], a:1,
+  o:["FeO","Fe₂O₃","Fe₃O₄","Fe(OH)₂"], a:1,
   e:"Rost = hauptsächlich Fe₂O₃·nH₂O."}, 
 
 {c:"Chemie", d:2, q:"Was ist Hydrolyse?",
   o:["Verbrennung mit O₂","Spaltung durch Wasser","Reduktion durch H₂","Polymerisation"], a:1,
   e:"Hydrolyse: chemische Spaltung unter Einwirkung von Wasser. z.B. Tonmineralbildung aus Feldspat."}, 
 
-{c:"Fertigungstechnik", d:1, q:"Was ist Schlickerguss?",
-  o:["Plastisches Formen","Schlicker in Gipsformen → Scherbenbildung","Pressen mit Stempeln","Trocknen bei hoher T"], a:1,
+{c:"Fertigungstechnik", d:1, q:"Was ist ein Schlickerguss?",
+  o:["Plastisches Formen","Schlicker in Gipsformen","Pressen mit Stempeln","Trocknenpressen bei hoher Temperatur"], a:1,
   e:"Schlickerguss: Gips saugt Wasser → Feststoffschicht (Scherben)."}, 
 
-{c:"Fertigungstechnik", d:1, q:"Was ist das Prinzip des Strangpressens in der Keramik?",
+{c:"Fertigungstechnik", d:1, q:"Was ist das Prinzip des Strangpressens?",
   o:["Schlicker wird in Gipsformen gegossen und ausgehärtet", "Trockenes Pulver wird einachsig in Stahlmatrizen gepresst", "Plastische Masse wird durch ein profiliertes Mundstück gedrückt → kontinuierlicher Strang", "Granulat wird isostatisch verdichtet"], a:2,
   e:"Strangpressen: Presse drückt plastische Masse durch Mundstück. Für Rohre, Hohlblockziegel, Profile."}, 
 
@@ -1023,7 +983,7 @@ const BANK = [
   o:["Höherer Pressdruck ist möglich", "Nur für Trockenpulver geeignet", "Schnelleres Verfahren mit weniger Werkzeugverschleiß", "Allseitiger gleichmäßiger Druck durch Fluid → homogenere Verdichtung"], a:3,
   e:"Isostatisch: Druck kommt aus allen Richtungen gleichmäßig → keine Reibungsgradienten, gleichmäßige Rohdichte."}, 
 
-{c:"Fertigungstechnik", d:1, q:"Was ist ein Grünkörper?",
+{c:"Fertigungstechnik", d:1, q:"Was ist ein Grünlingr?",
   o:["Grün eingefärbtes Produkt","Ungebranntes geformtes Keramikteil","Teil nach Glühbrand","Teil mit grüner Glasur"], a:1,
   e:"Grünkörper = geformter, noch ungebrannter Formling."}, 
 
@@ -1031,7 +991,7 @@ const BANK = [
   o:["Gips ist kostengünstiger als Stahlformen", "Gips ist feuerbeständig bis 1400°C", "Gips saugt Wasser kapillar auf → Feststoff schlägt sich als Scherben nieder", "Gips ermöglicht schnelleres Entformen als Metall"], a:2,
   e:"Gips (CaSO₄·½H₂O) ist porös und saugt Wasser aus dem Schlicker → Feststoffschicht (Scherben) bildet sich an der Formwand."}, 
 
-{c:"Fertigungstechnik", d:1, q:"Was ist Schlicker?",
+{c:"Fertigungstechnik", d:1, q:"Was ist ein Schlicker?",
   o:["Plastische Tonmasse","Flüssige Suspension gießfähig","Trockenpulver","Mörtel"], a:1,
   e:"Schlicker: wässrige Suspension, TS 50–80%, fließfähig."}, 
 
@@ -1059,7 +1019,7 @@ const BANK = [
   o:["Glasur wird eingebrannt und verdichtet", "Erster Brand ohne Glasur (~900–1100°C) → poröser, handlungsfähiger Körper", "Reduktionsbrand für besondere Farbeffekte", "Abschlussbrand mit Höchsttemperatur"], a:1,
   e:"Biscuitbrand: 1. Brand ohne Glasur. Gibt dem Formling genug Festigkeit für den Glasurauftrag, bleibt aber porös."}, 
 
-{c:"Fertigungstechnik", d:2, q:"Was ist Glattbrand?",
+{c:"Fertigungstechnik", d:2, q:"Was ist ein Glattbrand?",
   o:["= Biscuitbrand","2. Brand mit Glasur → dichte Oberfläche","Sehr niedriger T-Brand","Sinterung ohne Glasur"], a:1,
   e:"Glattbrand = Glasurbrand. Glasur schmilzt, dichtet Oberfläche."}, 
 
@@ -1067,7 +1027,7 @@ const BANK = [
   o:["Dichte Folien für elektronische Bauteile", "Feine Schlickertropfen werden im Heißluftstrom zu rieselfähigem Granulat getrocknet", "Gebrannte Granulate für Schleifmittel", "Glasur-Suspensionen mit gleichmäßiger Korngröße"], a:1,
   e:"Sprühtrocknung: Schlicker wird zerstäubt, Wassertropfen verdampfen im Heißluftstrom → kugeliges, rieselfähiges Granulat für Trockenpressung."}, 
 
-{c:"Fertigungstechnik", d:2, q:"Was ist Einmalbrand?",
+{c:"Fertigungstechnik", d:2, q:"Was ist der Einmalbrand?",
   o:["Roh-Glasurbrand in einem Schritt","Hochtemperaturbrand","Brand ohne Glasur","Reduktionsbrand"], a:0,
   e:"Einmalbrand: Formling + Glasur in einem Ofendurchgang. Zeitsparend."}, 
 
@@ -1084,14 +1044,14 @@ const BANK = [
   e:"Steinzeug: dicht gesintert (WA <0,5%), homogener Scherben, nicht transluzent. Frost- und chemisch beständig. Bodenfliesen, Kanalrohre."}, 
 
 {c:"Fertigungstechnik", d:1, q:"Was ist eine Engobe?",
-  o:["Transparente Glasur","Tonschlicht zwischen Scherben und Glasur","Schamotte-Rohstoffmischung","Entformungsmittel"], a:1,
+  o:["Transparente Glasur","Tonhaltige Schicht","Schamotte-Rohstoffmischung","Entformungsmittel"], a:1,
   e:"Engobe: Tonschlicker-Überzug. Deckend, matte Oberfläche."}, 
 
 {c:"Fertigungstechnik", d:1, q:"Was legt die Brennkurve in der Keramikfertigung fest?",
   o:["Den Gasdurchfluss während des Brennvorgangs", "Die einzustellende Wärmeleitfähigkeit des Brennguts", "Den Temperatur-Zeit-Verlauf mit Aufheiz-, Halte- und Abkühlphasen", "Die Menge an Brennhilfsmitteln pro Charge"], a:2,
   e:"Brennkurve: geplanter Temperatur-Zeit-Verlauf. Kritische Haltepunkte: Wasserabgabe (~120°C), Quarzsprung (573°C), Sinterzone."}, 
 
-{c:"Fertigungstechnik", d:2, q:"Besatz / Brenngut?",
+{c:"Fertigungstechnik", d:2, q:"Was ist der Besatz im Ofen?",
   o:["Gesamte Ware im Brand", "Ofenwandmaterial", "Brennstoff", "Brennhilfsmittel"], a:0,
   e:"Besatz = Brenngut: alle Teile im Brennvorgang."}, 
 
@@ -1099,15 +1059,15 @@ const BANK = [
   o:["Geringere Investitionskosten", "Höhere Taktrate bei der Serienfertigung", "Gleichmäßigere Rohdichteverteilung durch allseitigen Druckausgleich", "Bessere Oberflächenqualität ohne Nachbearbeitung"], a:2,
   e:"Isostatisch: Druck von allen Seiten gleichmäßig → keine Reibungsgradienten wie beim uniaxialen Pressen → homogenere Verdichtung."}, 
 
-{c:"Fertigungstechnik", d:2, q:"Foliengießen (Tape Casting)?",
-  o:["Schlicker auf Trommel","Schlicker mit Rakel → dünne Folien für Elektronik","Hochdruckguss","Folien extrudieren"], a:1,
+{c:"Fertigungstechnik", d:2, q:"Was ist Foliengießen (Tape Casting)?",
+  o:["Schlicker wird auf Trommel gekippt","Schlicker mit Rakel auf dünne Folien gezogen","Hochdruckguss für Folien","Folien werden extrudiert"], a:1,
   e:"Tape Casting: Rakelbehälter auf Trägerfolie → dünne Folien für MLCC."}, 
 
-{c:"Fertigungstechnik", d:2, q:"Zentrifugalguss?",
+{c:"Fertigungstechnik", d:2, q:"Was ist ein Zentrifugalguss?",
   o:["Guss bei Schwerelosigkeit", "Hochdruckguss", "Schlicker in rotierende Form → dichte Wandung", "Schlickersprühen"], a:2,
   e:"Zentrifugalguss: Rotation → dichte, gleichmäßige Wandung. Für Rohre."}, 
 
-{c:"Fertigungstechnik", d:3, q:"Strangpressen: für welche Produkte?",
+{c:"Fertigungstechnik", d:3, q:"Für welche Produkte nutzt man das Strangpressen?",
   o:["Nur Fliesen","Rohre, Profile, Hohlblockziegel","Kugeln und Linsen","Dünne elektronische Folien"], a:1,
   e:"Strangpressen: Massenproduktion von Rohren, Hohlblockziegeln, Profilen."}, 
 
@@ -1123,7 +1083,7 @@ const BANK = [
   o:["Kraftübertragung über Zahnräder mit fester Übersetzung", "Kraftübertragung über einen Riemen auf Scheiben unterschiedlicher Durchmesser", "Hydraulische Kopplung zweier Pumpen", "Magnetische Kopplung ohne mechanischen Kontakt"], a:1,
   e:"Riemengetriebe: Riemen (Flach-, Keil- oder Zahnriemen) läuft über Scheiben. n₂/n₁ = d₁/d₂. Schlupf möglich (außer Zahnriemen)."}, 
 
-{c:"Betriebstechnik", d:2, q:"SPS = ?",
+{c:"Betriebstechnik", d:2, q:"Was bedeutet SPS ?",
   o:["Speicherprogrammierbare Steuerung","Sicherheits-Prüf-System","Spannungs-Prüf-Schalter","Standard-Prozess-Software"], a:0,
   e:"SPS = Speicherprogrammierbare Steuerung. Industrierechner."}, 
 
@@ -1140,22 +1100,22 @@ const BANK = [
   e:"Pneumatik: Druckluft (6–10 bar). Sauber, schnell."}, 
 
 {c:"Betriebstechnik", d:2, q:"Was ist Hydraulik?",
-  o:["Druckluft","Kraftübertragung durch Drucköl","Elektrisches Servoantrieb","Mechanische Kraftübertragung"], a:1,
+  o:["System mit Druckluft","Kraftübertragung durch Drucköl","Elektrisches Servoantrieb","Mechanische Kraftübertragung"], a:1,
   e:"Hydraulik: Öl unter hohem Druck (bis 350 bar). Hohe Kräfte."}, 
 
-{c:"Betriebstechnik", d:1, q:"Was ist Asynchronmotor?",
+{c:"Betriebstechnik", d:1, q:"Was ist ein Asynchronmotor?",
   o:["Gleichstrommotor", "Permanentmagnetmotor", "Drehstrommotor mit Schlupf", "Schrittmotor"], a:2,
   e:"Asynchronmotor: Schlupf s = (n_0−n)/n_0. Robust, wartungsarm."}, 
 
-{c:"Betriebstechnik", d:2, q:"Was ist Viskosität?",
+{c:"Betriebstechnik", d:2, q:"Was ist die Viskosität eines Stoffes?",
   o:["Dichte einer Flüssigkeit","Innere Reibung / Widerstand gegen Fließen","Oberflächenspannung","Benetzbarkeit"], a:1,
   e:"Viskosität η [Pa·s]: Widerstand gegen Scherung."}, 
 
-{c:"Betriebstechnik", d:1, q:"Was unterscheidet einen Regelkreis von einer einfachen Steuerung?",
+{c:"Betriebstechnik", d:1, q:"Was unterscheidet einen Regelkreis von einer Steuerung?",
   o:["Im Regelkreis gibt es keinen Sollwert", "Die Steuerung ist schneller und präziser", "Der Regelkreis hat eine geschlossene Rückkopplung: Istwert wird gemessen und Abweichung korrigiert", "Der Regelkreis arbeitet nur digital"], a:2,
   e:"Regelkreis: geschlossene Kette. Istwert messen → mit Sollwert vergleichen → Stellgröße anpassen. Steuerkette ist offen (keine Rückmeldung)."}, 
 
-{c:"Betriebstechnik", d:2, q:"Was ist PID-Regler?",
+{c:"Betriebstechnik", d:2, q:"Was ist ein PID-Regler?",
   o:["Gerät ohne Rückführung", "Sicherheitsventil", "Pneumatischer Druckregler", "Proportional + Integral + Differentialanteil"], a:3,
   e:"PID: P=Reaktion, I=statischer Abgleich, D=Dämpfung."}, 
 
@@ -1171,7 +1131,7 @@ const BANK = [
   o:["Umwandlung von Wärme in elektrische Energie", "Erhitzen von Prozessgas durch direkten Kontakt mit Flammen", "Übertragung von Wärme zwischen zwei Medien ohne deren Vermischung", "Speicherung von Wärmeenergie in einem Druckbehälter"], a:2,
   e:"Wärmetauscher: überträgt Wärme zwischen zwei Medien (z.B. Abgas → Verbrennungsluft) ohne Vermischung. Rekuperator, Kühler."}, 
 
-{c:"Betriebstechnik", d:2, q:"Wann öffnet ein Sicherheitsventil und warum ist es vorgeschrieben?",
+{c:"Betriebstechnik", d:2, q:"Wann öffnet ein Sicherheitsventil?",
   o:["Es öffnet manuell zur regelmäßigen Druckentlastung", "Es öffnet bei Druckunterschreitung zum Ausgleich", "Es öffnet automatisch bei Drucküberschreitung zum Schutz von Behälter und Anlage", "Es öffnet nur im Notfall durch elektrisches Signal"], a:2,
   e:"Sicherheitsventil: öffnet selbsttätig bei Drucküberschreitung → verhindert Bersten. Vorgeschrieben nach Druckgeräterichtlinie."}, 
 
@@ -1184,11 +1144,11 @@ const BANK = [
   e:"Sensor: misst Temperatur, Druck etc. → elektrisches Signal."}, 
 
 {c:"MSR", d:1, q:"Was ist ein Thermoelement?",
-  o:["Bimetallstreifen","Temperatursensor aus zwei Metallen (Seebeck-Effekt)","PT100","IR-Sensor"], a:1,
+  o:["Bimetallstreifen","Temperatursensor aus zwei Metallen (Seebeck-Effekt)","PT100 Sensor ","IR-Sensor"], a:1,
   e:"Thermoelement: Seebeck-Effekt → temperaturabhängige Spannung. Typ K, J, S."}, 
 
-{c:"MSR", d:2, q:"Was ist ein PT100?",
-  o:["Platinwiderstand R=100Ω bei 0°C – Temperatursensor","Thermoelementtyp","Drucksensor","Durchflussmesser"], a:0,
+{c:"MSR", d:2, q:"Was ist ein PT100 Sensor?",
+  o:["Platinwiderstand R=100Ω bei 0°C – Temperatursensor","Thermoelementtyp aus 100 Drähten","100 bar Drucksensor","Durchflussmesser für 100l"], a:0,
   e:"PT100: R=100Ω bei 0°C, steigt ~0,385 Ω/K. Präzise."}, 
 
 {c:"MSR", d:2, q:"Was bedeutet das 4–20 mA Normsignal?",
@@ -1203,11 +1163,11 @@ const BANK = [
   o:["Eingang wirkt ohne Messung des Ausgangs auf den Prozess", "Fester Steuerwert ohne Anpassung", "Istwert wird gemessen, mit Sollwert verglichen, Abweichung wird ausgeregelt", "Nur für Temperaturprozesse anwendbar"], a:2,
   e:"Regelung: Rückkopplung. Störgrößen werden durch Istwert-Sollwert-Vergleich automatisch ausgeregelt."}, 
 
-{c:"MSR", d:2, q:"Was ist Sollwert (SP)?",
+{c:"MSR", d:2, q:"Was ist der Sollwert (SP)?",
   o:["Gemessener Istwert", "Maximaler Betriebswert", "Gewünschter Wert der Regelgröße", "Historischer Mittelwert"], a:2,
   e:"Sollwert SP = Zielgröße der Regelung."}, 
 
-{c:"MSR", d:2, q:"Regelabweichung e = ?",
+{c:"MSR", d:2, q:"Was ist die Regelabweichung (e) ?",
   o:["Sollwert · Istwert","Sollwert − Istwert","Istwert / Sollwert","Stellgröße"], a:1,
   e:"e = w − x (Sollwert − Istwert)."}, 
 
@@ -1227,7 +1187,7 @@ const BANK = [
   o:["Widerstand steigt linear mit der Temperatur", "Widerstand bleibt konstant (temperaturunabhängig)", "Widerstand sinkt mit steigender Temperatur (Negativer Temperaturkoeffizient)", "Erzeugt Spannung ohne externe Stromversorgung"], a:2,
   e:"NTC (Negative Temperature Coefficient): Widerstand sinkt mit T. Günstig, aber weniger präzise als PT100."}, 
 
-{c:"MSR", d:2, q:"Was misst O₂-Sonde (Lambdasonde)?",
+{c:"MSR", d:2, q:"Was misst eine O₂-Sonde (Lambdasonde)?",
   o:["CO-Gehalt","O₂-Restgehalt → Luftfaktor λ","NOx-Gehalt","Abgastemperatur"], a:1,
   e:"Lambdasonde: O₂ im Abgas → Luftfaktor λ. Wichtig für Verbrennungsregelung."}, 
 
@@ -1239,19 +1199,19 @@ const BANK = [
   o:["Der gemessene CO₂-Gehalt der Abgase in mg/m³", "Die auf die Treibhauswirkung von CO₂ umgerechnete Gesamtmenge aller Treibhausgase", "Der CO₂-Anteil im Verbrennungsluftgemisch", "Die gesetzliche CO₂-Emissionsgrenze nach TA Luft"], a:1,
   e:"CO₂e: CH₄ = 25× CO₂-Wirkung, N₂O = 298× CO₂-Wirkung. Basis für Klimabilanz und Emissionshandel."}, 
 
-{c:"Umwelttechnik", d:1, q:"NOx – warum problematisch?",
+{c:"Umwelttechnik", d:1, q:"NOx – warum ist das problematisch?",
   o:["Inerte Gase","NO und NO₂ → Smog, saurer Regen, gesundheitsschädlich","Sauerstoffgas","Kohlendioxid"], a:1,
   e:"NOx: saurer Regen, Ozonbildung, gesundheitsschädlich."}, 
 
-{c:"Umwelttechnik", d:1, q:"SO₂ und Herkunft?",
-  o:["Aus sauberem Gas","Verbrennung schwefelhaltiger Brennstoffe → saurer Regen","Luftbestandteil","CO₂-Variante"], a:1,
+{c:"Umwelttechnik", d:1, q:"Woher kommt das SO₂?",
+  o:["Aus sauberem Gas","Verbrennung schwefelhaltiger Brennstoffe","Luftbestandteil","CO₂-Variante"], a:1,
   e:"SO₂ aus S-haltigem Brennstoff → H₂SO₄ → saurer Regen."}, 
 
-{c:"Umwelttechnik", d:1, q:"Was ist Feinstaub PM2.5?",
+{c:"Umwelttechnik", d:1, q:"Was ist Feinstaub mit PM2.5?",
   o:["Partikel <2,5 µm – tief in Lunge eindringend", "Gröberes Gestein", "Asbeststäube", "Laborchemikalien"], a:0,
   e:"PM2,5: Partikel <2,5 µm. Gesundheitsschädlich."}, 
 
-{c:"Umwelttechnik", d:2, q:"Was ist ein Gewebefilter?",
+{c:"Umwelttechnik", d:2, q:"Wofür ist ein Gewebefilter?",
   o:["Filter für Flüssigkeiten","Abgasfilter mit Gewebeschläuchen für Staub","Nasskühler","Elektrofilter"], a:1,
   e:"Gewebefilter: Staubabscheidung >99%."}, 
 
@@ -1267,8 +1227,8 @@ const BANK = [
   o:["NOx-Entfernung","SO₂ + CaO → CaSO₄ (Gips). Nass- oder Trockenverfahren","Staubabscheidung","CO₂-Abscheidung"], a:1,
   e:"REA: SO₂ + CaCO₃ → CaSO₄. Gips als Nebenprodukt."}, 
 
-{c:"Umwelttechnik", d:1, q:"Was ist TA Luft?",
-  o:["Luftfahrtvorschrift", "Klimanorm", "EU-Richtlinie", "Emissionsgrenzwerte für Stäube, NOx, SO₂ etc. (Deutschland)"], a:3,
+{c:"Umwelttechnik", d:1, q:"Was ist die TA Luft?",
+  o:["Luftfahrtvorschrift", "Klimanorm", "EU-Richtlinie", "Emissionsgrenzwerte für Stäube, NOx, SO₂ "], a:3,
   e:"TA Luft: Verwaltungsvorschrift mit Emissionsgrenzwerten."}, 
 
 {c:"Umwelttechnik", d:2, q:"Was ist Energieeffizienz?",
@@ -1279,8 +1239,8 @@ const BANK = [
   o:["Hauptbrenner","Organische Schadstoffe bei ~800°C verbrennen","NOx-Abscheider","Wärmetauscher"], a:1,
   e:"TNV: VOC → CO₂ + H₂O bei 800–1000°C."}, 
 
-{c:"Umwelttechnik", d:2, q:"CO – warum gefährlich?",
-  o:["Harmlos","Giftig: blockiert O₂-Transport im Blut","Luftbestandteil","Inertgas"], a:1,
+{c:"Umwelttechnik", d:2, q:"CO – warum ist es gefährlich?",
+  o:["es ist harmlos","Giftig: blockiert O₂-Transport im Blut","ungiftig da Luftbestandteil","ein Inertgas"], a:1,
   e:"CO: farblos, geruchlos, giftig. MAK: 35 ppm. Entsteht bei unvollständiger Verbrennung."}, 
 
 {c:"Umwelttechnik", d:1, q:"Was ist Kreislaufwirtschaft?",
