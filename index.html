@@ -1271,6 +1271,7 @@ tr:nth-child(even) td { background:var(--rt-bg); }
         <span class="ok">✓ <span id="score-ok">0</span></span>
         <span class="no">✗ <span id="score-no">0</span></span>
         <span id="lives-display"></span>
+        <button onclick="abortQuiz()" title="Quiz abbrechen" style="background:none;border:none;cursor:pointer;font-size:1rem;color:#bbb;margin-left:8px;padding:2px 6px;border-radius:6px;line-height:1;" onmouseover="this.style.color='#e74c3c'" onmouseout="this.style.color='#bbb'">✕</button>
       </div>
     </div>
     <div class="timer-wrap" id="timer-wrap" style="display:none;">
@@ -3584,6 +3585,12 @@ function showQuizStart() {
   document.getElementById('quiz-game').style.display='none';
   document.getElementById('result-screen').style.display='none';
   document.getElementById('start-screen').style.display='block';
+}
+function abortQuiz() {
+  if (!confirm('Quiz wirklich abbrechen? Der aktuelle Fortschritt geht verloren.')) return;
+  clearInterval(timerInterval);
+  correct=0; wrong=0; streak=0; lives=3; qIndex=0; questions=[]; questionHistory=[];
+  showQuizStart();
 }
 const LTRS=['A','B','C','D'];
 function showQuestion() {
@@ -6094,40 +6101,47 @@ async function lbLoad() {
   document.getElementById('lb-table').style.display = 'none';
   document.getElementById('lb-empty').style.display = 'none';
 
-  try {
+  // Show notice if not logged in
+  const notice = document.getElementById('lb-login-notice');
+  if (notice) notice.style.display = currentUser ? 'none' : 'block';
 
+  try {
+    // Nur Survival-Modus laden, nach num_q (Fragen geschafft) sortieren
     const data = await sbFetch(
-      `scores?select=pct,num_q,mode,created_at,players(username)&order=pct.desc&limit=50`
+      `scores?mode=eq.survival&select=pct,num_q,mode,created_at,player_id,players(username)&order=num_q.desc&limit=200`
     );
 
     document.getElementById('lb-loading').style.display = 'none';
 
-    if(!data || data.length === 0){
+    if (!data || data.length === 0) {
       document.getElementById('lb-empty').style.display = 'block';
       return;
     }
 
-    const rows = data.map((s,i)=>({
-        pid:i,
-        username:(s.players && s.players.username) ? s.players.username : "Unbekannt",
-        bestPct:s.pct,
-        games:1,
-        avgPct:s.pct
-    }));
+    // Bestes Ergebnis pro Spieler (meiste Fragen)
+    const byPlayer = {};
+    data.forEach(s => {
+      const pid = s.player_id;
+      const uname = (s.players && s.players.username) ? s.players.username : 'Unbekannt';
+      if (!byPlayer[pid]) byPlayer[pid] = { pid, username: uname, bestQ: 0, games: 0 };
+      byPlayer[pid].bestQ = Math.max(byPlayer[pid].bestQ, s.num_q || 0);
+      byPlayer[pid].games++;
+    });
 
-    renderLeaderboard(rows);
+    const sorted = Object.values(byPlayer).sort((a, b) => b.bestQ - a.bestQ || b.games - a.games);
+    renderLeaderboard(sorted);
 
     if (currentUser) {
       const myScores = await sbFetch(
-        `scores?player_id=eq.${currentUser.id}&order=created_at.desc&limit=10&select=pct,num_q,mode,created_at`
+        `scores?player_id=eq.${currentUser.id}&mode=eq.survival&order=created_at.desc&limit=10&select=pct,num_q,mode,created_at`
       );
       renderMyScores(myScores || []);
     }
 
-  } catch(e){
+  } catch(e) {
     document.getElementById('lb-loading').style.display = 'none';
     document.getElementById('lb-empty').style.display = 'block';
-    console.error("Leaderboard error", e);
+    console.error('Leaderboard error', e);
   }
 }
 
@@ -6141,25 +6155,25 @@ function renderLeaderboard(sorted) {
   }
 
   const tbody = document.getElementById('lb-tbody');
-  const maxPct = sorted[0]?.bestPct || 100;
+  const maxQ = sorted[0]?.bestQ || 1;
 
   tbody.innerHTML = sorted.slice(0, 50).map((p, i) => {
     const rank = i + 1;
     const rankClass = rank === 1 ? 'lb-rank-1' : rank === 2 ? 'lb-rank-2' : rank === 3 ? 'lb-rank-3' : '';
     const rankIcon = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
     const isMe = currentUser && p.pid === currentUser.id;
-    const barW = Math.round(p.bestPct / maxPct * 100);
+    const barW = Math.round(p.bestQ / maxQ * 100);
     return `<tr class="${isMe ? 'me' : ''}">
       <td class="lb-rank ${rankClass}">${rankIcon}</td>
       <td><strong>${esc(p.username)}</strong>${isMe ? ' <span style="color:var(--rt-orange);font-size:0.75rem;">(du)</span>' : ''}</td>
       <td>
         <div class="lb-score-bar">
           <div class="lb-bar-bg"><div class="lb-bar-fill" style="width:${barW}%"></div></div>
-          <span class="lb-pct">${p.bestPct}%</span>
+          <span class="lb-pct" style="color:var(--rt-orange);min-width:60px;">${p.bestQ} Fragen</span>
         </div>
-        <div style="font-size:0.72rem;color:#aaa;margin-top:2px;">Ø ${p.avgPct}% · ${p.games} Spiel${p.games>1?'e':''}</div>
+        <div style="font-size:0.72rem;color:#aaa;margin-top:2px;">🎯 Survival · ${p.games} Versuch${p.games>1?'e':''}</div>
       </td>
-      <td style="text-align:right;color:#aaa;font-size:0.85rem;">${p.games}</td>
+      <td style="text-align:right;color:#aaa;font-size:0.85rem;">${p.games}×</td>
     </tr>`;
   }).join('');
 
@@ -6210,8 +6224,8 @@ function renderMyScores(scores) {
     const dateStr = isNaN(d) ? '' : d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});
     return `<div class="my-score-row">
       <span style="color:#555">${dateStr}</span>
-      <span style="color:#888;font-size:0.82rem">${s.mode || 'Normal'} · ${s.num_q} Fragen</span>
-      <span class="my-score-pct">${s.pct}%</span>
+      <span style="color:#888;font-size:0.82rem">🎯 Survival</span>
+      <span class="my-score-pct" style="color:var(--rt-orange);">${s.num_q || 0} Fragen</span>
     </div>`;
   }).join('');
 }
@@ -6446,40 +6460,39 @@ function exitReview() {
 <!-- ═══ NAV LOGIN BTN (injected by JS) ═══════════════════════ -->
 
 <!-- ═══ LEADERBOARD VIEW ════════════════════════════════════ -->
-<div id="leaderboard-view">
-    <h2>Leaderboard</h2>
-    
-    <div id="filters">
-        <label for="filter">Filter by:</label>
-        <button class="lb-filter-btn active" onclick="lbFilter(this, 'all')">All</button>
-        <button class="lb-filter-btn" onclick="lbFilter(this, 'friends')">Friends</button>
-        <button class="lb-filter-btn" onclick="lbFilter(this, 'global')">Global</button>
-    </div>
-    
-    <div id="lb-loading">
-        <p>Loading leaderboard...</p>
-    </div>
-    
-    <div id="lb-empty" style="display:none;">
-        <p>No scores yet</p>
-    </div>
-    
-    <table id="lb-table" style="display:none; width:100%;">
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Best %</th>
-                <th>Games</th>
-            </tr>
-        </thead>
-        <tbody id="lb-tbody"></tbody>
-    </table>
-    
-    <div id="lb-my-scores" style="display:none;">
-        <h3>My Scores</h3>
-        <div id="lb-my-list"></div>
-    </div>
+<div id="leaderboard-view" class="view">
+  <div class="lb-header">
+    <div class="lb-title">🏆 Best<span>enliste</span></div>
+    <button class="lb-refresh" onclick="lbLoad()" title="Aktualisieren">🔄</button>
+  </div>
+
+  <div style="margin-bottom:16px;padding:12px 16px;background:#fff4f0;border-radius:12px;font-size:0.85rem;color:#888;">
+    🎯 Nur <strong style="color:var(--rt-orange);">Survival-Modus</strong> Ergebnisse – wer schafft die meisten Fragen am Stück?
+  </div>
+
+  <div id="lb-login-notice" style="display:none;padding:14px 16px;background:#f9f9f9;border-radius:12px;margin-bottom:16px;text-align:center;font-size:0.88rem;color:#888;">
+    🔐 <a href="#" onclick="document.getElementById('auth-overlay').style.display='flex';return false;" style="color:var(--rt-orange);font-weight:700;">Anmelden</a> um in der Bestenliste zu erscheinen
+  </div>
+
+  <div id="lb-loading" style="text-align:center;padding:40px;color:#bbb;">⏳ Lade Bestenliste…</div>
+  <div id="lb-empty" style="display:none;text-align:center;padding:40px;color:#bbb;font-size:1.1rem;">Noch keine Survival-Ergebnisse 🎮</div>
+
+  <table id="lb-table" class="lb-table" style="display:none;">
+    <thead>
+      <tr>
+        <th style="width:44px;">#</th>
+        <th>Spieler</th>
+        <th>Beste Runde</th>
+        <th style="text-align:right;">Spiele</th>
+      </tr>
+    </thead>
+    <tbody id="lb-tbody"></tbody>
+  </table>
+
+  <div id="lb-my-scores" class="lb-my-scores" style="display:none;">
+    <h3>Meine Survival-Ergebnisse</h3>
+    <div id="lb-my-list"></div>
+  </div>
 </div>
 
 <!-- ═══ FEHLER MELDEN MODAL ═════════════════════════════════ -->
