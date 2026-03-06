@@ -3537,10 +3537,6 @@ let questions=[], qIndex=0, correct=0, wrong=0;
 let streak=0, bestStreak=0, lives=3;
 let timerInterval=null, timeLeft=20, answered=false;
 let catStats={};
-
-let questionHistory = [];
-let reviewMode = false;
-
 let highscore=parseInt(localStorage.getItem('rt_hs')||'0');
 let bestStreakSaved=parseInt(localStorage.getItem('rt_bs')||'0');
 
@@ -6092,69 +6088,36 @@ function lbFilter(btn, mode) {
   lbLoad();
 }
 
+async 
 async function lbLoad() {
+
   document.getElementById('lb-loading').style.display = 'block';
   document.getElementById('lb-table').style.display = 'none';
   document.getElementById('lb-empty').style.display = 'none';
 
-  // Show notice if not logged in
-  const notice = document.getElementById('lb-login-notice');
-  notice.style.display = currentUser ? 'none' : 'flex';
-
-  if (SUPABASE_URL === 'YOUR_SUPABASE_URL') {
-    // Demo mode – show local scores
-    renderDemoLeaderboard();
-    return;
-  }
-
   try {
-    // Build date filter
-    let dateFilter = '';
-    if (lbFilterMode === 'today') {
-      const today = new Date().toISOString().split('T')[0];
-      dateFilter = `&created_at=gte.${today}T00:00:00`;
-    } else if (lbFilterMode === 'week') {
-      const d = new Date(); d.setDate(d.getDate()-7);
-      dateFilter = `&created_at=gte.${d.toISOString()}`;
-    }
 
-    // Step 1: Get all scores
-    const scores = await sbFetch(
-      `scores?select=player_id,pct,num_q,mode,created_at${dateFilter}&order=pct.desc&limit=500`
+    const data = await sbFetch(
+      `scores?select=pct,num_q,mode,created_at,players(username)&order=pct.desc&limit=50`
     );
 
-    if (!scores || scores.length === 0) {
-      document.getElementById('lb-loading').style.display = 'none';
+    document.getElementById('lb-loading').style.display = 'none';
+
+    if(!data || data.length === 0){
       document.getElementById('lb-empty').style.display = 'block';
       return;
     }
 
-    // Step 2: Get all player names for those IDs
-    const playerIds = [...new Set(scores.map(s => s.player_id))];
-    const players = await sbFetch(
-      `players?id=in.(${playerIds.join(',')})&select=id,username`
-    );
-    const playerMap = {};
-    (players || []).forEach(p => playerMap[p.id] = p.username);
+    const rows = data.map((s,i)=>({
+        pid:i,
+        username:(s.players && s.players.username) ? s.players.username : "Unbekannt",
+        bestPct:s.pct,
+        games:1,
+        avgPct:s.pct
+    }));
 
-    // Step 3: Aggregate best score per player
-    const byPlayer = {};
-    scores.forEach(s => {
-      const pid = s.player_id;
-      const uname = playerMap[pid] || 'Unbekannt';
-      if (!byPlayer[pid]) byPlayer[pid] = { username: uname, bestPct: 0, games: 0, totalPct: 0 };
-      byPlayer[pid].bestPct = Math.max(byPlayer[pid].bestPct, s.pct);
-      byPlayer[pid].games++;
-      byPlayer[pid].totalPct += s.pct;
-    });
+    renderLeaderboard(rows);
 
-    const sorted = Object.entries(byPlayer)
-      .map(([pid, d]) => ({pid, ...d, avgPct: Math.round(d.totalPct/d.games)}))
-      .sort((a,b) => b.bestPct - a.bestPct || b.games - a.games);
-
-    renderLeaderboard(sorted);
-
-    // Show my scores
     if (currentUser) {
       const myScores = await sbFetch(
         `scores?player_id=eq.${currentUser.id}&order=created_at.desc&limit=10&select=pct,num_q,mode,created_at`
@@ -6162,13 +6125,13 @@ async function lbLoad() {
       renderMyScores(myScores || []);
     }
 
-  } catch(e) {
+  } catch(e){
     document.getElementById('lb-loading').style.display = 'none';
     document.getElementById('lb-empty').style.display = 'block';
-    document.getElementById('lb-empty').textContent = '⚠️ Verbindungsfehler: ' + e.message;
-    console.error('LB error:', e);
+    console.error("Leaderboard error", e);
   }
 }
+
 
 function renderLeaderboard(sorted) {
   document.getElementById('lb-loading').style.display = 'none';
@@ -6370,7 +6333,8 @@ document.addEventListener('keydown', e => {
 // ════════════════════════════════════════════════════════════
 
 // Speichert max. 3 beantwortete Fragen: { q, idx, selectedOrig, wasCorrect }
- // true = gerade in Rückschau
+let questionHistory = [];
+let reviewMode = false; // true = gerade in Rückschau
 
 function goBack() {
   if (questionHistory.length === 0) return;
