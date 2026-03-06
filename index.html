@@ -6106,23 +6106,30 @@ async function lbLoad() {
   if (notice) notice.style.display = currentUser ? 'none' : 'block';
 
   try {
-    // Survival + Speed laden, nach num_q sortieren
-    const data = await sbFetch(
-      `scores?mode=in.(survival,speed)&select=num_q,mode,player_id,players(username)&order=num_q.desc&limit=500`
+    // Schritt 1: Scores für Survival + Speed holen
+    const scores = await sbFetch(
+      `scores?mode=in.(survival,speed)&select=num_q,mode,player_id&order=num_q.desc&limit=500`
     );
 
-    document.getElementById('lb-loading').style.display = 'none';
-
-    if (!data || data.length === 0) {
+    if (!scores || scores.length === 0) {
+      document.getElementById('lb-loading').style.display = 'none';
       document.getElementById('lb-empty').style.display = 'block';
       return;
     }
 
+    // Schritt 2: Spielernamen separat holen
+    const playerIds = [...new Set(scores.map(s => s.player_id).filter(Boolean))];
+    const players = await sbFetch(`players?id=in.(${playerIds.join(',')})&select=id,username`);
+    const nameMap = {};
+    (players || []).forEach(p => nameMap[p.id] = p.username);
+
+    document.getElementById('lb-loading').style.display = 'none';
+
     // Bestes Ergebnis pro Spieler pro Modus
     const survival = {}, speed = {};
-    data.forEach(s => {
+    scores.forEach(s => {
       const pid = s.player_id;
-      const uname = (s.players && s.players.username) ? s.players.username : 'Unbekannt';
+      const uname = nameMap[pid] || 'Unbekannt';
       const bucket = s.mode === 'survival' ? survival : speed;
       if (!bucket[pid] || s.num_q > bucket[pid].bestQ)
         bucket[pid] = { pid, username: uname, bestQ: s.num_q || 0 };
@@ -6135,7 +6142,7 @@ async function lbLoad() {
   } catch(e) {
     document.getElementById('lb-loading').style.display = 'none';
     document.getElementById('lb-empty').style.display = 'block';
-    console.error('Leaderboard error', e);
+    console.error('Leaderboard error:', e);
   }
 }
 
