@@ -6098,7 +6098,7 @@ function lbFilter(btn, mode) {
 async function lbLoad() {
 
   document.getElementById('lb-loading').style.display = 'block';
-  document.getElementById('lb-table').style.display = 'none';
+  document.getElementById('lb-tables-wrap').style.display = 'none';
   document.getElementById('lb-empty').style.display = 'none';
 
   // Show notice if not logged in
@@ -6461,7 +6461,7 @@ function exitReview() {
   </div>
 
   <div id="lb-loading" style="text-align:center;padding:40px;color:#bbb;">⏳ Lade Bestenliste…</div>
-  <div id="lb-empty" style="display:none;text-align:center;padding:40px;color:#bbb;font-size:1.1rem;">Noch keine Survival-Ergebnisse 🎮</div>
+  <div id="lb-empty" style="display:none;text-align:center;padding:40px;color:#bbb;font-size:1.1rem;">Noch keine Ergebnisse 🎮</div>
 
   <div id="lb-tables-wrap" style="display:none;">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
