@@ -6106,9 +6106,9 @@ async function lbLoad() {
   if (notice) notice.style.display = currentUser ? 'none' : 'block';
 
   try {
-    // Nur Survival-Modus laden, nach num_q (Fragen geschafft) sortieren
+    // Survival + Speed laden, nach num_q sortieren
     const data = await sbFetch(
-      `scores?mode=eq.survival&select=pct,num_q,mode,created_at,player_id,players(username)&order=num_q.desc&limit=200`
+      `scores?mode=in.(survival,speed)&select=num_q,mode,player_id,players(username)&order=num_q.desc&limit=500`
     );
 
     document.getElementById('lb-loading').style.display = 'none';
@@ -6118,25 +6118,19 @@ async function lbLoad() {
       return;
     }
 
-    // Bestes Ergebnis pro Spieler (meiste Fragen)
-    const byPlayer = {};
+    // Bestes Ergebnis pro Spieler pro Modus
+    const survival = {}, speed = {};
     data.forEach(s => {
       const pid = s.player_id;
       const uname = (s.players && s.players.username) ? s.players.username : 'Unbekannt';
-      if (!byPlayer[pid]) byPlayer[pid] = { pid, username: uname, bestQ: 0, games: 0 };
-      byPlayer[pid].bestQ = Math.max(byPlayer[pid].bestQ, s.num_q || 0);
-      byPlayer[pid].games++;
+      const bucket = s.mode === 'survival' ? survival : speed;
+      if (!bucket[pid] || s.num_q > bucket[pid].bestQ)
+        bucket[pid] = { pid, username: uname, bestQ: s.num_q || 0 };
     });
 
-    const sorted = Object.values(byPlayer).sort((a, b) => b.bestQ - a.bestQ || b.games - a.games);
-    renderLeaderboard(sorted);
-
-    if (currentUser) {
-      const myScores = await sbFetch(
-        `scores?player_id=eq.${currentUser.id}&mode=eq.survival&order=created_at.desc&limit=10&select=pct,num_q,mode,created_at`
-      );
-      renderMyScores(myScores || []);
-    }
+    const sortedSurvival = Object.values(survival).sort((a, b) => b.bestQ - a.bestQ).slice(0, 10);
+    const sortedSpeed   = Object.values(speed).sort((a, b) => b.bestQ - a.bestQ).slice(0, 10);
+    renderLeaderboard(sortedSurvival, sortedSpeed);
 
   } catch(e) {
     document.getElementById('lb-loading').style.display = 'none';
@@ -6146,38 +6140,26 @@ async function lbLoad() {
 }
 
 
-function renderLeaderboard(sorted) {
-  document.getElementById('lb-loading').style.display = 'none';
-
-  if (sorted.length === 0) {
-    document.getElementById('lb-empty').style.display = 'block';
-    return;
-  }
-
-  const tbody = document.getElementById('lb-tbody');
-  const maxQ = sorted[0]?.bestQ || 1;
-
-  tbody.innerHTML = sorted.slice(0, 50).map((p, i) => {
+function renderTable(list, tbodyId) {
+  const tbody = document.getElementById(tbodyId);
+  if (!list || list.length === 0) { tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#bbb;padding:20px;">Noch keine Einträge</td></tr>'; return; }
+  tbody.innerHTML = list.map((p, i) => {
     const rank = i + 1;
-    const rankClass = rank === 1 ? 'lb-rank-1' : rank === 2 ? 'lb-rank-2' : rank === 3 ? 'lb-rank-3' : '';
     const rankIcon = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
     const isMe = currentUser && p.pid === currentUser.id;
-    const barW = Math.round(p.bestQ / maxQ * 100);
     return `<tr class="${isMe ? 'me' : ''}">
-      <td class="lb-rank ${rankClass}">${rankIcon}</td>
-      <td><strong>${esc(p.username)}</strong>${isMe ? ' <span style="color:var(--rt-orange);font-size:0.75rem;">(du)</span>' : ''}</td>
-      <td>
-        <div class="lb-score-bar">
-          <div class="lb-bar-bg"><div class="lb-bar-fill" style="width:${barW}%"></div></div>
-          <span class="lb-pct" style="color:var(--rt-orange);min-width:60px;">${p.bestQ} Fragen</span>
-        </div>
-        <div style="font-size:0.72rem;color:#aaa;margin-top:2px;">🎯 Survival · ${p.games} Versuch${p.games>1?'e':''}</div>
-      </td>
-      <td style="text-align:right;color:#aaa;font-size:0.85rem;">${p.games}×</td>
+      <td class="lb-rank">${rankIcon}</td>
+      <td><strong>${esc(p.username)}</strong>${isMe ? ' <span style="color:var(--rt-orange);font-size:0.75rem;"> (du)</span>' : ''}</td>
+      <td style="text-align:right;font-weight:800;color:var(--rt-orange);">${p.bestQ} Fragen</td>
     </tr>`;
   }).join('');
+}
 
-  document.getElementById('lb-table').style.display = 'table';
+function renderLeaderboard(sortedSurvival, sortedSpeed) {
+  document.getElementById('lb-loading').style.display = 'none';
+  document.getElementById('lb-tables-wrap').style.display = 'block';
+  renderTable(sortedSurvival, 'lb-tbody-survival');
+  renderTable(sortedSpeed, 'lb-tbody-speed');
 }
 
 function renderDemoLeaderboard() {
@@ -6477,21 +6459,18 @@ function exitReview() {
   <div id="lb-loading" style="text-align:center;padding:40px;color:#bbb;">⏳ Lade Bestenliste…</div>
   <div id="lb-empty" style="display:none;text-align:center;padding:40px;color:#bbb;font-size:1.1rem;">Noch keine Survival-Ergebnisse 🎮</div>
 
-  <table id="lb-table" class="lb-table" style="display:none;">
-    <thead>
-      <tr>
-        <th style="width:44px;">#</th>
-        <th>Spieler</th>
-        <th>Beste Runde</th>
-        <th style="text-align:right;">Spiele</th>
-      </tr>
-    </thead>
-    <tbody id="lb-tbody"></tbody>
-  </table>
+  <div id="lb-tables-wrap" style="display:none;">
+    <h3 style="font-size:1rem;font-weight:800;color:var(--rt-dark);margin:0 0 10px;">❤️ Survival – meiste Fragen</h3>
+    <table class="lb-table" style="margin-bottom:28px;">
+      <thead><tr><th style="width:44px;">#</th><th>Spieler</th><th style="text-align:right;">Fragen</th></tr></thead>
+      <tbody id="lb-tbody-survival"></tbody>
+    </table>
 
-  <div id="lb-my-scores" class="lb-my-scores" style="display:none;">
-    <h3>Meine Survival-Ergebnisse</h3>
-    <div id="lb-my-list"></div>
+    <h3 style="font-size:1rem;font-weight:800;color:var(--rt-dark);margin:0 0 10px;">⚡ Speed – meiste Fragen</h3>
+    <table class="lb-table">
+      <thead><tr><th style="width:44px;">#</th><th>Spieler</th><th style="text-align:right;">Fragen</th></tr></thead>
+      <tbody id="lb-tbody-speed"></tbody>
+    </table>
   </div>
 </div>
 
