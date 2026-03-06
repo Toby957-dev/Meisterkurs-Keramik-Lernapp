@@ -1,0 +1,202 @@
+<!-- ════════════════════════════════════════════════════════════
+     SKIZZEN & FORMELN – Meisterkurs Keramik
+     Hier Formeln, Skizzen und Erklärungen pro Fach einfügen.
+
+     BILDER einbinden:
+     - Bilder in den Ordner "img/" im GitHub Repo hochladen
+     - Dann so einbinden: <img src="img/dateiname.png" alt="Beschreibung">
+
+     NEUE FORMEL hinzufügen:
+     <div class="formula-box">
+       <div class="formula">Formel hier</div>
+       Erklärungstext hier
+     </div>
+
+     NEUE SKIZZE hinzufügen:
+     <div class="skizze-card">
+       <img src="img/dateiname.png" alt="Beschreibung">
+       <p>Erklärung zur Skizze...</p>
+     </div>
+
+     NEUES KAPITEL hinzufügen:
+     <div class="chapter">
+       <div class="chapter-header" onclick="toggle(this)">
+         ➕ Kapitelname <span class="chevron">▼</span>
+       </div>
+       <div class="chapter-body">
+         ... Inhalt ...
+       </div>
+     </div>
+════════════════════════════════════════════════════════════ -->
+
+<style>
+.skizze-card {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 14px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.skizze-card img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto 12px;
+}
+.skizze-card p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+.skizzen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  margin: 12px 0;
+}
+.formel-gruppe {
+  margin: 14px 0;
+}
+.formel-gruppe h3 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--rt-dark);
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #f0f0f0;
+}
+.skizzen-leer {
+  text-align: center;
+  padding: 30px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  color: #aaa;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+</style>
+
+<!-- ═══ KAPITEL 1: PHYSIK & MATHEMATIK ══════════════════════ -->
+<div class="chapter">
+  <div class="chapter-header" onclick="toggle(this)">
+    ➕ Physik & Mathematik <span class="chevron">▼</span>
+  </div>
+  <div class="chapter-body">
+
+    <div class="formel-gruppe">
+      <h3>Grundformeln</h3>
+      <div class="formula-box">
+        <div class="formula">ρ = m / V</div>
+        Dichte = Masse / Volumen · Einheit: g/cm³ oder kg/m³
+      </div>
+      <div class="formula-box">
+        <div class="formula">p = F / A</div>
+        Druck = Kraft / Fläche · Einheit: Pa (Pascal) oder N/m²
+      </div>
+      <div class="formula-box">
+        <div class="formula">Q = m · c · ΔT</div>
+        Wärmemenge = Masse · spez. Wärmekapazität · Temperaturdifferenz
+      </div>
+    </div>
+
+    <!-- Skizze Beispiel – Bild in img/ Ordner hochladen und Pfad anpassen -->
+    <!--
+    <div class="skizze-card">
+      <img src="img/waermeleitung.png" alt="Wärmeleitung Skizze">
+      <p>Wärmeübertragung durch Leitung, Konvektion und Strahlung</p>
+    </div>
+    -->
+
+    <div class="skizzen-leer">
+      📐 Hier Skizzen einfügen:<br>
+      Bilder in den <strong>img/</strong> Ordner im GitHub Repo hochladen,<br>
+      dann den Kommentar oben entfernen und Dateinamen anpassen.
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ KAPITEL 2: ROHSTOFFE ════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-header" onclick="toggle(this)">
+    ➕ Rohstoffe <span class="chevron">▼</span>
+  </div>
+  <div class="chapter-body">
+
+    <div class="formel-gruppe">
+      <h3>Versatzrechnung</h3>
+      <div class="formula-box">
+        <div class="formula">Masse (kg) = Anteil (%) · Gesamtmasse / 100</div>
+        Umrechnung von Rezeptur-% in tatsächliche Rohstoffmenge
+      </div>
+      <div class="formula-box">
+        <div class="formula">Wasseranteil = (Nassgewicht − Trockengewicht) / Trockengewicht · 100</div>
+        Wassergehalt in % bezogen auf Trockenmasse
+      </div>
+    </div>
+
+    <div class="skizzen-leer">
+      📐 Hier Skizzen zu Rohstoffen einfügen<br>
+      z.B. Tonminerale, Kristallstrukturen, Korngrößenverteilung
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ KAPITEL 3: BRENNTECHNIK ═════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-header" onclick="toggle(this)">
+    ➕ Brenntechnik <span class="chevron">▼</span>
+  </div>
+  <div class="chapter-body">
+
+    <div class="formel-gruppe">
+      <h3>Brennkurve & Temperatur</h3>
+      <div class="formula-box">
+        <div class="formula">Aufheizrate = ΔT / Δt</div>
+        Temperaturdifferenz geteilt durch Zeit · Einheit: K/h oder °C/h
+      </div>
+    </div>
+
+    <div class="skizzen-leer">
+      📐 Hier Brennkurven, Ofentypen und Skizzen einfügen
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ KAPITEL 4: GLASUREN ══════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-header" onclick="toggle(this)">
+    ➕ Glasuren <span class="chevron">▼</span>
+  </div>
+  <div class="chapter-body">
+
+    <div class="skizzen-leer">
+      📐 Hier Glasurformeln, Seeger-Formel und Skizzen einfügen
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ KAPITEL 5: FORMGEBUNG ════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-header" onclick="toggle(this)">
+    ➕ Formgebung <span class="chevron">▼</span>
+  </div>
+  <div class="chapter-body">
+
+    <div class="skizzen-leer">
+      📐 Hier Skizzen zu Formgebungsverfahren einfügen<br>
+      z.B. Drehen, Gießen, Pressen
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ KAPITEL 6: WEITERE FÄCHER ═══════════════════════════ -->
+<!-- Einfach weiteres <div class="chapter">...</div> hier einfügen -->
