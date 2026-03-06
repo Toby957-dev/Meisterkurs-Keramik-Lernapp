@@ -1,0 +1,446 @@
+<!-- ════════════════════════════════════════════════════════════
+     ZUSAMMENFASSUNG – Meisterkurs Keramik
+     Hier können Kapitel, Texte, Tabellen und Formeln bearbeitet werden.
+
+     Struktur:
+     - Jedes Kapitel ist ein <div class="chapter"> Block
+     - Kapitelüberschrift: <div class="chapter-header" onclick="toggle(this)">
+     - Inhalt: <div class="chapter-body">
+     - Tabellen: <table class="info-table">
+     - Formeln: <div class="formula-box"><div class="formula">...</div></div>
+     - Karten: <div class="topic-grid"><div class="topic-card">...
+════════════════════════════════════════════════════════════ -->
+
+<!-- 1. MATHEMATIK & PHYSIK -->
+  <div class="chapter">
+    <div class="chapter-header" onclick="toggle(this)">
+      ➕ Mathematik & Physik <span class="chevron">▼</span>
+    </div>
+    <div class="chapter-body">
+      <h3>Versatz- und Masseversatzrechnen</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Versatzrechnen</div><p>Berechnung der Rohstoffmengen in einem Versatz. Rezeptur in % → tatsächliche Masse in kg umrechnen.</p></div>
+        <div class="topic-card"><div class="label">Masseversatz</div><p>Verhältnis der Rohstoffe zueinander inkl. Wasser. Basis ist immer die Trockenmasse = 100 %.</p></div>
+      </div>
+
+      <h3>Wichtige Physikformeln</h3>
+      <div class="formula-box">
+        <div class="formula">ρ = m / V</div>Dichte = Masse / Volumen [g/cm³]
+      </div>
+      <div class="formula-box">
+        <div class="formula">v = a · t &nbsp;|&nbsp; s = ½ · a · t²</div>Geschwindigkeit & Weg bei Beschleunigung aus der Ruhe
+      </div>
+      <div class="formula-box">
+        <div class="formula">ΔL = L₀ · α · ΔT</div>Längenausdehnung: α = Wärmeausdehnungskoeffizient [1/K]
+      </div>
+      <div class="formula-box">
+        <div class="formula">E_pot = m · g · h &nbsp;|&nbsp; E_kin = ½ · m · v²</div>Energieerhaltung: pot. ↔ kin. Energie
+      </div>
+      <div class="tip">💡 Tipp: Bei Beschleunigungsaufgaben immer zuerst prüfen, ob Startgeschwindigkeit = 0 ist!</div>
+    </div>
+  </div>
+
+  <!-- 2. CHEMIE -->
+  <div class="chapter">
+    <div class="chapter-header" onclick="toggle(this)">
+      ⚗️ Chemische Grundlagen <span class="chevron">▼</span>
+    </div>
+    <div class="chapter-body">
+      <h3>Periodensystem (PSE)</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Perioden (Zeilen)</div><p>= Anzahl der Elektronenschalen</p></div>
+        <div class="topic-card"><div class="label">Hauptgruppen (Spalten)</div><p>= Anzahl der Valenzelektronen (Außenelektronen)</p></div>
+        <div class="topic-card"><div class="label">Ordnungszahl</div><p>= Anzahl der Elektronen = Anzahl der Protonen</p></div>
+        <div class="topic-card"><div class="label">Alkalimetalle (I. HG)</div><p>1 Valenzelektron → sehr reaktiv → <strong>Flussmittel</strong> in Keramik (z. B. Kalifeldspat)</p></div>
+        <div class="topic-card"><div class="label">Erdalkalimetalle (II. HG)</div><p>2 Valenzelektronen → stabilisierend auf Glasuren (z. B. CaCO₃, Dolomit)</p></div>
+        <div class="topic-card"><div class="label">Edelgase (VIII. HG)</div><p>8 Valenzelektronen → stabil, reaktionsträge → Zielzustand der Oktettregel</p></div>
+      </div>
+
+      <h3>Oktettregel (Edelgasregel)</h3>
+      <p style="margin-bottom:8px;font-size:0.9rem;">Atome streben 8 Außenelektronen an (H: 2). Metalle <strong>geben ab</strong> → Kationen (+). Nichtmetalle <strong>nehmen auf</strong> → Anionen (−).</p>
+
+      <h3>Bindungsarten</h3>
+      <table>
+        <tr><th>Bindung</th><th>Zwischen</th><th>Mechanismus</th><th>Eigenschaft</th></tr>
+        <tr><td>Ionenbindung</td><td>Metall + Nichtmetall</td><td>Elektronenübertragung</td><td>Hoher Schmelzpunkt, hart, spröde</td></tr>
+        <tr><td>Atombindung (kovalent)</td><td>Nichtmetall + Nichtmetall</td><td>Gemeinsame Elektronen</td><td>Gasförmig oder molekular</td></tr>
+      </table>
+
+      <h3>Säuren & Basen</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Säuren</div><p>Geben H⁺ ab | pH 0–7 | Wichtig für Verflüssigereinstellung</p></div>
+        <div class="topic-card"><div class="label">Basen</div><p>Nehmen H⁺ auf | pH 7–14 | Schlicker oft basisch (pH 9–10)</p></div>
+      </div>
+
+      <h3>Verbrennung & Abgase</h3>
+      <div class="formula-box"><div class="formula">CH₄ + 2 O₂ → CO₂ + 2 H₂O</div>Methanverbrennung (vollständig, λ = 1)</div>
+      <table>
+        <tr><th>Atmosphäre</th><th>λ</th><th>Abgase</th><th>Bedeutung</th></tr>
+        <tr><td>Neutral</td><td>= 1</td><td>CO₂ + H₂O + N₂</td><td>Normalbetrieb</td></tr>
+        <tr><td>Oxidierend</td><td>&gt; 1</td><td>+ O₂ überschuss</td><td>Sicherheitsbetrieb</td></tr>
+        <tr><td>Reduzierend</td><td>&lt; 1</td><td>+ CO + Ruß + H₂</td><td>Gefährlich / Spezialeffekte</td></tr>
+      </table>
+      <div class="warn">⚠️ Reduzierende Atmosphäre = CO-Gefahr + Schwarze Kerne! Nur gezielt einsetzen.</div>
+
+      <h3>Anomalien von Wasser</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Dichteanomalie</div><p>Max. Dichte bei 4 °C. Eis dehnt sich aus → Frostprobleme bei Keramik!</p></div>
+        <div class="topic-card"><div class="label">Dipol-Charakter</div><p>Wasser ist polares Molekül → exzellentes Lösungsmittel für Salze/Elektrolyte</p></div>
+        <div class="topic-card"><div class="label">Hohe Wärmekapazität</div><p>4,182 kJ/(kg·K) → wichtig für Trocknung und Wärmebilanz</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. ROHSTOFFE & TECHNOLOGIE -->
+  <div class="chapter">
+    <div class="chapter-header" onclick="toggle(this)">
+      🪨 Rohstoffe & Technologie <span class="chevron">▼</span>
+    </div>
+    <div class="chapter-body">
+      <h3>Keramische Rohstoffe – Überblick</h3>
+      <table>
+        <tr><th>Rohstoff</th><th>Typ</th><th>Funktion</th><th>Beispiele</th></tr>
+        <tr><td>Ton / Kaolin</td><td>bildsam (plastisch)</td><td>Formgebung, Bindung</td><td>Kaolin, Steatit-Ton</td></tr>
+        <tr><td>Quarz / Schamotte</td><td>unbildsam (magernd)</td><td>Reduktion Schwindung, Stabilität</td><td>Quarzsand, gemahlene Scherben</td></tr>
+        <tr><td>Feldspat</td><td>unbildsam (Flussmittel)</td><td>Senkt Sintertemperatur, bildet Glasphase</td><td>Kalifeldspat, Natronfeldspat</td></tr>
+      </table>
+      <div class="tip">💡 Porzellan-Formel: Ton 50 % | Quarz 25 % | Feldspat 25 % (TQF)</div>
+
+      <h3>Tonminerale & Plastizität</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Schichtsilikate</div><p>Tonminerale sind Schichtsilikate. Plättchenstruktur → Wasserhüllen → Gleitschicht → Plastizität</p></div>
+        <div class="topic-card"><div class="label">Quellvermögen</div><p>Montmorillonit quillt stark (hoher WBedarf), Kaolinit quillt wenig → trockenunempfindlicher</p></div>
+        <div class="topic-card"><div class="label">Bildsamkeit</div><p>Plastische + elastische + viskose Eigenschaften. Je feiner die Teilchen, desto höher die Bildsamkeit.</p></div>
+      </div>
+
+      <h3>Gesteinsarten & Entstehung</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Magmatite</div><p>Erstarrungsgesteine (z.B. Granit). Entstehen aus Magma.</p></div>
+        <div class="topic-card"><div class="label">Sedimentite</div><p>Ablagerungsgesteine (Ton, Kalkstein). Entstehen durch Sedimentation.</p></div>
+        <div class="topic-card"><div class="label">Metamorphite</div><p>Umwandlungsgesteine (Marmor, Schiefer). Entstehen durch Druck/Wärme.</p></div>
+      </div>
+
+      <h3>Thermische Analysemethoden</h3>
+      <table>
+        <tr><th>Methode</th><th>Misst</th><th>Aussage</th></tr>
+        <tr><td>TGA</td><td>Masseverlust (ΔG) über Temperatur</td><td>Wassergehalt, Organik, Carbonate, Tonmineralart</td></tr>
+        <tr><td>DTA</td><td>Temperaturdifferenz zur Inertprobe (ΔT)</td><td>Entwässerung (endotherm), Kristallbildung (exotherm)</td></tr>
+        <tr><td>DSA/Dilatometer</td><td>Längenänderung über Temperatur</td><td>Quarzsprung (573 °C!), Schwindungsverhalten</td></tr>
+        <tr><td>EMA</td><td>Optische Formveränderung</td><td>Schwindung, Sinterung, Erweichung, Schmelzen</td></tr>
+        <tr><td>STA</td><td>TGA + DTA kombiniert</td><td>Simultananalyse</td></tr>
+      </table>
+
+      <h3>Tagebau & Umweltschutz</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Abraum</div><p>Deckschicht, die vor dem Abbau entfernt werden muss</p></div>
+        <div class="topic-card"><div class="label">Rekultivierung</div><p>Wiedernutzbarmachung für Land-/Forstwirtschaft (Rahmenbetriesplan)</p></div>
+        <div class="topic-card"><div class="label">Renaturierung</div><p>Anlage von Biotopen, Sukzessionsflächen, Kleingewässern</p></div>
+        <div class="topic-card"><div class="label">Wasserhaltung</div><p>Einleitbedingungen (pH-Wert, Menge) müssen eingehalten werden</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. LABORTECHNIK & FACHRECHNEN -->
+  <div class="chapter">
+    <div class="chapter-header" onclick="toggle(this)">
+      🧪 Labortechnik & Fachrechnen <span class="chevron">▼</span>
+    </div>
+    <div class="chapter-body">
+      <h3>Wasser in keramischen Massen</h3>
+      <table>
+        <tr><th>Begriff</th><th>Bezugsgröße</th><th>Formel</th></tr>
+        <tr><td><strong>Feuchte (f)</strong></td><td>Masse <u>feucht</u></td><td>f = (m_Wasser / m_feucht) · 100 %</td></tr>
+        <tr><td><strong>Anmachwasser (AW)</strong></td><td>Masse <u>trocken</u></td><td>AW = (m_Wasser / m_trocken) · 100 %</td></tr>
+        <tr><td><strong>Wasserzusatz (WZ)</strong></td><td>Masse feucht</td><td>Berechnung nötig – zu feuchtem Rohstoff hinzugefügt</td></tr>
+      </table>
+      <div class="warn">⚠️ Feuchte → feuchte Masse | Anmachwasser → trockene Masse. Nie verwechseln!</div>
+
+      <h3>Dichte</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Reindichte (ρ_r)</div><p>Nur Materialmasse, OHNE Poren. ρ_r = m / V_rein</p></div>
+        <div class="topic-card"><div class="label">Rohdichte (ρ_0)</div><p>Masse incl. aller Poren. ρ_0 = m / V_gesamt</p></div>
+        <div class="topic-card"><div class="label">Litergewicht</div><p>Dichte einer Suspension (Schlicker). Bestimmung mit Überlaufkolben.</p></div>
+      </div>
+
+      <h3>Porosität & Wasseraufnahme</h3>
+      <div class="formula-box">
+        <div class="formula">P_G = (ρ_r − ρ_0) / ρ_r · 100 %</div>Gesamtporosität
+      </div>
+      <div class="formula-box">
+        <div class="formula">P_offen = WA · ρ_0 / ρ_Wasser</div>Offene Porosität
+      </div>
+      <div class="formula-box">
+        <div class="formula">WA = (m_nass − m_trocken) / m_trocken · 100 %</div>Wasseraufnahme
+      </div>
+
+      <h3>Schwindung</h3>
+      <div class="formula-box">
+        <div class="formula">TS = (L_grün − L_trocken) / L_grün · 100 %</div>Trockenschwindung (Ausgangsgröße = grün)
+      </div>
+      <div class="formula-box">
+        <div class="formula">BS = (L_trocken − L_gebrannt) / L_trocken · 100 %</div>Brennschwindung (Ausgangsgröße = trocken)
+      </div>
+      <div class="warn">⚠️ Gesamtschwindung ≠ TS + BS! Immer separat berechnen (anderer Ausgangszustand).</div>
+
+      <h3>WAK – Wärmeausdehnungskoeffizient</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">WAK Glasur &lt; WAK Scherben</div><p>Glasur steht unter <strong>Druckspannung</strong> → gewünscht! Keramik ist druckfest.</p></div>
+        <div class="topic-card"><div class="label">WAK Glasur &gt; WAK Scherben</div><p>Glasur steht unter <strong>Zugspannung</strong> → Haarrisse / Craquelé! Unerwünscht!</p></div>
+      </div>
+      <div class="tip">💡 Merke: Leichte Druckspannung in der Glasur ist OK und sogar gewollt!</div>
+
+      <h3>Feuchtigkeitsbereiche Formgebung</h3>
+      <table>
+        <tr><th>Verfahren</th><th>Feuchte</th></tr>
+        <tr><td>Gießmassen</td><td>30 – 60 %</td></tr>
+        <tr><td>Drehmassen</td><td>18 – 26 %</td></tr>
+        <tr><td>Trockenpressmassen</td><td>1 – 5 %</td></tr>
+        <tr><td>Feuchtpressmassen</td><td>6 – 10 %</td></tr>
+        <tr><td>Nasspressmassen</td><td>11 – 15 %</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 5. BETRIEBSTECHNIK -->
+  <div class="chapter">
+    <div class="chapter-header" onclick="toggle(this)">
+      ⚙️ Betriebstechnik & Maschinenkunde <span class="chevron">▼</span>
+    </div>
+    <div class="chapter-body">
+      <h3>Motorarten</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Asynchronmotor (häufigster)</div><p>Läuft etwas langsamer als Drehfeld. Robust, wartungsarm, günstig.</p></div>
+        <div class="topic-card"><div class="label">Synchronmotor</div><p>Läuft exakt mit Drehfeldfrequenz. Präzise, aber teurer.</p></div>
+        <div class="topic-card"><div class="label">DC-Motor</div><p>Gleichstrom. Gut regelbar, früher Standardlösung für variable Drehzahlen.</p></div>
+      </div>
+
+      <h3>Getriebe & Übersetzung</h3>
+      <div class="formula-box">
+        <div class="formula">i = n₁ / n₂ = z₂ / z₁</div>Übersetzung: n = Drehzahl, z = Zähnezahl
+      </div>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">i &gt; 1 → ins Langsame</div><p>Drehzahl sinkt, Drehmoment steigt (Kraftverstärkung)</p></div>
+        <div class="topic-card"><div class="label">i &lt; 1 → ins Schnelle</div><p>Drehzahl steigt, Drehmoment sinkt</p></div>
+      </div>
+      <table>
+        <tr><th>Getriebetyp</th><th>Wellenanordnung</th><th>Besonderheit</th></tr>
+        <tr><td>Stirnradgetriebe</td><td>parallel</td><td>Standard, formschlüssig</td></tr>
+        <tr><td>Kegelradgetriebe</td><td>kreuzend (90°)</td><td>Richtungsänderung</td></tr>
+        <tr><td>Schneckengetriebe</td><td>kreuzend</td><td>Hohe Untersetzung, oft selbsthemmend</td></tr>
+        <tr><td>Riemengetriebe</td><td>parallel</td><td>Kraftschluss, Überlastschutz durch Schlupf</td></tr>
+        <tr><td>Zahnriemen/Kette</td><td>parallel</td><td>Formschluss, kein Schlupf</td></tr>
+      </table>
+
+      <h3>Wälzlager</h3>
+      <table>
+        <tr><th>Lagertyp</th><th>Radiale Last</th><th>Axiale Last</th></tr>
+        <tr><td>Rillenkugellager</td><td>✓</td><td>begrenzt ✓</td></tr>
+        <tr><td>Zylinderrollenlager</td><td>sehr hoch ✓</td><td>✗</td></tr>
+        <tr><td>Axial-Rillenkugellager</td><td>✗</td><td>nur axial ✓</td></tr>
+        <tr><td>Kegelrollenlager</td><td>✓</td><td>✓ (kombiniert)</td></tr>
+      </table>
+
+      <h3>Achse vs. Welle</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Achse</div><p>Trägt Bauteile. Überträgt <strong>kein</strong> Drehmoment. Belastet auf Biegung.</p></div>
+        <div class="topic-card"><div class="label">Welle</div><p>Überträgt Drehmoment & Leistung. Belastet auf Torsion + Biegung.</p></div>
+      </div>
+
+      <h3>Passungen</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Spielpassung</div><p>Welle &lt; Bohrung → dreht frei</p></div>
+        <div class="topic-card"><div class="label">Übermaßpassung (Presspassung)</div><p>Welle &gt; Bohrung → muss gepresst/geschrumpft werden</p></div>
+        <div class="topic-card"><div class="label">Übergangspassung</div><p>Je nach Ist-Maß: Spiel oder Übermaß</p></div>
+      </div>
+
+      <h3>Fördertechniken</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Flugförderung</div><p>Partikel schweben im Luftstrom. Hohe Geschwindigkeit, starker Verschleiß.</p></div>
+        <div class="topic-card"><div class="label">Pfropfenförderung</div><p>Kompakte Stopfen durch Rohr. Schonender Transport.</p></div>
+        <div class="topic-card"><div class="label">Dichtstromförderung</div><p>Hohe Produktdichte, wenig Luft. Energiesparend, verschleißarm.</p></div>
+      </div>
+
+      <h3>Trommelmühle</h3>
+      <div class="formula-box">
+        <div class="formula">Kaskade: n = 25 / √Ø &nbsp;|&nbsp; Katarakt: n = 30 / √Ø</div>Drehzahl in U/min, Ø in Metern
+      </div>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Kaskade</div><p>Zerreiben + Scheren (langsam). Feineres Mahlgut.</p></div>
+        <div class="topic-card"><div class="label">Katarakt</div><p>Zerschlagen (schnell). Gröberes Mahlgut.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. MSR -->
+  <div class="chapter">
+    <div class="chapter-header" onclick="toggle(this)">
+      📡 MSR – Messen, Steuern, Regeln <span class="chevron">▼</span>
+    </div>
+    <div class="chapter-body">
+      <h3>Grundbegriffe</h3>
+      <table>
+        <tr><th>Begriff</th><th>Definition</th></tr>
+        <tr><td>Messen</td><td>Istwert erfassen (einmalig, ohne Eingriff)</td></tr>
+        <tr><td>Steuern</td><td>Eingangsgröße beeinflusst Ausgangsgröße – kein Feedback (offene Kette)</td></tr>
+        <tr><td>Regeln</td><td>Soll/Ist-Vergleich → Eingriff → Korrektur (geschlossener Kreislauf)</td></tr>
+        <tr><td>Kalibrieren</td><td>Vergleich mit Normal, <strong>kein</strong> Eingriff ins Gerät</td></tr>
+        <tr><td>Justieren</td><td>Verstellen auf korrekte Werte</td></tr>
+        <tr><td>Eichen</td><td>Gesetzlich vorgeschriebene Prüfung (Eichamt)</td></tr>
+      </table>
+
+      <h3>Reglerarten</h3>
+      <table>
+        <tr><th>Regler</th><th>Verhalten</th><th>Nachteil</th></tr>
+        <tr><td>P-Regler</td><td>Stellgröße ∝ Abweichung. Sofortige Reaktion.</td><td>Bleibende Regelabweichung</td></tr>
+        <tr><td>I-Regler</td><td>Integriert Abweichung. Langsam, überschwingt.</td><td>Langsam, Überschwingen</td></tr>
+        <tr><td>D-Regler</td><td>Reagiert auf Änderungsrate. Sprunghaft.</td><td>Kann keine Abweichung feststellen (allein nutzlos)</td></tr>
+        <tr><td>PID-Regler</td><td>Kombination aller drei → optimal für Praxis</td><td>Aufwändige Einstellung</td></tr>
+        <tr><td>2-Punkt-Regler</td><td>Nur An/Aus</td><td>Ständiges Schalten, Hysterese</td></tr>
+        <tr><td>3-Punkt-Regler</td><td>3 Zustände: +/Totzone/−</td><td>Totzone nötig zum Schonen</td></tr>
+      </table>
+
+      <h3>Streckenarten</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Strecke MIT Ausgleich</div><p>Findet von selbst Gleichgewicht. Wert stabilisiert sich bei konstantem Eingang.</p></div>
+        <div class="topic-card"><div class="label">Strecke OHNE Ausgleich (I-Strecke)</div><p>Kein Gleichgewicht. Wert läuft immer weiter → Risiko Überlauf/Überhitzung!</p></div>
+      </div>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Verzugszeit (Tu)</div><p>Zeit bis das System überhaupt anfängt zu reagieren → Totzeit/Trägheit</p></div>
+        <div class="topic-card"><div class="label">Ausgleichszeit (Tg)</div><p>Wie schnell das System seinen Endwert erreicht → Maß für Kapazität/Trägheit</p></div>
+        <div class="topic-card"><div class="label">Streckenverstärkung (Ks)</div><p>Ks = Δy / Δx → Wie stark reagiert das System auf Eingriffsänderungen?</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. WÄRMELEHRE & BRENNTECHNIK -->
+  <div class="chapter">
+    <div class="chapter-header" onclick="toggle(this)">
+      🔥 Wärmelehre & Brenntechnik <span class="chevron">▼</span>
+    </div>
+    <div class="chapter-body">
+      <h3>Wichtige Formeln</h3>
+      <div class="formula-box"><div class="formula">Q = m · c · ΔT</div>Wärmemenge [kJ] | c_Wasser = 4,182 kJ/(kg·K)</div>
+      <div class="formula-box"><div class="formula">Q_Verbrennung = V · Hu</div>Wärmemenge aus Verbrennung | Hu = unterer Heizwert</div>
+      <div class="formula-box"><div class="formula">η = Q_ab / Q_zu</div>Wirkungsgrad (immer &lt; 1 in der Praxis!)</div>
+      <div class="warn">⚠️ Bei Aggregatzustandsänderung: ΔT = 0! Es wird Schmelz-/Verdampfungswärme benötigt.</div>
+
+      <h3>Brennwert vs. Heizwert</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Brennwert (Ho)</div><p>Rauchgase verlassen System UNTER 100 °C → Kondensationswärme wird genutzt</p></div>
+        <div class="topic-card"><div class="label">Heizwert (Hu)</div><p>Rauchgase verlassen System ÜBER 100 °C → Kondensationswärme ungenutzt</p></div>
+      </div>
+      <div class="tip">💡 In der Keramik gilt immer Hu, da wir über 100 °C arbeiten!</div>
+
+      <h3>Wärmeübertragung</h3>
+      <table>
+        <tr><th>Art</th><th>Wie</th><th>Wann relevant</th></tr>
+        <tr><td>Konvektion</td><td>Mit Trägermedium (Gas/Flüssigkeit). Gebläse → erzwungen.</td><td>Bis ca. 700 °C dominant</td></tr>
+        <tr><td>Strahlung</td><td>Elektromagnetisch, kein Medium nötig. Steigt mit T⁴!</td><td>Ab ca. 700 °C dominant</td></tr>
+        <tr><td>Wärmeleitung</td><td>Direkte Berührung</td><td>Im Scherben selbst wichtig</td></tr>
+      </table>
+
+      <h3>Lambdawert & Zündgrenzen Erdgas</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Lambdawert</div><p>Faktor (keine Einheit!). λ = 1: neutral | λ &gt; 1: oxidierend | λ &lt; 1: reduzierend</p></div>
+        <div class="topic-card"><div class="label">Erdgas Zündbereich</div><p>5–15 % Gasanteil im Gemisch. Luftfaktor 0,59 – 2,30.</p></div>
+        <div class="topic-card"><div class="label">Primärluft</div><p>Aktiv an Verbrennung beteiligt</p></div>
+        <div class="topic-card"><div class="label">Diffusionsluft</div><p>Erhöht Konvektion, kühlt, verhindert Schwarzkerne im unteren T-Bereich</p></div>
+      </div>
+
+      <h3>Brennkurve – kritische Temperaturen</h3>
+      <table>
+        <tr><th>Temperatur</th><th>Ereignis</th><th>Aufheizen</th><th>Abkühlen</th></tr>
+        <tr><td>100 °C</td><td>Restwasser verdampft</td><td>⚠️ langsam!</td><td>–</td></tr>
+        <tr><td>100–400 °C</td><td>Organik entgast/verbrennt</td><td>Luftüberschuss nötig</td><td>–</td></tr>
+        <tr><td>300 °C</td><td>Cristobalitsprung</td><td>–</td><td>⚠️ kritisch!</td></tr>
+        <tr><td>500–600 °C</td><td>Chemisch gebundenes Wasser raus</td><td>⚠️ langsam!</td><td>–</td></tr>
+        <tr><td>573 °C</td><td><strong>Quarzsprung</strong> α↔β (Volumensprung!)</td><td>⚠️ KRITISCH!</td><td>⚠️ KRITISCH!</td></tr>
+        <tr><td>~800 °C</td><td>Kohlenstoff verbrennt</td><td>O₂-Überschuss!</td><td>–</td></tr>
+      </table>
+      <div class="warn">⚠️ Ware läuft der Ofentemperatur immer nach → beim Erstellen der Brennkurve berücksichtigen!</div>
+
+      <h3>Sicherheitskette (Ofen)</h3>
+      <div class="tip">💡 Sicherheitsketten schalten IMMER den Ofen ab! Nach Stromausfall neu auslösen. Erdgas entzündet sich selbst ab ca. 680 °C (kein Flammwächter mehr nötig).</div>
+
+      <h3>Schwarze Kerne (Reduktionskerne)</h3>
+      <p style="font-size:0.9rem;margin-top:6px;">Entstehen durch unvollständige Aufoxidation der Organik. Vermeidung: Im Temperaturbereich 100–800 °C ausreichend Sauerstoffüberschuss sicherstellen (λ &gt;&gt; 1).</p>
+    </div>
+  </div>
+
+  <!-- 8. FERTIGUNGSTECHNIK -->
+  <div class="chapter">
+    <div class="chapter-header" onclick="toggle(this)">
+      🏭 Fertigungstechnik & Formgebung <span class="chevron">▼</span>
+    </div>
+    <div class="chapter-body">
+      <h3>Formgebungsverfahren</h3>
+      <table>
+        <tr><th>Verfahren</th><th>Feuchte</th><th>Textur</th><th>Typische Fehler</th></tr>
+        <tr><td>Drehen/Überrollern</td><td>18–26 %</td><td>Tangentiale Geschwindigkeitsdifferenz</td><td>Texturen, Risse</td></tr>
+        <tr><td>Strangpressen (Vakuum)</td><td>18–24 %</td><td>Ränder stärker gebremst als Mitte → Drachenzähne</td><td>Texturen, Querzüge</td></tr>
+        <tr><td>Axiales Pressen</td><td>1–15 %</td><td>Außen stärker gebremst als innen (Wandreibung)</td><td>Presslagen (eingeschl. Luft)</td></tr>
+        <tr><td>Isostatisches Pressen</td><td>1–5 %</td><td>Allseitiger Druck → gleichmäßig</td><td>Wenig Fehleranfälligkeit</td></tr>
+        <tr><td>Gießen (Schlickerguss)</td><td>30–60 %</td><td>–</td><td>Blasen, Nähte, ungleichmäßige Wanddicke</td></tr>
+      </table>
+
+      <h3>Brennfehler & Glasurfehler</h3>
+      <table>
+        <tr><th>Fehler</th><th>Ursache</th></tr>
+        <tr><td>Reduktionskerne (Schwarze Kerne)</td><td>Organik nicht vollständig ausgebrannt, zu wenig O₂ bei 100–800 °C</td></tr>
+        <tr><td>Brennrisse</td><td>Zu schnelles Aufheizen/Abkühlen. Risse scharf & glatt.</td></tr>
+        <tr><td>Trockenrisse</td><td>Zu schnelles Trocknen. Risse stumpf & rau.</td></tr>
+        <tr><td>Nadelstiche/Pinholes</td><td>Gase aus Scherben (Organik) durchstechen Glasur</td></tr>
+        <tr><td>Haarrisse (Craquelé)</td><td>WAK Glasur zu groß → Zugspannung</td></tr>
+        <tr><td>Abplatzer</td><td>WAK Glasur zu klein → zu starke Druckspannung</td></tr>
+        <tr><td>Abroller</td><td>Verunreinigung → Glasur haftet nicht</td></tr>
+      </table>
+
+      <h3>Keramikarten</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Feinkeramik</div><p>Feinkristallin, oft glasiert. Porzellan, Steingut, Sanitärkeramik.</p></div>
+        <div class="topic-card"><div class="label">Baukeramik</div><p>Grobkörnig. Ziegel, Dachziegel, Fliesen.</p></div>
+        <div class="topic-card"><div class="label">Strukturkeramik (technisch)</div><p>Al₂O₃, ZrO₂, SiC, Si₃N₄. Hochleistungsanwendungen.</p></div>
+      </div>
+
+      <h3>Öfen</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Tunnelofen (kontinuierlich)</div><p>Zonen: Vorwärm- | Brenn- | Kühlzone. Wandverluste &gt; Speicherverluste</p></div>
+        <div class="topic-card"><div class="label">Periodischer Ofen</div><p>Aufheizen → Halten → Kühlen. Speicherverluste &gt; Wandverluste</p></div>
+      </div>
+      <div class="tip">💡 Periodische Öfen: Keramikfaser-Ausmauerung → niedrige Raumgewichte senken Speicherverluste!</div>
+
+      <h3>Glühbrand vs. Glattbrand</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Glühbrand (Biskuitbrand)</div><p>Erster Brand. Rohling wird verfestigt, aber noch porös (für Glasur saugfähig).</p></div>
+        <div class="topic-card"><div class="label">Glattbrand</div><p>Zweiter Brand. Glasur schmilzt, Scherben sintert weiter durch.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. UMWELTTECHNIK -->
+  <div class="chapter">
+    <div class="chapter-header" onclick="toggle(this)">
+      🌿 Umwelttechnik & Recht <span class="chevron">▼</span>
+    </div>
+    <div class="chapter-body">
+      <h3>Grundprinzipien des Umweltrechts</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">Vorsorgeprinzip</div><p>Schäden verhindern, bevor sie entstehen</p></div>
+        <div class="topic-card"><div class="label">Verursacherprinzip</div><p>Wer Schaden verursacht, trägt die Kosten</p></div>
+        <div class="topic-card"><div class="label">Kooperationsprinzip</div><p>Staat + Wirtschaft + Gesellschaft handeln gemeinsam</p></div>
+      </div>
+
+      <h3>Abfallhierarchie (§ 6 KrWG)</h3>
+      <div class="topic-grid">
+        <div class="topic-card"><div class="label">1. Vermeidung</div><p>Beste Option</p></div>
+        <div class="topic-card"><div class="label">2. Vorbereitung Wiederverwendung</div><p></p></div>
+        <div class="topic-card"><div class="label">3. Recycling</div><p></p></div>
+        <div class="topic-card"><div class="label">4. Sonstige Verwertung</div><p>z.B. energetisch</p></div>
+        <div class="topic-card"><div class="label">5. Beseitigung</div><p>Schlechteste Option</p></div>
+      </div>
+
+      <h3>BImSchG – Bundesimmissionsschutzgesetz</h3>
+      <p style="font-size:0.9rem;margin-top:6px;">Regelt Emissionen aus Anlagen (Staub, Gase, Lärm). Keramische Betriebe benötigen oft Genehmigung. Genehmigungspflichtige Anlagen müssen Grenzwerte einhalten.</p>
+    </div>
+  </div>
+</div>
