@@ -1,175 +1,125 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Keramik Wiki</title>
+<title>Keramik Lern-Wiki</title>
 
 <style>
 
 body{
-font-family:Arial, Helvetica, sans-serif;
-background:#f7f7f7;
 margin:0;
-padding:30px;
+font-family:Arial,Helvetica,sans-serif;
+background:#eef1f5;
 }
 
-#wiki{
-max-width:1000px;
-margin:auto;
-}
-
-h1{
-text-align:center;
-margin-bottom:30px;
-}
-
-#controls{
+header{
+background:#111827;
+color:white;
+padding:15px;
+font-size:22px;
 display:flex;
-gap:10px;
-margin-bottom:20px;
-flex-wrap:wrap;
+justify-content:space-between;
+align-items:center;
 }
 
-input,select{
-padding:10px;
-border-radius:8px;
-border:1px solid #ccc;
-font-size:14px;
+#search{
+padding:8px;
+font-size:15px;
+border-radius:6px;
+border:none;
+width:260px;
 }
 
-#list{
+.grid{
+padding:20px;
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-gap:10px;
+gap:15px;
 }
 
-.entry{
+.card{
 background:white;
+padding:14px;
 border-radius:10px;
-padding:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
 cursor:pointer;
-border:1px solid #e5e5e5;
-transition:0.2s;
 }
 
-.entry:hover{
-border-color:#e75228;
-transform:translateY(-2px);
+.card:hover{
+transform:translateY(-3px);
 }
 
-.entry h3{
-margin:0;
-font-size:15px;
-}
-
-#modal{
+.viewer{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.7);
+background:rgba(0,0,0,0.75);
 display:none;
 align-items:center;
 justify-content:center;
+padding:30px;
 }
 
-#modalContent{
+.viewerBox{
 background:white;
-width:90%;
+padding:25px;
+border-radius:10px;
 max-width:1000px;
-border-radius:12px;
-padding:30px;
+display:flex;
+gap:30px;
 position:relative;
 }
 
-#close{
+.viewer img{
+max-width:450px;
+max-height:70vh;
+}
+
+.close{
 position:absolute;
-right:20px;
 top:10px;
+right:15px;
 font-size:28px;
 cursor:pointer;
 }
 
-#modalLayout{
-display:flex;
-gap:30px;
-}
-
-#modalImg img{
-max-width:400px;
-border-radius:10px;
-}
-
-#modalText{
-flex:1;
-}
-
 @media(max-width:800px){
 
-#modalLayout{
+.viewerBox{
 flex-direction:column;
-}
-
-#modalImg img{
-max-width:100%;
+align-items:center;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div id="wiki">
+<header>
 
-<h1>Keramik Wiki</h1>
+Keramik Lern-Wiki
 
-<div id="controls">
+<input id="search" placeholder="Begriff suchen...">
 
-<input type="text" id="search" placeholder="Begriff suchen..." oninput="render()">
+</header>
 
-<select id="category" onchange="render()">
+<div class="grid" id="grid"></div>
 
-<option value="">Alle Kategorien</option>
-<option value="Rohstoffe">Rohstoffe</option>
-<option value="Aufbereitung">Aufbereitung</option>
-<option value="Formgebung">Formgebung</option>
-<option value="Trocknung">Trocknung</option>
-<option value="Brennöfen">Brennöfen</option>
-<option value="Analyse">Analyse</option>
-<option value="Produkte">Produkte</option>
+<div class="viewer" id="viewer">
 
-</select>
+<div class="viewerBox">
 
-</div>
+<div class="close" onclick="closeViewer()">✕</div>
 
-<div id="list"></div>
+<img id="viewerImg">
 
-</div>
-
-<div id="modal">
-
-<div id="modalContent">
-
-<span id="close" onclick="closeModal()">✕</span>
-
-<div id="modalLayout">
-
-<div id="modalImg">
-<img id="img">
-</div>
-
-<div id="modalText">
-
-<h2 id="title"></h2>
-
-<p id="desc"></p>
-
-</div>
-
-</div>
+<div id="viewerText"></div>
 
 </div>
 
@@ -177,122 +127,136 @@ max-width:100%;
 
 <script>
 
-const DATA = [
+const wikiData=[
 
-{ name:"Kollergang",kat:"Aufbereitung",bild:"img/Kollergang.jpeg",text:"Maschine zur Zerkleinerung und Homogenisierung plastischer Tonmassen. Meist rotierende Läufer an Königswelle auf Mahlbahn"},
+{title:"Aspirationspsychrometer nach Assmann",file:"Aspirationspsychrometer_nach_Assmann.jpg"},
+{title:"Axiales Pressen",file:"Axiales_Pressen.jpg"},
+{title:"Bemse BHM",file:"Bemse-BHM.jpg"},
+{title:"Dilatometer",file:"Dilatometer.webp"},
+{title:"Dreischicht Glimmer",file:"Dreischicht Glimmer.jpeg"},
+{title:"Dreischicht Montmorillonit",file:"Dreischicht_Montmorillionit.jpeg"},
+{title:"Druckschlicker Verfahren",file:"Druckschlicker_Verfahren.jpeg"},
+{title:"DSA Kurve",file:"DSA_Kurve.jpg"},
+{title:"DTA Analyse",file:"DTA.png"},
+{title:"DTA Gerät",file:"DTAGerät.jpeg"},
+{title:"DTA Kurve",file:"DTAKurve.jpeg"},
+{title:"Einrollern",file:"Einrollern.jpeg"},
+{title:"Einteilung Keramik",file:"Einteilung_Keramik.jpeg"},
+{title:"Eirich Mischer",file:"Eirich Mischer.jpg"},
+{title:"Ergebnisse DSA",file:"Ergebnisse DSA.jpeg"},
+{title:"Filterpresse",file:"Filterpresse.png"},
+{title:"Filterpresse 2",file:"Filterpresse2.jpg"},
+{title:"Grube Wimpfsfeld",file:"Grube Wimpfsfeld.jpg"},
+{title:"Haubenofen",file:"Haubenofen.jpeg"},
+{title:"Heißisostatisches Pressen 1",file:"Heißisostatisches_Pressen1.webp"},
+{title:"Heißisostatisches Pressen 2",file:"Heißisostatisches_Pressen2.webp"},
+{title:"Heißisostatisches Pressen 3",file:"Heißisostatisches_Pressen3.jpeg"},
+{title:"Herdwagenofen",file:"Herdwagenofen.jpeg"},
+{title:"HIZ-E Ziegel",file:"HIZ-E_Ziegel.jpeg"},
+{title:"HKassette BHM",file:"HKassette_BHM.jpeg"},
+{title:"Hohlguss",file:"Hohlguss.jpeg"},
+{title:"hx Diagramm",file:"hxDiagramm.jpeg"},
+{title:"Isostatische Form Teller",file:"Isostatische_Form_Teller.png"},
+{title:"Kammerofen 1",file:"Kammerofen1.jpeg"},
+{title:"Kammerofen 2",file:"Kammerofen2.jpg"},
+{title:"Kaskade Katarakt Unterschied",file:"kaskade_Katarakt-Unterschied.jpg"},
+{title:"Kegelbrecher",file:"Kegelbrecher.png"},
+{title:"Kollergang",file:"Kollergang.jpeg"},
+{title:"Kräfte Zerkleinern",file:"Kräfte_Zerkleinern.jpeg"},
+{title:"Kugelmühle",file:"Kugelmühle.PNG"},
+{title:"Laufbild Aufbereitung",file:"Laufbild Aufbereitung.jpeg"},
+{title:"Psychrometer",file:"Psychrometer2.svg.png"},
+{title:"Ringofen",file:"Ringofen.jpg"},
+{title:"Ringofen Aufbau",file:"Ringofen_Aufbau.jpg"},
+{title:"Ringofen Aufsicht",file:"Ringofen_Aufsicht.jpg"},
+{title:"Rollenofen",file:"Rollenofen.jpeg"},
+{title:"Sauciere",file:"Sauciere.jpeg"},
+{title:"Schlickerguss",file:"Schlickerguß.jpg"},
+{title:"Sedimentation 1",file:"Sedimentation1.jpeg"},
+{title:"Sedimentation 2",file:"Sedimentation2.jpeg"},
+{title:"Siebrund",file:"Siebrund.jpg"},
+{title:"Siebrund 2",file:"Siebrund2.jpg"},
+{title:"Silikatkeramische Werkstoffe",file:"Silikatkermamische Werkstoffe.jpeg"},
+{title:"Sprühturm",file:"Sprühturm.webp"},
+{title:"Strang",file:"Strang.jpg"},
+{title:"Strangpresse Aufbau",file:"Strangpresse_Aufbau.jpeg"},
+{title:"Taktstraße Becher",file:"Taktstraße_Becher.jpg"},
+{title:"Tassen",file:"Tassen.jpeg"},
+{title:"Teller",file:"Teller.webp"},
+{title:"TGA",file:"TGA.jpeg"},
+{title:"Thermogravimetrie Übersicht",file:"Thermogravimetrie-Uebersicht.png"},
+{title:"Tongrube",file:"Tongrube.jpeg"},
+{title:"TOW Besatz",file:"TOW-Besatz.jpg"},
+{title:"Trockenpressen Presse",file:"Trockenpressen_Presse.jpeg"},
+{title:"Trockner Prinzip",file:"Trockner_Prinzip.png"},
+{title:"Trommelmühle",file:"Trommelmühle.jpg"},
+{title:"Trommeltrockner",file:"Trommeltrockner.jpeg"},
+{title:"Tunnelofen",file:"Tunnelofen.jpg"},
+{title:"Tunnelofen Schema",file:"Tunnelofen_Schema.jpg"},
+{title:"Überrollern",file:"Überrollern.jpeg"},
+{title:"Vollguss",file:"Vollguss.jpeg"},
+{title:"Wagenbesatz 2",file:"Wagenbesatz_2.jpg"},
+{title:"Wagenbesatz WC",file:"Wagenbesatz_Wc.jpg"},
+{title:"Walzenschüsselmühle",file:"Walzenschüsselmühle.jpeg"},
+{title:"Walzwerk",file:"Walzwerk.jpeg"},
+{title:"Windsichter",file:"Windsichter.jpeg"},
+{title:"Ziegel",file:"Ziegel.png"},
+{title:"Zweischichtmineral",file:"Zweischichtmineral.jpeg"}
 
-{ name:"Kugelmühle",kat:"Aufbereitung",bild:"img/Kugelmühle.PNG",text:"Mahlaggregat zur Feinzerkleinerung keramischer Rohstoffe."},
+]
 
-{ name:"Trommelmühle",kat:"Aufbereitung",bild:"img/Trommelmühle.jpg",text:"Rotierende Mühle zur Zerkleinerung mineralischer Rohstoffe. Je nach Geschwindigkeit unterschiedliche Wirkung"},
+const grid=document.getElementById("grid")
 
-{ name:"Walzwerk",kat:"Aufbereitung",bild:"img/Walzwerk.jpeg",text:"Zerkleinerungsmaschine mit gegenläufigen Walzen.Eine ist starr und angetreiben, die andere beweglich gelagert"},
+function render(data){
 
-{ name:"Windsichter",kat:"Aufbereitung",bild:"img/Windsichter.jpeg",text:"Trennt feine und grobe Partikel durch Luftstrom."},
+grid.innerHTML=""
 
-{ name:"Kegelbrecher",kat:"Aufbereitung",bild:"img/Kegelbrecher.png",text:"Brechmaschine zur Zerkleinerung harter Rohstoffe."},
+data.forEach(item=>{
 
-{ name:"Eirich Mischer",kat:"Aufbereitung",bild:"img/Eirich Mischer.jpg",text:"Intensivmischer zur Homogenisierung keramischer Massen."},
+let card=document.createElement("div")
+card.className="card"
 
-{ name:"Strangpresse",kat:"Formgebung",bild:"img/Strangpresse_Aufbau.jpeg",text:"Formgebungsmaschine für plastische keramische Massen."},
+card.innerHTML=item.title
 
-{ name:"Axiales Pressen",kat:"Formgebung",bild:"img/Axiales_Pressen.jpg",text:"Pressverfahren für keramische Pulver."},
+card.onclick=()=>openViewer(item)
 
-{ name:"Trockenpressen",kat:"Formgebung",bild:"img/Trockenpressen_Presse.jpeg",text:"Verdichten keramischer Massen im Trockenpressverfahren."},
-
-{ name:"Isostatisches Pressen",kat:"Formgebung",bild:"img/Isostatische_Form_Teller.png",text:"Pressverfahren mit gleichmäßigem Druck von allen Seiten."},
-
-{ name:"Heißisostatisches Pressen",kat:"Formgebung",bild:"img/Heißisostatisches_Pressen1.webp",text:"Verdichtung bei hoher Temperatur und hohem Gasdruck."},
-
-{ name:"Schlickerguss",kat:"Formgebung",bild:"img/Schlickerguß.jpg",text:"Formgebung durch Gießen eines keramischen Schlickers in Gipsformen."},
-
-{ name:"Hohlguss",kat:"Formgebung",bild:"img/Hohlguss.jpeg",text:"Schlickerguss zur Herstellung hohler Keramikartikel."},
-
-{ name:"Vollguss",kat:"Formgebung",bild:"img/Vollguss.jpeg",text:"Schlickergussverfahren für massive Formkörper."},
-
-{ name:"Tunnelofen",kat:"Brennöfen",bild:"img/Tunnelofen.jpg",text:"Kontinuierlicher Brennofen mit Vorwärm-, Brenn- und Kühlzone."},
-
-{ name:"Kammerofen",kat:"Brennöfen",bild:"img/Kammerofen1.jpeg",text:"Diskontinuierlicher Ofen für chargenweises Brennen."},
-
-{ name:"Ringofen",kat:"Brennöfen",bild:"img/Ringofen.jpg",text:"Kontinuierlicher Ziegelofen mit ringförmig angeordneten Brennkammern."},
-
-{ name:"Rollenofen",kat:"Brennöfen",bild:"img/Rollenofen.jpeg",text:"Ofen für zb. Fliesen und flache Keramikprodukte."},
-
-{ name:"Haubenofen",kat:"Brennöfen",bild:"img/Haubenofen.jpeg",text:"Ofentyp mit abnehmbarer Haube. Wagen steht und Ofen bewegt sich"},
-
-{ name:"Herdwagenofen",kat:"Brennöfen",bild:"img/Herdwagenofen.jpeg",text:"Kammerofen mit beweglichem Wagen."},
-
-{ name:"DTA",kat:"Analyse",bild:"img/DTA.png",text:"Differentialthermoanalyse zur Untersuchung thermischer Reaktionen."},
-
-{ name:"TGA",kat:"Analyse",bild:"img/TGA.jpeg",text:"Thermogravimetrische Analyse zur Bestimmung von Massenänderungen."},
-
-{ name:"Dilatometer",kat:"Analyse",bild:"img/Dilatometer.webp",text:"Messgerät zur Bestimmung der thermischen Ausdehnung."},
-
-{ name:"Ziegel",kat:"Produkte",bild:"img/Ziegel.png",text:"Baustoff aus gebranntem Ton."},
-
-{ name:"Teller",kat:"Produkte",bild:"img/Teller.webp",text:"Keramisches Geschirrprodukt."},
-
-{ name:"Tassen",kat:"Produkte",bild:"img/Tassen.jpeg",text:"Keramische Trinkgefäße."},
-
-{ name:"Sauciere",kat:"Produkte",bild:"img/Sauciere.jpeg",text:"Keramisches Gefäß zum Servieren von Soßen."}
-
-];
-
-function render(){
-
-const search=document.getElementById("search").value.toLowerCase();
-
-const cat=document.getElementById("category").value;
-
-const list=document.getElementById("list");
-
-list.innerHTML="";
-
-DATA.filter(e=>{
-
-return (!cat||e.kat==cat) &&
-
-(e.name.toLowerCase().includes(search)||e.text.toLowerCase().includes(search));
+grid.appendChild(card)
 
 })
 
-.forEach(e=>{
+}
 
-const div=document.createElement("div");
+function openViewer(item){
 
-div.className="entry";
+document.getElementById("viewer").style.display="flex"
 
-div.innerHTML=`<h3>${e.name}</h3>`;
+document.getElementById("viewerImg").src="img/"+item.file
 
-div.onclick=()=>openModal(e);
-
-list.appendChild(div);
-
-});
+document.getElementById("viewerText").innerHTML="<h2>"+item.title+"</h2>"
 
 }
 
-function openModal(e){
+function closeViewer(){
 
-document.getElementById("title").innerText=e.name;
-
-document.getElementById("desc").innerText=e.text;
-
-document.getElementById("img").src=e.bild;
-
-document.getElementById("modal").style.display="flex";
+document.getElementById("viewer").style.display="none"
 
 }
 
-function closeModal(){
+document.getElementById("search").addEventListener("input",function(){
 
-document.getElementById("modal").style.display="none";
+let val=this.value.toLowerCase()
 
-}
+let filtered=wikiData.filter(i =>
+i.title.toLowerCase().includes(val)
+)
 
-render();
+render(filtered)
+
+})
+
+render(wikiData)
 
 </script>
 
 </body>
-
 </html>
