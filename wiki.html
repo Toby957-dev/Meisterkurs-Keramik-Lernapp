@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Keramik Wiki</title>
+
+<style>
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:#f7f7f7;
+margin:0;
+padding:30px;
+}
+
+#wiki{
+max-width:1000px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
+#controls{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+flex-wrap:wrap;
+}
+
+input,select{
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:14px;
+}
+
+#list{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:10px;
+}
+
+.entry{
+background:white;
+border-radius:10px;
+padding:15px;
+cursor:pointer;
+border:1px solid #e5e5e5;
+transition:0.2s;
+}
+
+.entry:hover{
+border-color:#e75228;
+transform:translateY(-2px);
+}
+
+.entry h3{
+margin:0;
+font-size:15px;
+}
+
+#modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+display:none;
+align-items:center;
+justify-content:center;
+}
+
+#modalContent{
+background:white;
+width:90%;
+max-width:1000px;
+border-radius:12px;
+padding:30px;
+position:relative;
+}
+
+#close{
+position:absolute;
+right:20px;
+top:10px;
+font-size:28px;
+cursor:pointer;
+}
+
+#modalLayout{
+display:flex;
+gap:30px;
+}
+
+#modalImg img{
+max-width:400px;
+border-radius:10px;
+}
+
+#modalText{
+flex:1;
+}
+
+@media(max-width:800px){
+
+#modalLayout{
+flex-direction:column;
+}
+
+#modalImg img{
+max-width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="wiki">
+
+<h1>Keramik Wiki</h1>
+
+<div id="controls">
+
+<input type="text" id="search" placeholder="Begriff suchen..." oninput="render()">
+
+<select id="category" onchange="render()">
+
+<option value="">Alle Kategorien</option>
+<option value="Rohstoffe">Rohstoffe</option>
+<option value="Aufbereitung">Aufbereitung</option>
+<option value="Formgebung">Formgebung</option>
+<option value="Trocknung">Trocknung</option>
+<option value="Brennöfen">Brennöfen</option>
+<option value="Analyse">Analyse</option>
+<option value="Produkte">Produkte</option>
+
+</select>
+
+</div>
+
+<div id="list"></div>
+
+</div>
+
+<div id="modal">
+
+<div id="modalContent">
+
+<span id="close" onclick="closeModal()">✕</span>
+
+<div id="modalLayout">
+
+<div id="modalImg">
+<img id="img">
+</div>
+
+<div id="modalText">
+
+<h2 id="title"></h2>
+
+<p id="desc"></p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const DATA = [
+
+{ name:"Kollergang",kat:"Aufbereitung",bild:"img/Kollergang.jpeg",text:"Maschine zur Zerkleinerung und Homogenisierung plastischer Tonmassen."},
+
+{ name:"Kugelmühle",kat:"Aufbereitung",bild:"img/Kugelmühle.PNG",text:"Mahlaggregat zur Feinzerkleinerung keramischer Rohstoffe."},
+
+{ name:"Trommelmühle",kat:"Aufbereitung",bild:"img/Trommelmühle.jpg",text:"Rotierende Mühle zur Zerkleinerung mineralischer Rohstoffe."},
+
+{ name:"Walzwerk",kat:"Aufbereitung",bild:"img/Walzwerk.jpeg",text:"Zerkleinerungsmaschine mit gegenläufigen Walzen."},
+
+{ name:"Windsichter",kat:"Aufbereitung",bild:"img/Windsichter.jpeg",text:"Trennt feine und grobe Partikel durch Luftstrom."},
+
+{ name:"Kegelbrecher",kat:"Aufbereitung",bild:"img/Kegelbrecher.png",text:"Brechmaschine zur Zerkleinerung harter Rohstoffe."},
+
+{ name:"Eirich Mischer",kat:"Aufbereitung",bild:"img/Eirich Mischer.jpg",text:"Intensivmischer zur Homogenisierung keramischer Massen."},
+
+{ name:"Strangpresse",kat:"Formgebung",bild:"img/Strangpresse_Aufbau.jpeg",text:"Formgebungsmaschine für plastische keramische Massen."},
+
+{ name:"Axiales Pressen",kat:"Formgebung",bild:"img/Axiales_Pressen.jpg",text:"Pressverfahren für keramische Pulver."},
+
+{ name:"Trockenpressen",kat:"Formgebung",bild:"img/Trockenpressen_Presse.jpeg",text:"Verdichten keramischer Pulver unter hohem Druck."},
+
+{ name:"Isostatisches Pressen",kat:"Formgebung",bild:"img/Isostatische_Form_Teller.png",text:"Pressverfahren mit gleichmäßigem Druck von allen Seiten."},
+
+{ name:"Heißisostatisches Pressen",kat:"Formgebung",bild:"img/Heißisostatisches_Pressen1.webp",text:"Verdichtung bei hoher Temperatur und hohem Gasdruck."},
+
+{ name:"Schlickerguss",kat:"Formgebung",bild:"img/Schlickerguß.jpg",text:"Formgebung durch Gießen eines keramischen Schlickers in Gipsformen."},
+
+{ name:"Hohlguss",kat:"Formgebung",bild:"img/Hohlguss.jpeg",text:"Schlickerguss zur Herstellung hohler Keramikartikel."},
+
+{ name:"Vollguss",kat:"Formgebung",bild:"img/Vollguss.jpeg",text:"Schlickergussverfahren für massive Formkörper."},
+
+{ name:"Tunnelofen",kat:"Brennöfen",bild:"img/Tunnelofen.jpg",text:"Kontinuierlicher Brennofen mit Vorwärm-, Brenn- und Kühlzone."},
+
+{ name:"Kammerofen",kat:"Brennöfen",bild:"img/Kammerofen1.jpeg",text:"Diskontinuierlicher Ofen für chargenweises Brennen."},
+
+{ name:"Ringofen",kat:"Brennöfen",bild:"img/Ringofen.jpg",text:"Kontinuierlicher Ziegelofen mit ringförmig angeordneten Brennkammern."},
+
+{ name:"Rollenofen",kat:"Brennöfen",bild:"img/Rollenofen.jpeg",text:"Ofen für Fliesen und flache Keramikprodukte."},
+
+{ name:"Haubenofen",kat:"Brennöfen",bild:"img/Haubenofen.jpeg",text:"Ofentyp mit abnehmbarer Haube."},
+
+{ name:"Herdwagenofen",kat:"Brennöfen",bild:"img/Herdwagenofen.jpeg",text:"Kammerofen mit beweglichem Wagen."},
+
+{ name:"DTA",kat:"Analyse",bild:"img/DTA.png",text:"Differentialthermoanalyse zur Untersuchung thermischer Reaktionen."},
+
+{ name:"TGA",kat:"Analyse",bild:"img/TGA.jpeg",text:"Thermogravimetrische Analyse zur Bestimmung von Massenänderungen."},
+
+{ name:"Dilatometer",kat:"Analyse",bild:"img/Dilatometer.webp",text:"Messgerät zur Bestimmung der thermischen Ausdehnung."},
+
+{ name:"Ziegel",kat:"Produkte",bild:"img/Ziegel.png",text:"Baustoff aus gebranntem Ton."},
+
+{ name:"Teller",kat:"Produkte",bild:"img/Teller.webp",text:"Keramisches Geschirrprodukt."},
+
+{ name:"Tassen",kat:"Produkte",bild:"img/Tassen.jpeg",text:"Keramische Trinkgefäße."},
+
+{ name:"Sauciere",kat:"Produkte",bild:"img/Sauciere.jpeg",text:"Keramisches Gefäß zum Servieren von Soßen."}
+
+];
+
+function render(){
+
+const search=document.getElementById("search").value.toLowerCase();
+
+const cat=document.getElementById("category").value;
+
+const list=document.getElementById("list");
+
+list.innerHTML="";
+
+DATA.filter(e=>{
+
+return (!cat||e.kat==cat) &&
+
+(e.name.toLowerCase().includes(search)||e.text.toLowerCase().includes(search));
+
+})
+
+.forEach(e=>{
+
+const div=document.createElement("div");
+
+div.className="entry";
+
+div.innerHTML=`<h3>${e.name}</h3>`;
+
+div.onclick=()=>openModal(e);
+
+list.appendChild(div);
+
+});
+
+}
+
+function openModal(e){
+
+document.getElementById("title").innerText=e.name;
+
+document.getElementById("desc").innerText=e.text;
+
+document.getElementById("img").src=e.bild;
+
+document.getElementById("modal").style.display="flex";
+
+}
+
+function closeModal(){
+
+document.getElementById("modal").style.display="none";
+
+}
+
+render();
+
+</script>
+
+</body>
+</html>
