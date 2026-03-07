@@ -732,7 +732,7 @@ tr:nth-child(even) td { background:var(--rt-bg); }
       <div class="nav-tab" onclick="showView('quiz',this)">🧠 Quiz</div>
       <div class="nav-tab" onclick="showView('rechner',this)">🧮 Rechentrainer</div>
       <div class="nav-tab" onclick="showView('vokabeln',this)">📚 Vokabeln</div>
-      <div class="nav-tab" onclick="showView('skizzen',this)" style="display:none;">📐 Skizzen & Formeln</div>
+      <div class="nav-tab" onclick="showView('skizzen',this)">📖 Wiki</div>
       <div class="nav-tab" onclick="showView('leaderboard',this)">🏆 Bestenliste</div>
     </div>
     <div class="topbar-stats">
@@ -830,7 +830,15 @@ tr:nth-child(even) td { background:var(--rt-bg); }
       <button class="cat-btn" onclick="toggleCat(this,'Betriebstechnik')" data-cat="Betriebstechnik">⚙️ Betriebstechnik</button>
       <button class="cat-btn" onclick="toggleCat(this,'MSR')" data-cat="MSR">📡 MSR</button>
       <button class="cat-btn" onclick="toggleCat(this,'Wärmelehre')" data-cat="Wärmelehre">🔥 Wärmelehre</button>
+      <button class="cat-btn" onclick="toggleCat(this,'Trockentechnik')" data-cat="Trockentechnik">💨 Trockentechnik</button>
+      <button class="cat-btn" onclick="toggleCat(this,'Brenntechnik')" data-cat="Brenntechnik">🔆 Brenntechnik</button>
       <button class="cat-btn" onclick="toggleCat(this,'Fertigungstechnik')" data-cat="Fertigungstechnik">🏭 Fertigungstechnik</button>
+      <button class="cat-btn" onclick="toggleCat(this,'Aufbereitung')" data-cat="Aufbereitung">🔄 Aufbereitung</button>
+      <button class="cat-btn" onclick="toggleCat(this,'Strukturkeramik')" data-cat="Strukturkeramik">🔬 Strukturkeramik</button>
+      <button class="cat-btn" onclick="toggleCat(this,'Glasurtechnologie')" data-cat="Glasurtechnologie">🎨 Glasurtechnologie</button>
+      <button class="cat-btn" onclick="toggleCat(this,'Feinkeramik')" data-cat="Feinkeramik">🏺 Feinkeramik</button>
+      <button class="cat-btn" onclick="toggleCat(this,'Baukeramik')" data-cat="Baukeramik">🧱 Baukeramik</button>
+      <button class="cat-btn" onclick="toggleCat(this,'Technische Kommunikation')" data-cat="Technische Kommunikation">📐 Techn. Kommunikation</button>
       <button class="cat-btn" onclick="toggleCat(this,'Umwelttechnik')" data-cat="Umwelttechnik">🌿 Umwelt</button>
     </div>
     <button class="start-btn" onclick="startQuiz()">🚀 Quiz starten</button>
@@ -1638,6 +1646,7 @@ function showView(name, tabEl) {
   document.getElementById(name+'-view').classList.add('active');
   if(tabEl) tabEl.classList.add('active');
   window.scrollTo(0,0);
+  if (name === 'skizzen') loadSkizzen();
   if (name === 'rechner') {
     const ref = document.getElementById('rt-formula-ref');
     if (ref && !ref.innerHTML && typeof RT_FORMULAS !== 'undefined') ref.innerHTML = RT_FORMULAS['tqf'];
@@ -2286,19 +2295,8 @@ async function loadSummary() {
   }
 }
 
-async function loadSkizzen() {
-  const view = document.getElementById('skizzen-view');
-  if (view.dataset.loaded) return;
-  try {
-    const res = await fetch('skizzen.html');
-    if (!res.ok) throw new Error('Datei nicht gefunden');
-    const html = await res.text();
-    view.innerHTML = html;
-    view.dataset.loaded = '1';
-  } catch(e) {
-    view.innerHTML = '<p style="text-align:center;color:#bbb;padding:40px;">⚠️ skizzen.html nicht gefunden</p>';
-    console.error('Skizzen load error:', e);
-  }
+function loadSkizzen() {
+  if (typeof wikiRender === 'function') wikiRender();
 }
 const _origShowView = showView;
 showView = function(name, tabEl) {
@@ -2938,9 +2936,120 @@ function exitReview() {
 <!-- ═══ NAV LOGIN BTN (injected by JS) ═══════════════════════ -->
 
 <!-- ═══ LEADERBOARD VIEW ════════════════════════════════════ -->
-<!-- ═══ SKIZZEN & FORMELN ══════════════════════════════════ -->
+<!-- ═══ WIKI ══════════════════════════════════════════════ -->
 <div class="view" id="skizzen-view">
-  <div id="skizzen-loading" style="text-align:center;padding:40px;color:#bbb;">⏳ Lade Skizzen & Formeln…</div>
+<style>
+#wiki-controls{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+#wiki-controls input,#wiki-controls select{padding:10px;border-radius:8px;border:1px solid #ccc;font-size:14px;}
+#wiki-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;}
+.wiki-entry{background:white;border-radius:10px;padding:15px;cursor:pointer;border:1px solid #e5e5e5;transition:0.2s;}
+.wiki-entry:hover{border-color:#e75228;transform:translateY(-2px);}
+.wiki-entry h3{margin:0;font-size:15px;}
+#wiki-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:9999;}
+#wiki-modal-content{background:white;width:90%;max-width:900px;border-radius:12px;padding:30px;position:relative;max-height:90vh;overflow-y:auto;}
+#wiki-modal-close{position:absolute;right:20px;top:10px;font-size:28px;cursor:pointer;line-height:1;}
+#wiki-modal-layout{display:flex;gap:30px;}
+#wiki-modal-img img{max-width:380px;border-radius:10px;object-fit:contain;}
+#wiki-modal-text{flex:1;}
+@media(max-width:700px){#wiki-modal-layout{flex-direction:column;}#wiki-modal-img img{max-width:100%;}}
+</style>
+
+<h2 style="margin-bottom:20px;">📖 Keramik Wiki</h2>
+
+<div id="wiki-controls">
+  <input type="text" id="wiki-search" placeholder="Begriff suchen…" oninput="wikiRender()">
+  <select id="wiki-cat" onchange="wikiRender()">
+    <option value="">Alle Kategorien</option>
+    <option value="Rohstoffe">Rohstoffe</option>
+    <option value="Aufbereitung">Aufbereitung</option>
+    <option value="Formgebung">Formgebung</option>
+    <option value="Trocknung">Trocknung</option>
+    <option value="Brennöfen">Brennöfen</option>
+    <option value="Analyse">Analyse</option>
+    <option value="Produkte">Produkte</option>
+  </select>
+</div>
+
+<div id="wiki-list"></div>
+
+<div id="wiki-modal">
+  <div id="wiki-modal-content">
+    <span id="wiki-modal-close" onclick="wikiCloseModal()">✕</span>
+    <div id="wiki-modal-layout">
+      <div id="wiki-modal-img"><img id="wiki-modal-imgel" src="" alt=""></div>
+      <div id="wiki-modal-text">
+        <h2 id="wiki-modal-title"></h2>
+        <p id="wiki-modal-desc" style="line-height:1.7;"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const WIKI_DATA = [
+  {name:"Kollergang",kat:"Aufbereitung",bild:"img/Kollergang.jpeg",text:"Maschine zur Zerkleinerung und Homogenisierung plastischer Tonmassen."},
+  {name:"Kugelmühle",kat:"Aufbereitung",bild:"img/Kugelmühle.PNG",text:"Mahlaggregat zur Feinzerkleinerung keramischer Rohstoffe."},
+  {name:"Trommelmühle",kat:"Aufbereitung",bild:"img/Trommelmühle.jpg",text:"Rotierende Mühle zur Zerkleinerung mineralischer Rohstoffe."},
+  {name:"Walzwerk",kat:"Aufbereitung",bild:"img/Walzwerk.jpeg",text:"Zerkleinerungsmaschine mit gegenläufigen Walzen."},
+  {name:"Windsichter",kat:"Aufbereitung",bild:"img/Windsichter.jpeg",text:"Trennt feine und grobe Partikel durch Luftstrom."},
+  {name:"Kegelbrecher",kat:"Aufbereitung",bild:"img/Kegelbrecher.png",text:"Brechmaschine zur Zerkleinerung harter Rohstoffe."},
+  {name:"Eirich Mischer",kat:"Aufbereitung",bild:"img/Eirich Mischer.jpg",text:"Intensivmischer zur Homogenisierung keramischer Massen."},
+  {name:"Strangpresse",kat:"Formgebung",bild:"img/Strangpresse_Aufbau.jpeg",text:"Formgebungsmaschine für plastische keramische Massen."},
+  {name:"Axiales Pressen",kat:"Formgebung",bild:"img/Axiales_Pressen.jpg",text:"Pressverfahren für keramische Pulver."},
+  {name:"Trockenpressen",kat:"Formgebung",bild:"img/Trockenpressen_Presse.jpeg",text:"Verdichten keramischer Pulver unter hohem Druck."},
+  {name:"Isostatisches Pressen",kat:"Formgebung",bild:"img/Isostatische_Form_Teller.png",text:"Pressverfahren mit gleichmäßigem Druck von allen Seiten."},
+  {name:"Heißisostatisches Pressen",kat:"Formgebung",bild:"img/Heißisostatisches_Pressen1.webp",text:"Verdichtung bei hoher Temperatur und hohem Gasdruck."},
+  {name:"Schlickerguss",kat:"Formgebung",bild:"img/Schlickerguß.jpg",text:"Formgebung durch Gießen eines keramischen Schlickers in Gipsformen."},
+  {name:"Hohlguss",kat:"Formgebung",bild:"img/Hohlguss.jpeg",text:"Schlickerguss zur Herstellung hohler Keramikartikel."},
+  {name:"Vollguss",kat:"Formgebung",bild:"img/Vollguss.jpeg",text:"Schlickergussverfahren für massive Formkörper."},
+  {name:"Tunnelofen",kat:"Brennöfen",bild:"img/Tunnelofen.jpg",text:"Kontinuierlicher Brennofen mit Vorwärm-, Brenn- und Kühlzone."},
+  {name:"Kammerofen",kat:"Brennöfen",bild:"img/Kammerofen1.jpeg",text:"Diskontinuierlicher Ofen für chargenweises Brennen."},
+  {name:"Ringofen",kat:"Brennöfen",bild:"img/Ringofen.jpg",text:"Kontinuierlicher Ziegelofen mit ringförmig angeordneten Brennkammern."},
+  {name:"Rollenofen",kat:"Brennöfen",bild:"img/Rollenofen.jpeg",text:"Ofen für Fliesen und flache Keramikprodukte."},
+  {name:"Haubenofen",kat:"Brennöfen",bild:"img/Haubenofen.jpeg",text:"Ofentyp mit abnehmbarer Haube."},
+  {name:"Herdwagenofen",kat:"Brennöfen",bild:"img/Herdwagenofen.jpeg",text:"Kammerofen mit beweglichem Wagen."},
+  {name:"DTA",kat:"Analyse",bild:"img/DTA.png",text:"Differentialthermoanalyse zur Untersuchung thermischer Reaktionen."},
+  {name:"TGA",kat:"Analyse",bild:"img/TGA.jpeg",text:"Thermogravimetrische Analyse zur Bestimmung von Massenänderungen."},
+  {name:"Dilatometer",kat:"Analyse",bild:"img/Dilatometer.webp",text:"Messgerät zur Bestimmung der thermischen Ausdehnung."},
+  {name:"Ziegel",kat:"Produkte",bild:"img/Ziegel.png",text:"Baustoff aus gebranntem Ton."},
+  {name:"Teller",kat:"Produkte",bild:"img/Teller.webp",text:"Keramisches Geschirrprodukt."},
+  {name:"Tassen",kat:"Produkte",bild:"img/Tassen.jpeg",text:"Keramische Trinkgefäße."},
+  {name:"Sauciere",kat:"Produkte",bild:"img/Sauciere.jpeg",text:"Keramisches Gefäß zum Servieren von Soßen."}
+];
+
+function wikiRender(){
+  const search = document.getElementById('wiki-search').value.toLowerCase();
+  const cat = document.getElementById('wiki-cat').value;
+  const list = document.getElementById('wiki-list');
+  list.innerHTML = '';
+  WIKI_DATA.filter(e => (!cat || e.kat === cat) && (e.name.toLowerCase().includes(search) || e.text.toLowerCase().includes(search)))
+    .forEach(e => {
+      const div = document.createElement('div');
+      div.className = 'wiki-entry';
+      div.innerHTML = `<h3>${e.name}</h3><small style="color:#999">${e.kat}</small>`;
+      div.onclick = () => wikiOpenModal(e);
+      list.appendChild(div);
+    });
+}
+
+function wikiOpenModal(e){
+  document.getElementById('wiki-modal-title').innerText = e.name;
+  document.getElementById('wiki-modal-desc').innerText = e.text;
+  const img = document.getElementById('wiki-modal-imgel');
+  img.src = e.bild;
+  img.onerror = () => { document.getElementById('wiki-modal-img').style.display='none'; };
+  document.getElementById('wiki-modal-img').style.display='';
+  document.getElementById('wiki-modal').style.display = 'flex';
+}
+
+function wikiCloseModal(){
+  document.getElementById('wiki-modal').style.display = 'none';
+}
+
+document.getElementById('wiki-modal').addEventListener('click', function(ev){
+  if(ev.target === this) wikiCloseModal();
+});
+</script>
 </div>
 
 <div id="leaderboard-view" class="view">
