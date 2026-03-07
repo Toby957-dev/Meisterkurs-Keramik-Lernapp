@@ -1269,7 +1269,7 @@ const BANK = [
 
 {c:"Umwelttechnik", d:2, q:"Was ist Abwärmenutzung?",
   o:["Abwärme entsorgen", "Temperatur erhöhen", "Abgas filtern", "Abwärme aus Prozessen für Heizung oder Trocknung nutzen"], a:3,
-  e:"Abwärmenutzung: z.B. Ofenabgase zum Vorwärmen der Ware oder für Trocknungsanlagen."}
+  e:"Abwärmenutzung: z.B. Ofenabgase zum Vorwärmen der Ware oder für Trocknungsanlagen."} ,
 
   // ═══════════════════════════════════════════════════════════
 // NEUE FRAGEN – aus Anki exportiert, 639 Fragen
