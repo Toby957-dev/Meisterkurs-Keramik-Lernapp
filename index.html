@@ -2836,22 +2836,25 @@ async function lbLoad() {
   document.getElementById('lb-empty').style.display = 'none';
   document.getElementById('lb-section-normal').style.display = 'none';
   document.getElementById('lb-section-marathon').style.display = 'none';
+  document.getElementById('lb-section-survival').style.display = 'none';
 
   try {
-    const [dataNormal, dataMarathon] = await Promise.all([
+    const [dataNormal, dataMarathon, dataSurvival] = await Promise.all([
       sbFetch(`scores?select=pct,num_q,mode,player_id,players(username)&mode=in.(normal,speed)&order=pct.desc&limit=200`),
-      sbFetch(`scores?select=pct,num_q,mode,player_id,players(username)&mode=in.(marathon,survival)&order=pct.desc&limit=200`)
+      sbFetch(`scores?select=pct,num_q,mode,player_id,players(username)&mode=eq.marathon&order=pct.desc&limit=200`),
+      sbFetch(`scores?select=pct,num_q,mode,player_id,players(username)&mode=eq.survival&order=num_q.desc&limit=200`)
     ]);
 
     document.getElementById('lb-loading').style.display = 'none';
 
-    if ((!dataNormal || dataNormal.length === 0) && (!dataMarathon || dataMarathon.length === 0)) {
+    if ((!dataNormal || !dataNormal.length) && (!dataMarathon || !dataMarathon.length) && (!dataSurvival || !dataSurvival.length)) {
       document.getElementById('lb-empty').style.display = 'block';
       return;
     }
 
-    if (dataNormal && dataNormal.length > 0)   renderLbSection('lb-tbody-normal',   'lb-section-normal',   dataNormal);
-    if (dataMarathon && dataMarathon.length > 0) renderLbSection('lb-tbody-marathon', 'lb-section-marathon', dataMarathon);
+    if (dataNormal   && dataNormal.length)   renderLbPct('lb-tbody-normal',    'lb-section-normal',    dataNormal,    'pct');
+    if (dataMarathon && dataMarathon.length) renderLbPct('lb-tbody-marathon',  'lb-section-marathon',  dataMarathon,  'pct');
+    if (dataSurvival && dataSurvival.length) renderLbPct('lb-tbody-survival',  'lb-section-survival',  dataSurvival,  'count');
 
     if (currentUser) {
       const myScores = await sbFetch(
@@ -2866,28 +2869,38 @@ async function lbLoad() {
   }
 }
 
-function renderLbSection(tbodyId, sectionId, data) {
+// displayMode: 'pct' = Prozent, 'count' = richtige Antworten (num_q * pct/100)
+function renderLbPct(tbodyId, sectionId, data, displayMode) {
   const byPlayer = {};
   data.forEach(s => {
     const pid = s.player_id || ('anon_' + Math.random());
     const username = (s.players && s.players.username) ? s.players.username : 'Unbekannt';
-    if (!byPlayer[pid] || s.pct > byPlayer[pid].pct)
-      byPlayer[pid] = { pid, username, pct: s.pct };
+    const score = displayMode === 'count'
+      ? Math.round((s.num_q || 0) * (s.pct || 0) / 100)  // richtige Antworten
+      : (s.pct || 0);                                       // Prozent
+    if (!byPlayer[pid] || score > byPlayer[pid].score)
+      byPlayer[pid] = { pid, username, score, pct: s.pct };
   });
-  const top10 = Object.values(byPlayer).sort((a,b) => b.pct - a.pct).slice(0, 10);
+  const top10 = Object.values(byPlayer).sort((a,b) => b.score - a.score).slice(0, 10);
   const tbody = document.getElementById(tbodyId);
   tbody.innerHTML = top10.map((p, i) => {
     const rank = i + 1;
     const icon = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `<span style="color:#888;font-size:0.9rem;">${rank}</span>`;
     const isMe = currentUser && p.pid === currentUser.id;
     const bg = isMe ? 'background:rgba(231,82,40,0.06);' : (rank <= 3 ? 'background:rgba(0,0,0,0.02);' : '');
+    const valText = displayMode === 'count'
+      ? `${p.score} Fragen`
+      : `${p.score}%`;
+    const valColor = displayMode === 'count'
+      ? (p.score >= 50 ? '#9b59b6' : '#7f8c8d')
+      : (p.pct >= 80 ? '#27ae60' : p.pct >= 50 ? 'var(--rt-orange)' : '#e74c3c');
     return `<tr style="${bg}border-bottom:1px solid #f0f0f0;">
       <td style="padding:8px 6px;text-align:center;font-size:1.05rem;">${icon}</td>
       <td style="padding:8px 6px;">
         <strong style="color:${isMe ? 'var(--rt-orange)' : 'var(--rt-dark)'}">${esc(p.username)}</strong>
         ${isMe ? '<span style="color:var(--rt-orange);font-size:0.7rem;margin-left:4px;">(du)</span>' : ''}
       </td>
-      <td style="padding:8px 6px;text-align:right;font-weight:800;color:${p.pct>=80?'#27ae60':p.pct>=50?'var(--rt-orange)':'#e74c3c'};">${p.pct}%</td>
+      <td style="padding:8px 6px;text-align:right;font-weight:800;color:${valColor};">${valText}</td>
     </tr>`;
   }).join('');
   document.getElementById(sectionId).style.display = 'block';
@@ -3301,9 +3314,9 @@ document.getElementById('wiki-modal').addEventListener('click',function(ev){if(e
     </table>
   </div>
 
-  <!-- Marathon & Survival Top 10 -->
+  <!-- Marathon Top 10 -->
   <div id="lb-section-marathon" style="display:none;margin-bottom:2rem;">
-    <h3 style="text-align:center;margin-bottom:0.8rem;color:#4a9eff;">🏃 Marathon &amp; Survival <small style="font-size:0.75rem;color:#888;">(alle Fragen)</small></h3>
+    <h3 style="text-align:center;margin-bottom:0.8rem;color:#4a9eff;">🏃 Marathon <small style="font-size:0.75rem;color:#888;">(alle Fragen, bestes %)</small></h3>
     <table style="width:100%;border-collapse:collapse;">
       <thead><tr style="color:#aaa;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
         <th style="padding:4px 6px;text-align:center;width:2.5rem;">#</th>
@@ -3311,6 +3324,19 @@ document.getElementById('wiki-modal').addEventListener('click',function(ev){if(e
         <th style="padding:4px 6px;text-align:right;">Richtig</th>
       </tr></thead>
       <tbody id="lb-tbody-marathon"></tbody>
+    </table>
+  </div>
+
+  <!-- Survival Top 10 -->
+  <div id="lb-section-survival" style="display:none;margin-bottom:2rem;">
+    <h3 style="text-align:center;margin-bottom:0.8rem;color:#9b59b6;">❤️ Survival <small style="font-size:0.75rem;color:#888;">(meiste richtige Antworten)</small></h3>
+    <table style="width:100%;border-collapse:collapse;">
+      <thead><tr style="color:#aaa;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
+        <th style="padding:4px 6px;text-align:center;width:2.5rem;">#</th>
+        <th style="padding:4px 6px;text-align:left;">Spieler</th>
+        <th style="padding:4px 6px;text-align:right;">Richtige Antworten</th>
+      </tr></thead>
+      <tbody id="lb-tbody-survival"></tbody>
     </table>
   </div>
 
