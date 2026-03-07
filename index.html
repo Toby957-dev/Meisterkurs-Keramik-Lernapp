@@ -310,6 +310,14 @@ tr:nth-child(even) td { background:var(--rt-bg); }
   display:flex; align-items:center; gap:12px;
   margin-bottom:18px; flex-wrap:wrap;
 }
+.quiz-abort-btn {
+  margin-left:auto; background:none;
+  border:1px solid var(--rt-border); border-radius:8px;
+  padding:5px 11px; font-size:1rem; font-weight:700;
+  color:var(--rt-muted); cursor:pointer; line-height:1;
+  transition:all .15s; box-shadow:var(--shadow-sm);
+}
+.quiz-abort-btn:hover { background:var(--rt-red); color:#fff; border-color:var(--rt-red); }
 .q-counter {
   background:var(--rt-white); border:1px solid var(--rt-border);
   border-radius:8px; padding:6px 14px;
@@ -1273,6 +1281,7 @@ tr:nth-child(even) td { background:var(--rt-bg); }
         <span class="no">✗ <span id="score-no">0</span></span>
         <span id="lives-display"></span>
       </div>
+      <button class="quiz-abort-btn" onclick="abortQuiz()" title="Quiz abbrechen">✕</button>
     </div>
     <div class="timer-wrap" id="timer-wrap" style="display:none;">
       <div class="timer-bar"><div class="timer-fill green" id="timer-fill"></div></div>
@@ -2291,6 +2300,9 @@ function showQuizStart() {
   document.getElementById('quiz-game').style.display='none';
   document.getElementById('result-screen').style.display='none';
   document.getElementById('start-screen').style.display='block';
+}
+function abortQuiz() {
+  if(confirm('Quiz wirklich abbrechen?')) showQuizStart();
 }
 const LTRS=['A','B','C','D'];
 function showQuestion() {
