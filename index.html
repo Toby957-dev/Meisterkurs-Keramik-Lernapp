@@ -3274,7 +3274,7 @@ function exitReview() {
 @keyframes wPulse{0%,100%{box-shadow:0 4px 14px rgba(231,82,40,0.35);}50%{box-shadow:0 4px 22px rgba(231,82,40,0.6);}}
 
 /* grid */
-#wc-grid-wrap{position:absolute;inset:0;display:none;overflow-y:auto;overflow-x:hidden;background:#f5f3ef;border-radius:12px;padding:12px 12px 20px;scrollbar-width:thin;scrollbar-color:rgba(231,82,40,0.2) transparent;}
+#wc-grid-wrap{position:absolute;inset:0;display:none;overflow-y:auto;overflow-x:hidden;background:#f5f3ef;border-radius:12px;padding:12px 12px 24px;scrollbar-width:thin;scrollbar-color:rgba(231,82,40,0.2) transparent;}
 #wc-grid-wrap.vis{display:block;}
 #wc-grid-wrap::-webkit-scrollbar{width:4px;}
 #wc-grid-wrap::-webkit-scrollbar-thumb{background:rgba(231,82,40,0.2);border-radius:2px;}
@@ -3489,6 +3489,12 @@ const WCATS=[
 let wActiveCat=null, wInitDone=false;
 
 function wInit(){
+  // Measure actual topbar height and set wiki-view top accordingly
+  const tb = document.querySelector('.topbar');
+  const tbH = tb ? tb.getBoundingClientRect().height : 63;
+  const wv = document.getElementById('wiki-view');
+  if(wv) wv.style.top = tbH + 'px';
+
   if(!wInitDone){
     wInitDone=true;
     const tr=document.getElementById('wtrack');
