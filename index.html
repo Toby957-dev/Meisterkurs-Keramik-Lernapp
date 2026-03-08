@@ -2080,6 +2080,9 @@ function showView(name, tabEl) {
     if (ref && !ref.innerHTML && typeof RT_FORMULAS !== 'undefined') ref.innerHTML = RT_FORMULAS['tqf'];
     if (typeof rtNewTask === 'function' && typeof rtCurrentTask !== 'undefined' && !rtCurrentTask) rtNewTask();
   }
+  if (name === 'leaderboard') {
+    if (typeof lbLoad === 'function') lbLoad();
+  }
 }
 
 /* ═══ ACCORDION ════════════════════════════════════════════ */
