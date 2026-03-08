@@ -3212,7 +3212,78 @@ function exitReview() {
 
 <!-- ═══ LEADERBOARD VIEW ════════════════════════════════════ -->
 <div class="view" id="leaderboard-view">
-  <h2 style="text-align:center;margin-bottom:1.2rem;">🏆 Bestenliste</h2>
+  <style>
+    #leaderboard-view {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+    .lb-columns {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .lb-col {
+      flex: 1;
+      background: var(--rt-white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--rt-border);
+      overflow: hidden;
+    }
+    .lb-col-header {
+      padding: 14px 16px 10px;
+      text-align: center;
+      border-bottom: 1px solid var(--rt-border2);
+    }
+    .lb-col-header .lb-col-title {
+      font-size: 1rem;
+      font-weight: 900;
+      margin-bottom: 2px;
+    }
+    .lb-col-header .lb-col-sub {
+      font-size: 0.73rem;
+      color: #999;
+    }
+    .lb-col table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .lb-col thead tr {
+      background: var(--rt-orange);
+    }
+    .lb-col thead th {
+      padding: 8px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+    }
+    .lb-col thead th:first-child { text-align: center; width: 3rem; }
+    .lb-col thead th:nth-child(2) { text-align: left; }
+    .lb-col thead th:last-child { text-align: right; }
+    .lb-col tbody td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--rt-border2);
+      font-size: 0.87rem;
+      color: var(--rt-mid);
+    }
+    .lb-col tbody tr:last-child td { border-bottom: none; }
+    .lb-col tbody tr:hover td { background: var(--rt-orange-bg); }
+    .lb-col tbody td:first-child { text-align: center; font-weight: 900; font-size: 0.95rem; }
+    .lb-col tbody td:last-child { text-align: right; font-weight: 700; color: var(--rt-dark); }
+    .lb-rank-1 { color: #f5c518 !important; }
+    .lb-rank-2 { color: #aaa !important; }
+    .lb-rank-3 { color: #cd7f32 !important; }
+    /* hide my-scores silently */
+    #lb-my-scores { display: none !important; }
+    @media(max-width: 700px) {
+      .lb-columns { flex-direction: column; }
+    }
+  </style>
+
+  <h2 style="text-align:center;margin-bottom:1.4rem;">🏆 Bestenliste</h2>
 
   <div id="lb-loading" style="text-align:center;padding:2rem;color:#aaa;">
     <div style="font-size:1.5rem;margin-bottom:0.5rem;">⏳</div>
@@ -3222,48 +3293,60 @@ function exitReview() {
     <p>Noch keine Einträge vorhanden.</p>
   </div>
 
-  <!-- Normal & Speed Top 10 -->
-  <div id="lb-section-normal" style="display:none;margin-bottom:2rem;">
-    <h3 style="text-align:center;margin-bottom:0.8rem;color:var(--rt-orange);">🎯 Normal &amp; Speed <small style="font-size:0.75rem;color:#888;">(20 Fragen)</small></h3>
-    <table style="width:100%;border-collapse:collapse;">
-      <thead><tr style="color:#aaa;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
-        <th style="padding:4px 6px;text-align:center;width:2.5rem;">#</th>
-        <th style="padding:4px 6px;text-align:left;">Spieler</th>
-        <th style="padding:4px 6px;text-align:right;">Richtig</th>
-      </tr></thead>
-      <tbody id="lb-tbody-normal"></tbody>
-    </table>
+  <div class="lb-columns">
+
+    <!-- Survival – LINKS -->
+    <div class="lb-col" id="lb-section-survival" style="display:none;">
+      <div class="lb-col-header">
+        <div class="lb-col-title" style="color:#9b59b6;">❤️ Survival</div>
+        <div class="lb-col-sub">meiste richtige Antworten</div>
+      </div>
+      <table>
+        <thead><tr>
+          <th>Rank</th>
+          <th>Spieler</th>
+          <th>Richtig</th>
+        </tr></thead>
+        <tbody id="lb-tbody-survival"></tbody>
+      </table>
+    </div>
+
+    <!-- Normal & Speed – MITTE -->
+    <div class="lb-col" id="lb-section-normal" style="display:none;">
+      <div class="lb-col-header">
+        <div class="lb-col-title" style="color:var(--rt-orange);">🎯 Normal &amp; Speed</div>
+        <div class="lb-col-sub">20 Fragen</div>
+      </div>
+      <table>
+        <thead><tr>
+          <th>Rank</th>
+          <th>Spieler</th>
+          <th>Richtig</th>
+        </tr></thead>
+        <tbody id="lb-tbody-normal"></tbody>
+      </table>
+    </div>
+
+    <!-- Marathon – RECHTS -->
+    <div class="lb-col" id="lb-section-marathon" style="display:none;">
+      <div class="lb-col-header">
+        <div class="lb-col-title" style="color:#4a9eff;">🏃 Marathon</div>
+        <div class="lb-col-sub">alle Fragen · bestes %</div>
+      </div>
+      <table>
+        <thead><tr>
+          <th>Rank</th>
+          <th>Spieler</th>
+          <th>Richtig</th>
+        </tr></thead>
+        <tbody id="lb-tbody-marathon"></tbody>
+      </table>
+    </div>
+
   </div>
 
-  <!-- Marathon Top 10 -->
-  <div id="lb-section-marathon" style="display:none;margin-bottom:2rem;">
-    <h3 style="text-align:center;margin-bottom:0.8rem;color:#4a9eff;">🏃 Marathon <small style="font-size:0.75rem;color:#888;">(alle Fragen, bestes %)</small></h3>
-    <table style="width:100%;border-collapse:collapse;">
-      <thead><tr style="color:#aaa;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
-        <th style="padding:4px 6px;text-align:center;width:2.5rem;">#</th>
-        <th style="padding:4px 6px;text-align:left;">Spieler</th>
-        <th style="padding:4px 6px;text-align:right;">Richtig</th>
-      </tr></thead>
-      <tbody id="lb-tbody-marathon"></tbody>
-    </table>
-  </div>
-
-  <!-- Survival Top 10 -->
-  <div id="lb-section-survival" style="display:none;margin-bottom:2rem;">
-    <h3 style="text-align:center;margin-bottom:0.8rem;color:#9b59b6;">❤️ Survival <small style="font-size:0.75rem;color:#888;">(meiste richtige Antworten)</small></h3>
-    <table style="width:100%;border-collapse:collapse;">
-      <thead><tr style="color:#aaa;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
-        <th style="padding:4px 6px;text-align:center;width:2.5rem;">#</th>
-        <th style="padding:4px 6px;text-align:left;">Spieler</th>
-        <th style="padding:4px 6px;text-align:right;">Richtige Antworten</th>
-      </tr></thead>
-      <tbody id="lb-tbody-survival"></tbody>
-    </table>
-  </div>
-
-  <!-- Meine Scores -->
-  <div id="lb-my-scores" style="display:none;margin-top:1.5rem;border-top:1px solid #eee;padding-top:1rem;">
-    <h3 style="text-align:center;margin-bottom:0.8rem;font-size:0.95rem;color:#666;">Meine letzten Spiele</h3>
+  <!-- Meine Scores – versteckt, bleibt für JS-Kompatibilität -->
+  <div id="lb-my-scores" style="display:none!important;">
     <div id="lb-my-list"></div>
   </div>
 </div>
