@@ -2622,14 +2622,14 @@ function vokRender() {
     </div>`).join('');
 }
 
-function vokCat(cat, btn) {
+async function vokCat(cat, btn) {
   vokActiveCat = cat;
   document.querySelectorAll('#vok-cats .rt-cat-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   vokRender();
 }
 
-function vokFilter() {
+async function vokFilter() {
   vokSearchTerm = document.getElementById('vok-search')?.value || '';
   vokRender();
 }
@@ -2725,18 +2725,18 @@ function handleUserBadgeClick() {
 // ── AUTH MODAL ───────────────────────────────────────────────
 let authMode = 'login'; // 'login' | 'register'
 
-function showAuth() {
+async function showAuth() {
   document.getElementById('auth-overlay').classList.add('active');
   document.getElementById('auth-name').focus();
   document.getElementById('auth-msg').textContent = '';
   document.getElementById('auth-msg').className = 'auth-msg';
 }
 
-function closeAuthSkip() {
+async function closeAuthSkip() {
   document.getElementById('auth-overlay').classList.remove('active');
 }
 
-function authTab(mode) {
+async function authTab(mode) {
   authMode = mode;
   document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
   event.target.classList.add('active');
@@ -2805,7 +2805,7 @@ async function authSubmit() {
   }
 }
 
-function setAuthMsg(msg, cls='') {
+async function setAuthMsg(msg, cls='') {
   const el = document.getElementById('auth-msg');
   el.textContent = msg;
   el.className = 'auth-msg ' + cls;
@@ -2842,7 +2842,7 @@ async function postScore(pct, numQ, mode) {
 }
 
 // ── LEADERBOARD ──────────────────────────────────────────────
-function lbFilter(btn, mode) {
+async function lbFilter(btn, mode) {
   lbFilterMode = mode;
   document.querySelectorAll('.lb-filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -2996,13 +2996,7 @@ function openReport() {
   const q = questions[qIndex];
   if (!q) return;
   reportCurrentQ = q;
-  // Show question preview
-  document.getElementById('report-q-preview').textContent = q.q;
-  // Reset form
-  document.querySelectorAll('input[name="report-type"]').forEach(r => r.checked = false);
-  document.querySelectorAll('.report-option').forEach(o => o.classList.remove('selected'));
-  document.getElementById('report-detail').value = '';
-  // Show form, hide success
+  // Build form fresh every time
   document.getElementById('report-modal-inner').innerHTML = `
     <h3>⚑ Frage melden</h3>
     <p>Was stimmt nicht mit dieser Frage?</p>
@@ -3252,7 +3246,13 @@ function exitReview() {
 }
 
 /* welcome */
-#wc-welcome{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#f5f3ef;border-radius:12px;}
+#wc-welcome{position:absolute;inset:0;border-radius:12px;overflow:hidden;}
+
+#wc-collage{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:3px;background:#1a1a1a;}
+.wc-col-cell{background-size:cover;background-position:center;transition:transform .4s ease;filter:brightness(0.82);}
+#wc-welcome:hover .wc-col-cell{filter:brightness(0.7);}
+#wc-welcome-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(236,234,229,0.0) 0%,rgba(236,234,229,0.35) 100%);}
+#wc-welcome-txt{font-family:'Exo 2',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:white;text-shadow:0 2px 12px rgba(0,0,0,0.6);text-align:center;padding:10px 20px;background:rgba(0,0,0,0.28);border-radius:24px;border:1px solid rgba(255,255,255,0.15);}
 #wc-welcome.h{display:none;}
 #wc-welcome-icon{font-size:2.8rem;opacity:0.2;}
 #wc-welcome-txt{font-family:'Exo 2',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#bbb;}
@@ -3353,7 +3353,7 @@ function exitReview() {
 
 <!-- content -->
 <div id="wc">
-  <div id="wc-welcome"><div id="wc-welcome-icon">🏛️</div><div id="wc-welcome-txt">Kategorie unten wählen</div></div>
+  <div id="wc-welcome"><div id="wc-collage"></div><div id="wc-welcome-overlay"><div id="wc-welcome-txt">📖 Keramik Wiki — Kategorie wählen</div></div></div>
   <div id="wc-prev" class="h">
     <div id="wc-prev-blur"></div>
     <div id="wc-prev-img"></div>
@@ -3500,6 +3500,10 @@ function wInit(){
 
   if(!wInitDone){
     wInitDone=true;
+    // Build collage from theme images
+    const colKeys=['alle','aufbereitung','rohstoffe','formgebung','trocknung','brennoefen','analyse','produkte'];
+    const colEl=document.getElementById('wc-collage');
+    if(colEl){colEl.innerHTML=colKeys.map(k=>`<div class="wc-col-cell" style="background-image:url('${IMGS[k]}')"></div>`).join('');}
     const tr=document.getElementById('wtrack');
     tr.innerHTML='';
     WCATS.forEach(c=>{
