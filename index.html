@@ -2069,19 +2069,35 @@ tr:nth-child(even) td { background:var(--rt-bg); }
 /* ═══ NAV ══════════════════════════════════════════════════ */
 function showView(name, tabEl) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  if (name === 'wiki') { setTimeout(function(){ if(typeof wInit==='function') wInit(); }, 0); }
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(name+'-view').classList.add('active');
-  if(tabEl) tabEl.classList.add('active');
-  window.scrollTo(0,0);
-  // wiki-active class managed in showView above
+
+  const view = document.getElementById(name + '-view');
+  if (!view) return;
+
+  view.classList.add('active');
+  if (tabEl) tabEl.classList.add('active');
+  window.scrollTo(0, 0);
+
+  if (name === 'wiki' && typeof wInit === 'function') {
+    setTimeout(function () { wInit(); }, 0);
+  }
+
+  if (name === 'vokabeln' && typeof vokRender === 'function') {
+    setTimeout(vokRender, 50);
+  }
+
   if (name === 'rechner') {
     const ref = document.getElementById('rt-formula-ref');
-    if (ref && !ref.innerHTML && typeof RT_FORMULAS !== 'undefined') ref.innerHTML = RT_FORMULAS['tqf'];
-    if (typeof rtNewTask === 'function' && typeof rtCurrentTask !== 'undefined' && !rtCurrentTask) rtNewTask();
+    if (ref && !ref.innerHTML && typeof RT_FORMULAS !== 'undefined') {
+      ref.innerHTML = RT_FORMULAS['tqf'];
+    }
+    if (typeof rtNewTask === 'function' && typeof rtCurrentTask !== 'undefined' && !rtCurrentTask) {
+      rtNewTask();
+    }
   }
-  if (name === 'leaderboard') {
-    if (typeof lbLoad === 'function') lbLoad();
+
+  if (name === 'leaderboard' && typeof lbLoad === 'function') {
+    lbLoad();
   }
 }
 
@@ -2634,16 +2650,6 @@ async function vokFilter() {
   vokRender();
 }
 
-// Init vokabeln on first load if needed
-const _origShowView = showView;
-showView = function(name, tabEl) {
-  _origShowView(name, tabEl);
-  if (name === 'vokabeln') setTimeout(vokRender, 50);
-};
-
-
-
-
 // ════════════════════════════════════════════════════════════
 //  AUTH + LEADERBOARD  (Supabase backend)
 //  Replace SUPABASE_URL and SUPABASE_KEY after setup!
@@ -2986,16 +2992,6 @@ function renderMyScores(scores) {
 }
 
 function esc(s) { return s.replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c])); }
-
-// Load leaderboard when tab is opened
-const _origShowView2 = showView;
-showView = function(name, tabEl) {
-  _origShowView2(name, tabEl);
-  if (name === 'leaderboard') lbLoad();
-};
-
-
-
 
 // ════════════════════════════════════════════════════════════
 //  FEHLER MELDEN
