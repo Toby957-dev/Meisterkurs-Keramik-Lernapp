@@ -2850,40 +2850,50 @@ async function lbFilter(btn, mode) {
 }
 
 async function lbLoad() {
-  document.getElementById('lb-loading').style.display = 'block';
-  document.getElementById('lb-empty').style.display = 'none';
-  document.getElementById('lb-section-normal').style.display = 'none';
-  document.getElementById('lb-section-marathon').style.display = 'none';
-  document.getElementById('lb-section-survival').style.display = 'none';
+  const elLoad = document.getElementById('lb-loading');
+  const elEmpty = document.getElementById('lb-empty');
+  if (!elLoad) { console.error('lb-loading not found'); return; }
+
+  elLoad.style.display = 'block';
+  elEmpty.style.display = 'none';
+  ['lb-section-normal','lb-section-marathon','lb-section-survival'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
 
   try {
     const [dataNormal, dataMarathon, dataSurvival] = await Promise.all([
-      sbFetch(`scores?select=pct,num_q,mode,player_id,players(username)&mode=in.(normal,speed)&order=pct.desc&limit=200`),
-      sbFetch(`scores?select=pct,num_q,mode,player_id,players(username)&mode=eq.marathon&order=pct.desc&limit=200`),
-      sbFetch(`scores?select=pct,num_q,mode,player_id,players(username)&mode=eq.survival&order=num_q.desc&limit=200`)
+      sbFetch('scores?select=pct,num_q,mode,player_id,players(username)&mode=in.(normal,speed)&order=pct.desc&limit=200'),
+      sbFetch('scores?select=pct,num_q,mode,player_id,players(username)&mode=eq.marathon&order=pct.desc&limit=200'),
+      sbFetch('scores?select=pct,num_q,mode,player_id,players(username)&mode=eq.survival&order=num_q.desc&limit=200')
     ]);
 
-    document.getElementById('lb-loading').style.display = 'none';
+    elLoad.style.display = 'none';
 
     if ((!dataNormal || !dataNormal.length) && (!dataMarathon || !dataMarathon.length) && (!dataSurvival || !dataSurvival.length)) {
-      document.getElementById('lb-empty').style.display = 'block';
+      elEmpty.style.display = 'block';
       return;
     }
 
-    if (dataNormal   && dataNormal.length)   renderLbPct('lb-tbody-normal',    'lb-section-normal',    dataNormal,    'pct');
-    if (dataMarathon && dataMarathon.length) renderLbPct('lb-tbody-marathon',  'lb-section-marathon',  dataMarathon,  'pct');
-    if (dataSurvival && dataSurvival.length) renderLbPct('lb-tbody-survival',  'lb-section-survival',  dataSurvival,  'count');
+    if (dataNormal   && dataNormal.length)   renderLbPct('lb-tbody-normal',   'lb-section-normal',   dataNormal,   'pct');
+    if (dataMarathon && dataMarathon.length) renderLbPct('lb-tbody-marathon', 'lb-section-marathon', dataMarathon, 'pct');
+    if (dataSurvival && dataSurvival.length) renderLbPct('lb-tbody-survival', 'lb-section-survival', dataSurvival, 'count');
 
     if (currentUser) {
       const myScores = await sbFetch(
-        `scores?player_id=eq.${currentUser.id}&order=created_at.desc&limit=10&select=pct,num_q,mode,created_at`
+        'scores?player_id=eq.' + currentUser.id + '&order=created_at.desc&limit=10&select=pct,num_q,mode,created_at'
       );
       renderMyScores(myScores || []);
     }
   } catch(e) {
-    document.getElementById('lb-loading').style.display = 'none';
-    document.getElementById('lb-empty').style.display = 'block';
-    console.error('Leaderboard error', e);
+    console.error('lbLoad error:', e);
+    const elLoad2 = document.getElementById('lb-loading');
+    const elEmpty2 = document.getElementById('lb-empty');
+    if (elLoad2) elLoad2.style.display = 'none';
+    if (elEmpty2) {
+      elEmpty2.style.display = 'block';
+      elEmpty2.innerHTML = '<p>Fehler beim Laden: ' + e.message + '</p>';
+    }
   }
 }
 
