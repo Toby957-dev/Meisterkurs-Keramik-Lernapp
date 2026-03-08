@@ -2069,35 +2069,19 @@ tr:nth-child(even) td { background:var(--rt-bg); }
 /* ═══ NAV ══════════════════════════════════════════════════ */
 function showView(name, tabEl) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  if (name === 'wiki') { setTimeout(function(){ if(typeof wInit==='function') wInit(); }, 0); }
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-
-  const view = document.getElementById(name + '-view');
-  if (!view) return;
-
-  view.classList.add('active');
-  if (tabEl) tabEl.classList.add('active');
-  window.scrollTo(0, 0);
-
-  if (name === 'wiki' && typeof wInit === 'function') {
-    setTimeout(function () { wInit(); }, 0);
-  }
-
-  if (name === 'vokabeln' && typeof vokRender === 'function') {
-    setTimeout(vokRender, 50);
-  }
-
+  document.getElementById(name+'-view').classList.add('active');
+  if(tabEl) tabEl.classList.add('active');
+  window.scrollTo(0,0);
+  // wiki-active class managed in showView above
   if (name === 'rechner') {
     const ref = document.getElementById('rt-formula-ref');
-    if (ref && !ref.innerHTML && typeof RT_FORMULAS !== 'undefined') {
-      ref.innerHTML = RT_FORMULAS['tqf'];
-    }
-    if (typeof rtNewTask === 'function' && typeof rtCurrentTask !== 'undefined' && !rtCurrentTask) {
-      rtNewTask();
-    }
+    if (ref && !ref.innerHTML && typeof RT_FORMULAS !== 'undefined') ref.innerHTML = RT_FORMULAS['tqf'];
+    if (typeof rtNewTask === 'function' && typeof rtCurrentTask !== 'undefined' && !rtCurrentTask) rtNewTask();
   }
-
-  if (name === 'leaderboard' && typeof lbLoad === 'function') {
-    lbLoad();
+  if (name === 'leaderboard') {
+    if (typeof lbLoad === 'function') lbLoad();
   }
 }
 
@@ -2650,6 +2634,16 @@ async function vokFilter() {
   vokRender();
 }
 
+// Init vokabeln on first load if needed
+const _origShowView = showView;
+showView = function(name, tabEl) {
+  _origShowView(name, tabEl);
+  if (name === 'vokabeln') setTimeout(vokRender, 50);
+};
+
+
+
+
 // ════════════════════════════════════════════════════════════
 //  AUTH + LEADERBOARD  (Supabase backend)
 //  Replace SUPABASE_URL and SUPABASE_KEY after setup!
@@ -2993,6 +2987,16 @@ function renderMyScores(scores) {
 
 function esc(s) { return s.replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c])); }
 
+// Load leaderboard when tab is opened
+const _origShowView2 = showView;
+showView = function(name, tabEl) {
+  _origShowView2(name, tabEl);
+  if (name === 'leaderboard') lbLoad();
+};
+
+
+
+
 // ════════════════════════════════════════════════════════════
 //  FEHLER MELDEN
 // ════════════════════════════════════════════════════════════
@@ -3207,6 +3211,63 @@ function exitReview() {
 <!-- ═══ NAV LOGIN BTN (injected by JS) ═══════════════════════ -->
 
 <!-- ═══ LEADERBOARD VIEW ════════════════════════════════════ -->
+<div class="view" id="leaderboard-view">
+  <h2 style="text-align:center;margin-bottom:1.2rem;">🏆 Bestenliste</h2>
+
+  <div id="lb-loading" style="text-align:center;padding:2rem;color:#aaa;">
+    <div style="font-size:1.5rem;margin-bottom:0.5rem;">⏳</div>
+    <p>Lade Bestenliste…</p>
+  </div>
+  <div id="lb-empty" style="display:none;text-align:center;padding:2rem;color:#aaa;">
+    <p>Noch keine Einträge vorhanden.</p>
+  </div>
+
+  <!-- Normal & Speed Top 10 -->
+  <div id="lb-section-normal" style="display:none;margin-bottom:2rem;">
+    <h3 style="text-align:center;margin-bottom:0.8rem;color:var(--rt-orange);">🎯 Normal &amp; Speed <small style="font-size:0.75rem;color:#888;">(20 Fragen)</small></h3>
+    <table style="width:100%;border-collapse:collapse;">
+      <thead><tr style="color:#aaa;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
+        <th style="padding:4px 6px;text-align:center;width:2.5rem;">#</th>
+        <th style="padding:4px 6px;text-align:left;">Spieler</th>
+        <th style="padding:4px 6px;text-align:right;">Richtig</th>
+      </tr></thead>
+      <tbody id="lb-tbody-normal"></tbody>
+    </table>
+  </div>
+
+  <!-- Marathon Top 10 -->
+  <div id="lb-section-marathon" style="display:none;margin-bottom:2rem;">
+    <h3 style="text-align:center;margin-bottom:0.8rem;color:#4a9eff;">🏃 Marathon <small style="font-size:0.75rem;color:#888;">(alle Fragen, bestes %)</small></h3>
+    <table style="width:100%;border-collapse:collapse;">
+      <thead><tr style="color:#aaa;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
+        <th style="padding:4px 6px;text-align:center;width:2.5rem;">#</th>
+        <th style="padding:4px 6px;text-align:left;">Spieler</th>
+        <th style="padding:4px 6px;text-align:right;">Richtig</th>
+      </tr></thead>
+      <tbody id="lb-tbody-marathon"></tbody>
+    </table>
+  </div>
+
+  <!-- Survival Top 10 -->
+  <div id="lb-section-survival" style="display:none;margin-bottom:2rem;">
+    <h3 style="text-align:center;margin-bottom:0.8rem;color:#9b59b6;">❤️ Survival <small style="font-size:0.75rem;color:#888;">(meiste richtige Antworten)</small></h3>
+    <table style="width:100%;border-collapse:collapse;">
+      <thead><tr style="color:#aaa;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
+        <th style="padding:4px 6px;text-align:center;width:2.5rem;">#</th>
+        <th style="padding:4px 6px;text-align:left;">Spieler</th>
+        <th style="padding:4px 6px;text-align:right;">Richtige Antworten</th>
+      </tr></thead>
+      <tbody id="lb-tbody-survival"></tbody>
+    </table>
+  </div>
+
+  <!-- Meine Scores -->
+  <div id="lb-my-scores" style="display:none;margin-top:1.5rem;border-top:1px solid #eee;padding-top:1rem;">
+    <h3 style="text-align:center;margin-bottom:0.8rem;font-size:0.95rem;color:#666;">Meine letzten Spiele</h3>
+    <div id="lb-my-list"></div>
+  </div>
+</div>
+
 <!-- ═══ WIKI ══════════════════════════════════════════════ -->
 <div class="view" id="wiki-view">
 <style>
@@ -3594,63 +3655,6 @@ function wOpen(e){document.getElementById('wm-kat').textContent=e.kat;document.g
 function wClose(){document.getElementById('wm').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')wClose();});
 </script>
-
-<div class="view" id="leaderboard-view">
-  <h2 style="text-align:center;margin-bottom:1.2rem;">🏆 Bestenliste</h2>
-
-  <div id="lb-loading" style="text-align:center;padding:2rem;color:#aaa;">
-    <div style="font-size:1.5rem;margin-bottom:0.5rem;">⏳</div>
-    <p>Lade Bestenliste…</p>
-  </div>
-  <div id="lb-empty" style="display:none;text-align:center;padding:2rem;color:#aaa;">
-    <p>Noch keine Einträge vorhanden.</p>
-  </div>
-
-  <!-- Normal & Speed Top 10 -->
-  <div id="lb-section-normal" style="display:none;margin-bottom:2rem;">
-    <h3 style="text-align:center;margin-bottom:0.8rem;color:var(--rt-orange);">🎯 Normal &amp; Speed <small style="font-size:0.75rem;color:#888;">(20 Fragen)</small></h3>
-    <table style="width:100%;border-collapse:collapse;">
-      <thead><tr style="color:#aaa;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
-        <th style="padding:4px 6px;text-align:center;width:2.5rem;">#</th>
-        <th style="padding:4px 6px;text-align:left;">Spieler</th>
-        <th style="padding:4px 6px;text-align:right;">Richtig</th>
-      </tr></thead>
-      <tbody id="lb-tbody-normal"></tbody>
-    </table>
-  </div>
-
-  <!-- Marathon Top 10 -->
-  <div id="lb-section-marathon" style="display:none;margin-bottom:2rem;">
-    <h3 style="text-align:center;margin-bottom:0.8rem;color:#4a9eff;">🏃 Marathon <small style="font-size:0.75rem;color:#888;">(alle Fragen, bestes %)</small></h3>
-    <table style="width:100%;border-collapse:collapse;">
-      <thead><tr style="color:#aaa;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
-        <th style="padding:4px 6px;text-align:center;width:2.5rem;">#</th>
-        <th style="padding:4px 6px;text-align:left;">Spieler</th>
-        <th style="padding:4px 6px;text-align:right;">Richtig</th>
-      </tr></thead>
-      <tbody id="lb-tbody-marathon"></tbody>
-    </table>
-  </div>
-
-  <!-- Survival Top 10 -->
-  <div id="lb-section-survival" style="display:none;margin-bottom:2rem;">
-    <h3 style="text-align:center;margin-bottom:0.8rem;color:#9b59b6;">❤️ Survival <small style="font-size:0.75rem;color:#888;">(meiste richtige Antworten)</small></h3>
-    <table style="width:100%;border-collapse:collapse;">
-      <thead><tr style="color:#aaa;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
-        <th style="padding:4px 6px;text-align:center;width:2.5rem;">#</th>
-        <th style="padding:4px 6px;text-align:left;">Spieler</th>
-        <th style="padding:4px 6px;text-align:right;">Richtige Antworten</th>
-      </tr></thead>
-      <tbody id="lb-tbody-survival"></tbody>
-    </table>
-  </div>
-
-  <!-- Meine Scores -->
-  <div id="lb-my-scores" style="display:none;margin-top:1.5rem;border-top:1px solid #eee;padding-top:1rem;">
-    <h3 style="text-align:center;margin-bottom:0.8rem;font-size:0.95rem;color:#666;">Meine letzten Spiele</h3>
-    <div id="lb-my-list"></div>
-  </div>
-</div>
 
 <!-- ═══ FEHLER MELDEN MODAL ═════════════════════════════════ -->
 <div id="report-modal-overlay">
