@@ -3082,12 +3082,14 @@ function submitReport() {
     </div>`;
 }
 
-// Close on overlay click
-document.getElementById('report-modal-overlay').addEventListener('click', function(e) {
-  if (e.target === this) closeReport();
+// Close on overlay click — deferred until DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  const ov = document.getElementById('report-modal-overlay');
+  if (ov) ov.addEventListener('click', function(e) { if (e.target === this) closeReport(); });
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && document.getElementById('report-modal-overlay').classList.contains('active')) closeReport();
+  const ov = document.getElementById('report-modal-overlay');
+  if (e.key === 'Escape' && ov && ov.classList.contains('active')) closeReport();
 });
 
 // ════════════════════════════════════════════════════════════
