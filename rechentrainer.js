@@ -1002,70 +1002,7 @@ const AUFGABEN = {
   ],
 
   // ════ DICHTE ════════════════════════════════════════════════
-  dichte: [
 
-    () => {
-      const m = rnd(100, 5000, 50);
-      const V = rnd(50, 2000, 50);
-      const rho = parseFloat((m / V).toFixed(4));
-      return {
-        cat: '⚖️ Dichte',
-        question: `Eine Keramikprobe hat eine Masse von <strong>${fmtN(m)} Gramm</strong> und ein Volumen von <strong>${fmtN(V)} Kubikzentimeter</strong>.<br><br>Berechnen Sie die Dichte des Materials in Gramm pro Kubikzentimeter.`,
-        correct: rho, unit: 'g/cm³',
-        steps: `Dichte = Masse / Volumen\nρ = ${fmtN(m)} / ${fmtN(V)}\nρ = ${fmtN(rho)} g/cm³`
-      };
-    },
-
-    () => {
-      const rho = rnd(1.5, 3.8, 0.1);
-      const V = rnd(100, 1000, 50);
-      const m = parseFloat((rho * V).toFixed(1));
-      return {
-        cat: '⚖️ Dichte',
-        question: `Ein Keramikblock hat ein Volumen von <strong>${fmtN(V)} Kubikzentimeter</strong>. Die Dichte des Materials beträgt <strong>${fmtN(rho)} Gramm pro Kubikzentimeter</strong>.<br><br>Welche Masse hat dieser Block?`,
-        correct: m, unit: 'g',
-        steps: `Masse = Dichte · Volumen\nm = ${fmtN(rho)} · ${fmtN(V)}\nm = ${fmtN(m)} g`
-      };
-    },
-
-    () => {
-      const rho = rnd(1.8, 3.5, 0.1);
-      const m = rnd(200, 2000, 100);
-      const V = parseFloat((m / rho).toFixed(2));
-      return {
-        cat: '⚖️ Dichte',
-        question: `Eine Rohstoffcharge hat eine Masse von <strong>${fmtN(m)} Gramm</strong>. Die Rohdichte des Materials beträgt <strong>${fmtN(rho)} Gramm pro Kubikzentimeter</strong>.<br><br>Welches Volumen nimmt diese Charge ein?`,
-        correct: V, unit: 'cm³',
-        steps: `Volumen = Masse / Dichte\nV = ${fmtN(m)} / ${fmtN(rho)}\nV = ${fmtN(V)} cm³`
-      };
-    },
-
-    () => {
-      const m_luft = rnd(100, 500, 10);
-      const m_wasser = rnd(50, m_luft - 10, 10);
-      const rho_wasser = 1.0;
-      const V = parseFloat(((m_luft - m_wasser) / rho_wasser).toFixed(2));
-      const rho = parseFloat((m_luft / V).toFixed(4));
-      return {
-        cat: '⚖️ Dichte',
-        question: `Eine Keramikprobe wiegt an der Luft <strong>${fmtN(m_luft)} Gramm</strong>. Unter Wasser beträgt ihr Gewicht nur noch <strong>${fmtN(m_wasser)} Gramm</strong>. Die Dichte von Wasser beträgt 1,0 Gramm pro Kubikzentimeter.<br><br>Berechnen Sie die Dichte der Keramikprobe nach dem archimedischen Prinzip.`,
-        correct: rho, unit: 'g/cm³',
-        steps: `Verdrängtes Wasser = Masse in Luft − Masse in Wasser\nV = ${fmtN(m_luft)} − ${fmtN(m_wasser)} = ${fmtN(V)} cm³\n\nDichte = Masse in Luft / Volumen\nρ = ${fmtN(m_luft)} / ${fmtN(V)}\nρ = ${fmtN(rho)} g/cm³`
-      };
-    },
-
-    () => {
-      const rho_roh = rnd(1.6, 2.5, 0.1);
-      const rho_rein = rnd(2.6, 4.0, 0.1);
-      const P = parseFloat(((1 - rho_roh / rho_rein) * 100).toFixed(1));
-      return {
-        cat: '⚖️ Dichte',
-        question: `Ein gebranntes Keramikbauteil hat eine Rohdichte von <strong>${fmtN(rho_roh)} Gramm pro Kubikzentimeter</strong>. Die Reindichte des Materials (ohne Poren) beträgt <strong>${fmtN(rho_rein)} Gramm pro Kubikzentimeter</strong>.<br><br>Wie groß ist der Porenanteil dieses Bauteils in Prozent?`,
-        correct: P, unit: '%',
-        steps: `Porenanteil = (1 − Rohdichte / Reindichte) · 100\nP = (1 − ${fmtN(rho_roh)} / ${fmtN(rho_rein)}) · 100\nP = (1 − ${fmtN(rho_roh/rho_rein)}) · 100\nP = ${fmtN(P)} %`
-      };
-    },
-  ],
 
   // ════ POROSITÄT ══════════════════════════════════════════════
   porositaet: [
@@ -1228,6 +1165,70 @@ const AUFGABEN = {
   ()=>{const m=rnd(50,300,5),V=rnd(20,120,2);const rho=parseFloat((m/V).toFixed(3));return{cat:'🕳️ Porosität & WA',question:`m=<strong>${m} g</strong>, V=<strong>${V} cm³</strong>. Scheinbare Dichte <em>ρ<sub>S</sub></em>?`,hint:'ρ_S=m/V',correct:rho,unit:'g/cm³',steps:`ρ_S=${m}/${V}=${fmtN(rho)} g/cm³`};},
   ()=>{const rhoR=rnd(2.5,3.0,0.05),rhoS=rnd(1.5,2.4,0.05);const WA=parseFloat(((rhoR-rhoS)/rhoS*100).toFixed(2));return{cat:'🕳️ Porosität & WA',question:`ρ<sub>R</sub>=<strong>${fmtN(rhoR)}</strong>, ρ<sub>S</sub>=<strong>${fmtN(rhoS)} g/cm³</strong>. Max. WA?`,hint:'WA=(ρ_R−ρ_S)/ρ_S·100',correct:WA,unit:'%',steps:`WA=(${fmtN(rhoR)}−${fmtN(rhoS)})/${fmtN(rhoS)}·100=${fmtN(WA)} %`};},
   ()=>{const mt=rnd(50,200,5),mW=rnd(3,50,1),rhoR=2.6;const Vf=parseFloat((mt/rhoR).toFixed(3));const Vp=parseFloat((mW).toFixed(3));const rhoS=parseFloat((mt/(Vf+Vp)).toFixed(3));return{cat:'🕳️ Porosität & WA',question:`m<sub>tr</sub>=${mt} g, Wasseraufnahme=${mW} g, ρ<sub>R</sub>=2,6 g/cm³. Scheinbare Dichte <em>ρ<sub>S</sub></em>?`,hint:'V_ges=m_tr/ρ_R+V_W, ρ_S=m_tr/V_ges',correct:rhoS,unit:'g/cm³',steps:`V_ges=${fmtN(Vf)}+${mW}=${fmtN(Vf+Vp)} cm³\nρ_S=${mt}/${fmtN(Vf+Vp)}=${fmtN(rhoS)} g/cm³`};}
+
+
+    () => {
+      const m = rnd(100, 5000, 50);
+      const V = rnd(50, 2000, 50);
+      const rho = parseFloat((m / V).toFixed(4));
+      return {
+        cat: '⚖️ Dichte',
+        question: `Eine Keramikprobe hat eine Masse von <strong>${fmtN(m)} Gramm</strong> und ein Volumen von <strong>${fmtN(V)} Kubikzentimeter</strong>.<br><br>Berechnen Sie die Dichte des Materials in Gramm pro Kubikzentimeter.`,
+        correct: rho, unit: 'g/cm³',
+        steps: `Dichte = Masse / Volumen\nρ = ${fmtN(m)} / ${fmtN(V)}\nρ = ${fmtN(rho)} g/cm³`
+      };
+    },
+
+    () => {
+      const rho = rnd(1.5, 3.8, 0.1);
+      const V = rnd(100, 1000, 50);
+      const m = parseFloat((rho * V).toFixed(1));
+      return {
+        cat: '⚖️ Dichte',
+        question: `Ein Keramikblock hat ein Volumen von <strong>${fmtN(V)} Kubikzentimeter</strong>. Die Dichte des Materials beträgt <strong>${fmtN(rho)} Gramm pro Kubikzentimeter</strong>.<br><br>Welche Masse hat dieser Block?`,
+        correct: m, unit: 'g',
+        steps: `Masse = Dichte · Volumen\nm = ${fmtN(rho)} · ${fmtN(V)}\nm = ${fmtN(m)} g`
+      };
+    },
+
+    () => {
+      const rho = rnd(1.8, 3.5, 0.1);
+      const m = rnd(200, 2000, 100);
+      const V = parseFloat((m / rho).toFixed(2));
+      return {
+        cat: '⚖️ Dichte',
+        question: `Eine Rohstoffcharge hat eine Masse von <strong>${fmtN(m)} Gramm</strong>. Die Rohdichte des Materials beträgt <strong>${fmtN(rho)} Gramm pro Kubikzentimeter</strong>.<br><br>Welches Volumen nimmt diese Charge ein?`,
+        correct: V, unit: 'cm³',
+        steps: `Volumen = Masse / Dichte\nV = ${fmtN(m)} / ${fmtN(rho)}\nV = ${fmtN(V)} cm³`
+      };
+    },
+
+    () => {
+      const m_luft = rnd(100, 500, 10);
+      const m_wasser = rnd(50, m_luft - 10, 10);
+      const rho_wasser = 1.0;
+      const V = parseFloat(((m_luft - m_wasser) / rho_wasser).toFixed(2));
+      const rho = parseFloat((m_luft / V).toFixed(4));
+      return {
+        cat: '⚖️ Dichte',
+        question: `Eine Keramikprobe wiegt an der Luft <strong>${fmtN(m_luft)} Gramm</strong>. Unter Wasser beträgt ihr Gewicht nur noch <strong>${fmtN(m_wasser)} Gramm</strong>. Die Dichte von Wasser beträgt 1,0 Gramm pro Kubikzentimeter.<br><br>Berechnen Sie die Dichte der Keramikprobe nach dem archimedischen Prinzip.`,
+        correct: rho, unit: 'g/cm³',
+        steps: `Verdrängtes Wasser = Masse in Luft − Masse in Wasser\nV = ${fmtN(m_luft)} − ${fmtN(m_wasser)} = ${fmtN(V)} cm³\n\nDichte = Masse in Luft / Volumen\nρ = ${fmtN(m_luft)} / ${fmtN(V)}\nρ = ${fmtN(rho)} g/cm³`
+      };
+    },
+
+    () => {
+      const rho_roh = rnd(1.6, 2.5, 0.1);
+      const rho_rein = rnd(2.6, 4.0, 0.1);
+      const P = parseFloat(((1 - rho_roh / rho_rein) * 100).toFixed(1));
+      return {
+        cat: '⚖️ Dichte',
+        question: `Ein gebranntes Keramikbauteil hat eine Rohdichte von <strong>${fmtN(rho_roh)} Gramm pro Kubikzentimeter</strong>. Die Reindichte des Materials (ohne Poren) beträgt <strong>${fmtN(rho_rein)} Gramm pro Kubikzentimeter</strong>.<br><br>Wie groß ist der Porenanteil dieses Bauteils in Prozent?`,
+        correct: P, unit: '%',
+        steps: `Porenanteil = (1 − Rohdichte / Reindichte) · 100\nP = (1 − ${fmtN(rho_roh)} / ${fmtN(rho_rein)}) · 100\nP = (1 − ${fmtN(rho_roh/rho_rein)}) · 100\nP = ${fmtN(P)} %`
+      };
+    },
+
 
   ],
 
@@ -1457,6 +1458,45 @@ const AUFGABEN = {
   ()=>{const mt=rnd(200,2000,100),w1=rnd(22,35,1),w2=rnd(1,10,1);const mAb=parseFloat((mt*(w1-w2)/100).toFixed(1));return{cat:'💧 Feuchte & AW',question:`Trocknung: m<sub>tr</sub>=${mt} g, w: ${w1}% → ${w2}%. Abgegebenes Wasser <em>Δm</em>?`,hint:'Δm≈m_tr·(w₁−w₂)/100',correct:mAb,unit:'g',tol:0.03,steps:`Δm=${mt}·(${w1}−${w2})/100=${fmtN(mAb)} g`};},
   ()=>{const rhoSch=rnd(1600,1900,20),V=rnd(10,200,5);const m=parseFloat((rhoSch*V/1000).toFixed(2));return{cat:'💧 Feuchte & AW',question:`LG=<strong>${rhoSch} g/l</strong>, V=<strong>${V} l</strong>. Schlickermasse <em>m</em>?`,hint:'m=LG·V/1000 [kg]',correct:m,unit:'kg',steps:`m=${rhoSch}·${V}/1000=${fmtN(m)} kg`};}
 
+    () => {
+      const luft = rnd(200,400,50)
+      const x1 = rnd(5,8,1)
+      const x2 = rnd(12,16,1)
+      const wasser = parseFloat((luft*(x2-x1)/1000).toFixed(2))
+      return {
+        cat:'💧 Feuchte & h-x',
+        question:`Ein Luftstrom von ${luft} kg trockener Luft wird in einem Trockner von ${x1} g/kg auf ${x2} g/kg absolute Feuchte befeuchtet. Wie viel Wasser nimmt die Luft insgesamt auf?`,
+        correct:wasser,
+        unit:'kg'
+      }
+    },
+
+    () => {
+      const luft = rnd(300,600,50)
+      const x = rnd(6,15,1)
+      const wasser = parseFloat((luft*x/1000).toFixed(2))
+      return {
+        cat:'💧 Feuchte & h-x',
+        question:`Ein Luftstrom von ${luft} kg trockener Luft enthält eine absolute Feuchte von ${x} g/kg. Berechnen Sie die darin enthaltene Wassermenge.`,
+        correct:wasser,
+        unit:'kg'
+      }
+    },
+
+    () => {
+      const luft = rnd(200,500,50)
+      const dx = rnd(3,10,1)
+      const wasser = parseFloat((luft*dx/1000).toFixed(2))
+      return {
+        cat:'💧 Feuchte & h-x',
+        question:`Ein Luftstrom von ${luft} kg trockener Luft nimmt während der Trocknung ${dx} g Wasser pro kg Luft auf. Welche Wassermenge wird insgesamt aufgenommen?`,
+        correct:wasser,
+        unit:'kg'
+      }
+    }
+
+
+
   ],
 
   // ════ ⚙️ GETRIEBE & ANTRIEB ══════════════════════════
@@ -1584,725 +1624,3 @@ const AUFGABEN = {
 
   ],
 };
-
-
-// ════════════════════════════════════════════════════════════
-//  ZUSÄTZLICHE PRÜFUNGSNAHE TEXTAUFGABEN
-//  Schritt 1: Neue Aufgaben sauber in die vorhandenen Kategorien einfügen.
-// ════════════════════════════════════════════════════════════
-
-const EXTRA_AUFGABEN = {
-  waerme: [
-    () => {
-      const m = rnd(100, 300, 50);
-      const dT = rnd(400, 900, 100);
-      const Q = m * dT;
-      return {
-        cat: '🔥 Wärmelehre',
-        question: `Eine keramische Charge mit <strong>${m} Kilogramm</strong> Masse wird im Ofen um <strong>${dT} Kelvin</strong> erwärmt. Die spezifische Wärmekapazität beträgt <strong>1 Kilojoule pro Kilogramm und Kelvin</strong>.<br><br>Berechnen Sie die dafür benötigte Wärmemenge.`,
-        correct: Q,
-        unit: 'kJ',
-        steps: `Q = m · c · ΔT\nQ = ${m} · 1 · ${dT}\nQ = ${Q} kJ`
-      };
-    },
-
-    () => {
-      const m = rnd(100, 500, 50);
-      const dT = rnd(300, 800, 100);
-      const Q = m * dT;
-      return {
-        cat: '🔥 Wärmelehre',
-        question: `Eine keramische Charge mit einer Masse von <strong>${m} Kilogramm</strong> wird um <strong>${dT} Kelvin</strong> erwärmt. Die spezifische Wärmekapazität beträgt <strong>1 Kilojoule pro Kilogramm und Kelvin</strong>.<br><br>Berechnen Sie die zugeführte Wärmemenge.`,
-        correct: Q,
-        unit: 'kJ',
-        steps: `Q = m · c · ΔT\nQ = ${m} · 1 · ${dT}\nQ = ${Q} kJ`
-      };
-    },
-
-    () => {
-      const Q = rnd(20000, 60000, 5000);
-      const m = rnd(200, 600, 50);
-      const dT = parseFloat((Q / m).toFixed(0));
-      return {
-        cat: '🔥 Wärmelehre',
-        question: `Ein Ofen überträgt <strong>${Q} Kilojoule</strong> Wärme auf eine keramische Masse von <strong>${m} Kilogramm</strong>. Die spezifische Wärmekapazität beträgt <strong>1 Kilojoule pro Kilogramm und Kelvin</strong>.<br><br>Um wie viele Kelvin steigt die Temperatur der Charge?`,
-        correct: dT,
-        unit: 'K',
-        steps: `ΔT = Q / (m · c)\nΔT = ${Q} / (${m} · 1)\nΔT = ${dT} K`
-      };
-    },
-
-    () => {
-      const E = rnd(20, 60, 5);
-      const P = rnd(5, 15, 1);
-      const t = parseFloat((E / P).toFixed(2));
-      return {
-        cat: '🔥 Wärmelehre',
-        question: `Ein Brenner liefert eine Leistung von <strong>${P} Kilowatt</strong>. Wie lange dauert es, um eine Energiemenge von <strong>${E} Kilowattstunden</strong> einzubringen?`,
-        correct: t,
-        unit: 'h',
-        steps: `t = E / P\nt = ${E} / ${P}\nt = ${fmtN(t)} h`
-      };
-    },
-
-    () => {
-      const m = rnd(200, 600, 50);
-      const P = rnd(10, 25, 1);
-      const t = parseFloat((m / P).toFixed(1));
-      return {
-        cat: '🔥 Wärmelehre',
-        question: `Ein Ofen liefert eine Heizleistung von <strong>${P} Kilowatt</strong>. Wie lange dauert es, um <strong>${m} Kilowattstunden</strong> Energie einzubringen?`,
-        correct: t,
-        unit: 'h',
-        steps: `t = Energie / Leistung\nt = ${m} / ${P}\nt = ${fmtN(t)} h`
-      };
-    }
-  ],
-
-  physik: [
-    () => {
-      const m = rnd(2, 6, 0.5);
-      const V = rnd(1, 3, 0.2);
-      const rho = parseFloat((m / V).toFixed(2));
-      return {
-        cat: '⚙️ Physik',
-        question: `Ein keramischer Rohling hat eine Masse von <strong>${fmtN(m)} Kilogramm</strong> und ein Volumen von <strong>${fmtN(V)} Kubikdezimetern</strong>.<br><br>Berechnen Sie die Dichte des Materials.`,
-        correct: rho,
-        unit: 'kg/dm³',
-        steps: `ρ = m / V\nρ = ${fmtN(m)} / ${fmtN(V)}\nρ = ${fmtN(rho)} kg/dm³`
-      };
-    },
-
-    () => {
-      const m = rnd(3, 10, 1);
-      const V = rnd(1, 4, 0.5);
-      const rho = parseFloat((m / V).toFixed(2));
-      return {
-        cat: '⚙️ Physik',
-        question: `Ein keramisches Bauteil hat eine Masse von <strong>${m} Kilogramm</strong> und ein Volumen von <strong>${fmtN(V)} Kubikdezimetern</strong>.<br><br>Berechnen Sie die Rohdichte des Bauteils.`,
-        correct: rho,
-        unit: 'kg/dm³',
-        steps: `ρ = m / V\nρ = ${m} / ${fmtN(V)}\nρ = ${fmtN(rho)} kg/dm³`
-      };
-    },
-
-    () => {
-      const m = rnd(2, 8, 1);
-      const V = rnd(1, 4, 0.5);
-      const rho = parseFloat((m / V).toFixed(2));
-      return {
-        cat: '⚙️ Physik',
-        question: `Ein keramischer Körper besitzt eine Masse von <strong>${m} Kilogramm</strong> und ein Volumen von <strong>${fmtN(V)} Kubikdezimetern</strong>.<br><br>Bestimmen Sie die Dichte des Körpers.`,
-        correct: rho,
-        unit: 'kg/dm³',
-        steps: `ρ = m / V\nρ = ${m} / ${fmtN(V)}\nρ = ${fmtN(rho)} kg/dm³`
-      };
-    }
-  ],
-
-  wak: [
-    () => {
-      const F = rnd(800, 2400, 100);
-      const A = rnd(0.2, 1.2, 0.1);
-      const p = parseFloat((F / A).toFixed(2));
-      return {
-        cat: '🧰 WAK',
-        question: `Auf eine Fläche von <strong>${fmtN(A)} Quadratmetern</strong> wirkt eine Kraft von <strong>${F} Newton</strong>.<br><br>Berechnen Sie die Flächenpressung.`,
-        correct: p,
-        unit: 'N/m²',
-        steps: `p = F / A\np = ${F} / ${fmtN(A)}\np = ${fmtN(p)} N/m²`
-      };
-    },
-
-    () => {
-      const p = rnd(5000, 25000, 500);
-      const A = rnd(0.1, 0.8, 0.1);
-      const F = parseFloat((p * A).toFixed(2));
-      return {
-        cat: '🧰 WAK',
-        question: `Auf einer Pressfläche von <strong>${fmtN(A)} Quadratmetern</strong> soll eine Flächenpressung von <strong>${fmtN(p)} Newton pro Quadratmeter</strong> erreicht werden.<br><br>Berechnen Sie die erforderliche Kraft.`,
-        correct: F,
-        unit: 'N',
-        steps: `F = p · A\nF = ${fmtN(p)} · ${fmtN(A)}\nF = ${fmtN(F)} N`
-      };
-    },
-
-    () => {
-      const F = rnd(1200, 3600, 100);
-      const p = rnd(4000, 12000, 500);
-      const A = parseFloat((F / p).toFixed(3));
-      return {
-        cat: '🧰 WAK',
-        question: `Eine Kraft von <strong>${F} Newton</strong> wirkt auf eine Oberfläche. Die Flächenpressung soll <strong>${fmtN(p)} Newton pro Quadratmeter</strong> betragen.<br><br>Berechnen Sie die erforderliche Fläche.`,
-        correct: A,
-        unit: 'm²',
-        steps: `A = F / p\nA = ${F} / ${fmtN(p)}\nA = ${fmtN(A)} m²`
-      };
-    }
-  ],
-
-  schwindung: [
-    () => {
-      const L1 = rnd(100, 200, 10);
-      const L2 = rnd(80, 150, 10);
-      const S = parseFloat((((L1 - L2) / L1) * 100).toFixed(1));
-      return {
-        cat: '📉 Schwindung',
-        question: `Ein keramisches Werkstück ist im feuchten Zustand <strong>${L1} Millimeter</strong> lang und nach dem Brennen noch <strong>${L2} Millimeter</strong>.<br><br>Berechnen Sie die lineare Schwindung in Prozent.`,
-        correct: S,
-        unit: '%',
-        steps: `Schwindung = (L₁ − L₂) / L₁ · 100\n= (${L1} − ${L2}) / ${L1} · 100\n= ${fmtN(S)} %`
-      };
-    },
-
-    () => {
-      const L = rnd(120, 200, 10);
-      const S = rnd(5, 12, 1);
-      const L2 = parseFloat((L * (1 - S / 100)).toFixed(1));
-      return {
-        cat: '📉 Schwindung',
-        question: `Ein Werkstück weist eine lineare Schwindung von <strong>${S} Prozent</strong> auf. Die ursprüngliche Länge beträgt <strong>${L} Millimeter</strong>.<br><br>Berechnen Sie die Länge nach dem Brennen.`,
-        correct: L2,
-        unit: 'mm',
-        steps: `L₂ = L₁ · (1 − S/100)\nL₂ = ${L} · (1 − ${S}/100)\nL₂ = ${fmtN(L2)} mm`
-      };
-    },
-
-    () => {
-      const V1 = rnd(100, 200, 10);
-      const V2 = rnd(60, 150, 10);
-      const S = parseFloat((((V1 - V2) / V1) * 100).toFixed(1));
-      return {
-        cat: '📉 Schwindung',
-        question: `Das Volumen eines keramischen Körpers verringert sich von <strong>${V1} Kubikzentimetern</strong> auf <strong>${V2} Kubikzentimeter</strong>.<br><br>Berechnen Sie die Volumenschwindung in Prozent.`,
-        correct: S,
-        unit: '%',
-        steps: `Schwindung = (V₁ − V₂) / V₁ · 100\n= (${V1} − ${V2}) / ${V1} · 100\n= ${fmtN(S)} %`
-      };
-    },
-
-    () => {
-      const L1 = rnd(150, 250, 10);
-      const L2 = rnd(110, 200, 10);
-      const S = parseFloat((((L1 - L2) / L1) * 100).toFixed(1));
-      return {
-        cat: '📉 Schwindung',
-        question: `Ein keramisches Werkstück schrumpft von <strong>${L1} Millimetern</strong> auf <strong>${L2} Millimeter</strong>.<br><br>Berechnen Sie die lineare Schwindung.`,
-        correct: S,
-        unit: '%',
-        steps: `Schwindung = (L₁ − L₂) / L₁ · 100\n= (${L1} − ${L2}) / ${L1} · 100\n= ${fmtN(S)} %`
-      };
-    },
-
-    () => {
-      const L1 = rnd(120, 200, 10);
-      const L2 = rnd(100, 170, 10);
-      const S = parseFloat((((L1 - L2) / L1) * 100).toFixed(1));
-      return {
-        cat: '📉 Schwindung',
-        question: `Ein Werkstück verkürzt sich während des Brennens von <strong>${L1} Millimetern</strong> auf <strong>${L2} Millimeter</strong>.<br><br>Berechnen Sie die lineare Schwindung.`,
-        correct: S,
-        unit: '%',
-        steps: `Schwindung = (L₁ − L₂) / L₁ · 100\n= (${L1} − ${L2}) / ${L1} · 100\n= ${fmtN(S)} %`
-      };
-    },
-
-    () => {
-      const V1 = rnd(120, 200, 10);
-      const V2 = rnd(80, 150, 10);
-      const S = parseFloat((((V1 - V2) / V1) * 100).toFixed(1));
-      return {
-        cat: '📉 Schwindung',
-        question: `Das Volumen eines keramischen Körpers sinkt von <strong>${V1} Kubikzentimetern</strong> auf <strong>${V2} Kubikzentimeter</strong>.<br><br>Berechnen Sie die Volumenschwindung.`,
-        correct: S,
-        unit: '%',
-        steps: `Schwindung = (V₁ − V₂) / V₁ · 100\n= (${V1} − ${V2}) / ${V1} · 100\n= ${fmtN(S)} %`
-      };
-    },
-
-    () => {
-      const L = rnd(150, 250, 10);
-      const S = rnd(6, 12, 1);
-      const L2 = parseFloat((L * (1 - S / 100)).toFixed(1));
-      return {
-        cat: '📉 Schwindung',
-        question: `Ein keramisches Werkstück besitzt eine lineare Schwindung von <strong>${S} Prozent</strong>. Die ursprüngliche Länge beträgt <strong>${L} Millimeter</strong>.<br><br>Berechnen Sie die Länge nach dem Brennen.`,
-        correct: L2,
-        unit: 'mm',
-        steps: `L₂ = L₁ · (1 − S/100)\nL₂ = ${L} · (1 − ${S}/100)\nL₂ = ${fmtN(L2)} mm`
-      };
-    }
-  ],
-
-  dichte: [
-    () => {
-      const rho = rnd(1.8, 2.6, 0.1);
-      const V = rnd(1, 4, 0.5);
-      const m = parseFloat((rho * V).toFixed(2));
-      return {
-        cat: '⚖️ Dichte',
-        question: `Ein keramischer Werkstoff besitzt eine Dichte von <strong>${fmtN(rho)} Kilogramm pro Kubikdezimeter</strong>. Das Volumen beträgt <strong>${fmtN(V)} Kubikdezimeter</strong>.<br><br>Berechnen Sie die Masse des Werkstücks.`,
-        correct: m,
-        unit: 'kg',
-        steps: `m = ρ · V\nm = ${fmtN(rho)} · ${fmtN(V)}\nm = ${fmtN(m)} kg`
-      };
-    },
-
-    () => {
-      const m = rnd(3, 8, 1);
-      const rho = rnd(2, 3, 0.1);
-      const V = parseFloat((m / rho).toFixed(2));
-      return {
-        cat: '⚖️ Dichte',
-        question: `Ein keramischer Körper besitzt eine Masse von <strong>${m} Kilogramm</strong> und eine Dichte von <strong>${fmtN(rho)} Kilogramm pro Kubikdezimeter</strong>.<br><br>Berechnen Sie das Volumen des Körpers.`,
-        correct: V,
-        unit: 'dm³',
-        steps: `V = m / ρ\nV = ${m} / ${fmtN(rho)}\nV = ${fmtN(V)} dm³`
-      };
-    },
-
-    () => {
-      const m = rnd(3, 7, 0.5);
-      const V = rnd(1, 3, 0.2);
-      const rho = parseFloat((m / V).toFixed(2));
-      return {
-        cat: '⚖️ Dichte',
-        question: `Ein keramischer Rohling besitzt eine Masse von <strong>${fmtN(m)} Kilogramm</strong> und ein Volumen von <strong>${fmtN(V)} Kubikdezimetern</strong>.<br><br>Berechnen Sie die Dichte des Rohlings.`,
-        correct: rho,
-        unit: 'kg/dm³',
-        steps: `ρ = m / V\nρ = ${fmtN(m)} / ${fmtN(V)}\nρ = ${fmtN(rho)} kg/dm³`
-      };
-    },
-
-    () => {
-      const m = rnd(2, 6, 0.5);
-      const V = rnd(1, 3, 0.2);
-      const rho = parseFloat((m / V).toFixed(2));
-      return {
-        cat: '⚖️ Dichte',
-        question: `Ein keramischer Rohling besitzt eine Masse von <strong>${fmtN(m)} Kilogramm</strong> und ein Volumen von <strong>${fmtN(V)} Kubikdezimetern</strong>.<br><br>Berechnen Sie die Dichte.`,
-        correct: rho,
-        unit: 'kg/dm³',
-        steps: `ρ = m / V\nρ = ${fmtN(m)} / ${fmtN(V)}\nρ = ${fmtN(rho)} kg/dm³`
-      };
-    },
-
-    () => {
-      const rho = rnd(1.8, 2.6, 0.1);
-      const V = rnd(1, 4, 0.5);
-      const m = parseFloat((rho * V).toFixed(2));
-      return {
-        cat: '⚖️ Dichte',
-        question: `Ein keramischer Werkstoff besitzt eine Dichte von <strong>${fmtN(rho)} Kilogramm pro Kubikdezimeter</strong> und ein Volumen von <strong>${fmtN(V)} Kubikdezimetern</strong>.<br><br>Berechnen Sie die Masse.`,
-        correct: m,
-        unit: 'kg',
-        steps: `m = ρ · V\nm = ${fmtN(rho)} · ${fmtN(V)}\nm = ${fmtN(m)} kg`
-      };
-    }
-  ],
-
-  porositaet: [
-    () => {
-      const V = rnd(1, 5, 0.5);
-      const pore = rnd(0.2, 1.5, 0.1);
-      const P = parseFloat(((pore / V) * 100).toFixed(1));
-      return {
-        cat: '🧱 Porosität',
-        question: `Ein keramischer Körper besitzt ein Gesamtvolumen von <strong>${fmtN(V)} Kubikdezimetern</strong>. Das Porenvolumen beträgt <strong>${fmtN(pore)} Kubikdezimeter</strong>.<br><br>Berechnen Sie die Porosität des Körpers.`,
-        correct: P,
-        unit: '%',
-        steps: `Porosität = Vₚ / V · 100\n= ${fmtN(pore)} / ${fmtN(V)} · 100\n= ${fmtN(P)} %`
-      };
-    },
-
-    () => {
-      const V = rnd(2, 6, 0.5);
-      const P = rnd(10, 35, 5);
-      const pore = parseFloat((V * P / 100).toFixed(2));
-      return {
-        cat: '🧱 Porosität',
-        question: `Ein keramischer Körper besitzt eine Porosität von <strong>${P} Prozent</strong>. Das Gesamtvolumen beträgt <strong>${fmtN(V)} Kubikdezimeter</strong>.<br><br>Berechnen Sie das Porenvolumen.`,
-        correct: pore,
-        unit: 'dm³',
-        steps: `Vₚ = V · P / 100\nVₚ = ${fmtN(V)} · ${P} / 100\nVₚ = ${fmtN(pore)} dm³`
-      };
-    },
-
-    () => {
-      const V = rnd(2, 6, 1);
-      const solid = rnd(1, 4, 0.5);
-      const pore = parseFloat((V - solid).toFixed(2));
-      return {
-        cat: '🧱 Porosität',
-        question: `Ein keramischer Körper besitzt ein Gesamtvolumen von <strong>${fmtN(V)} Kubikdezimetern</strong> und ein Feststoffvolumen von <strong>${fmtN(solid)} Kubikdezimetern</strong>.<br><br>Berechnen Sie das Porenvolumen.`,
-        correct: pore,
-        unit: 'dm³',
-        steps: `Vₚ = Vgesamt − VFeststoff\nVₚ = ${fmtN(V)} − ${fmtN(solid)}\nVₚ = ${fmtN(pore)} dm³`
-      };
-    },
-
-    () => {
-      const pore = rnd(0.3, 1.2, 0.1);
-      const V = rnd(2, 5, 0.5);
-      const P = parseFloat(((pore / V) * 100).toFixed(1));
-      return {
-        cat: '🧱 Porosität',
-        question: `Ein keramischer Körper besitzt ein Porenvolumen von <strong>${fmtN(pore)} Kubikdezimetern</strong> bei einem Gesamtvolumen von <strong>${fmtN(V)} Kubikdezimetern</strong>.<br><br>Berechnen Sie die Porosität.`,
-        correct: P,
-        unit: '%',
-        steps: `Porosität = Vₚ / V · 100\n= ${fmtN(pore)} / ${fmtN(V)} · 100\n= ${fmtN(P)} %`
-      };
-    },
-
-    () => {
-      const V = rnd(2, 5, 0.5);
-      const pore = rnd(0.3, 1.2, 0.1);
-      const P = parseFloat(((pore / V) * 100).toFixed(1));
-      return {
-        cat: '🧱 Porosität',
-        question: `Ein keramischer Körper besitzt <strong>${fmtN(pore)} Kubikdezimeter</strong> Porenvolumen bei einem Gesamtvolumen von <strong>${fmtN(V)} Kubikdezimetern</strong>.<br><br>Berechnen Sie die Porosität des Körpers.`,
-        correct: P,
-        unit: '%',
-        steps: `Porosität = Vₚ / V · 100\n= ${fmtN(pore)} / ${fmtN(V)} · 100\n= ${fmtN(P)} %`
-      };
-    },
-
-    () => {
-      const V = rnd(2, 6, 0.5);
-      const P = rnd(10, 35, 5);
-      const pore = parseFloat((V * P / 100).toFixed(2));
-      return {
-        cat: '🧱 Porosität',
-        question: `Ein keramischer Körper besitzt eine Porosität von <strong>${P} Prozent</strong>. Das Gesamtvolumen beträgt <strong>${fmtN(V)} Kubikdezimeter</strong>.<br><br>Berechnen Sie das Porenvolumen.`,
-        correct: pore,
-        unit: 'dm³',
-        steps: `Vₚ = V · P / 100\nVₚ = ${fmtN(V)} · ${P} / 100\nVₚ = ${fmtN(pore)} dm³`
-      };
-    },
-
-    () => {
-      const pore = rnd(0.4, 1.5, 0.1);
-      const V = rnd(2, 5, 0.5);
-      const P = parseFloat(((pore / V) * 100).toFixed(1));
-      return {
-        cat: '🧱 Porosität',
-        question: `Ein keramischer Körper besitzt ein Porenvolumen von <strong>${fmtN(pore)} Kubikdezimetern</strong> bei einem Gesamtvolumen von <strong>${fmtN(V)} Kubikdezimetern</strong>.<br><br>Bestimmen Sie die Porosität.`,
-        correct: P,
-        unit: '%',
-        steps: `Porosität = Vₚ / V · 100\n= ${fmtN(pore)} / ${fmtN(V)} · 100\n= ${fmtN(P)} %`
-      };
-    }
-  ],
-
-  verbrennung: [
-    () => {
-      const V = rnd(2, 8, 1);
-      const luft = parseFloat((V * 9.52).toFixed(2));
-      return {
-        cat: '🔥 Verbrennung',
-        question: `Berechnen Sie den theoretischen Luftbedarf für <strong>${V} Kubikmeter Methan</strong>. Für <strong>1 Kubikmeter Methan</strong> werden etwa <strong>9,52 Kubikmeter Luft</strong> benötigt.`,
-        correct: luft,
-        unit: 'm³ Luft',
-        steps: `L = V · 9,52\nL = ${V} · 9,52\nL = ${fmtN(luft)} m³ Luft`
-      };
-    },
-
-    () => {
-      const Lt = rnd(8, 12, 0.5);
-      const L = rnd(10, 16, 0.5);
-      const lambda = parseFloat((L / Lt).toFixed(2));
-      return {
-        cat: '🔥 Verbrennung',
-        question: `Ein Brenner benötigt theoretisch <strong>${fmtN(Lt)} Kubikmeter Luft</strong>. Tatsächlich werden <strong>${fmtN(L)} Kubikmeter Luft</strong> zugeführt.<br><br>Berechnen Sie den Luftfaktor λ.`,
-        correct: lambda,
-        unit: 'λ',
-        steps: `λ = L / Lt\nλ = ${fmtN(L)} / ${fmtN(Lt)}\nλ = ${fmtN(lambda)}`
-      };
-    },
-
-    () => {
-      const V = rnd(3, 10, 1);
-      const O2 = parseFloat((V * 2).toFixed(2));
-      return {
-        cat: '🔥 Verbrennung',
-        question: `Bei der vollständigen Verbrennung von Methan werden pro Kubikmeter Gas etwa <strong>2 Kubikmeter Sauerstoff</strong> benötigt.<br><br>Berechnen Sie den Sauerstoffbedarf für <strong>${V} Kubikmeter Methan</strong>.`,
-        correct: O2,
-        unit: 'm³ O₂',
-        steps: `O₂ = V · 2\nO₂ = ${V} · 2\nO₂ = ${fmtN(O2)} m³ O₂`
-      };
-    },
-
-    () => {
-      const abgas = rnd(10, 30, 2);
-      const co2 = parseFloat((abgas * 0.117).toFixed(2));
-      return {
-        cat: '🔥 Verbrennung',
-        question: `Bei vollständiger Verbrennung von Erdgas entstehen maximal etwa <strong>11,7 Prozent Kohlendioxid</strong> im Abgas.<br><br>Berechnen Sie die Kohlendioxidmenge in <strong>${abgas} Kubikmetern Abgas</strong>.`,
-        correct: co2,
-        unit: 'm³ CO₂',
-        steps: `CO₂ = Abgas · 0,117\nCO₂ = ${abgas} · 0,117\nCO₂ = ${fmtN(co2)} m³ CO₂`
-      };
-    },
-
-    () => {
-      const gas = rnd(4, 12, 1);
-      const luft = parseFloat((gas * 10).toFixed(2));
-      return {
-        cat: '🔥 Verbrennung',
-        question: `Für die Verbrennung von Flüssiggas werden etwa <strong>10 Kubikmeter Luft pro Kubikmeter Gas</strong> benötigt.<br><br>Berechnen Sie den Luftbedarf für <strong>${gas} Kubikmeter Gas</strong>.`,
-        correct: luft,
-        unit: 'm³ Luft',
-        steps: `L = V · 10\nL = ${gas} · 10\nL = ${fmtN(luft)} m³ Luft`
-      };
-    },
-
-    () => {
-      const Lt = rnd(9, 11, 0.5);
-      const lambda = rnd(1.1, 1.5, 0.1);
-      const L = parseFloat((Lt * lambda).toFixed(2));
-      return {
-        cat: '🔥 Verbrennung',
-        question: `Der theoretische Luftbedarf beträgt <strong>${fmtN(Lt)} Kubikmeter</strong>. Der Luftfaktor beträgt <strong>λ = ${fmtN(lambda)}</strong>.<br><br>Berechnen Sie die tatsächlich zugeführte Luftmenge.`,
-        correct: L,
-        unit: 'm³ Luft',
-        steps: `L = Lt · λ\nL = ${fmtN(Lt)} · ${fmtN(lambda)}\nL = ${fmtN(L)} m³ Luft`
-      };
-    },
-
-    () => {
-      const gas = rnd(3, 8, 1);
-      const luft = parseFloat((gas * 9.52).toFixed(2));
-      return {
-        cat: '🔥 Verbrennung',
-        question: `Berechnen Sie den theoretischen Luftbedarf für <strong>${gas} Kubikmeter Methan</strong>.`,
-        correct: luft,
-        unit: 'm³ Luft',
-        steps: `L = V · 9,52\nL = ${gas} · 9,52\nL = ${fmtN(luft)} m³ Luft`
-      };
-    },
-
-    () => {
-      const Lt = rnd(8, 12, 0.5);
-      const lambda = rnd(1.1, 1.4, 0.1);
-      const L = parseFloat((Lt * lambda).toFixed(2));
-      return {
-        cat: '🔥 Verbrennung',
-        question: `Der theoretische Luftbedarf beträgt <strong>${fmtN(Lt)} Kubikmeter</strong>. Der Luftfaktor beträgt <strong>λ = ${fmtN(lambda)}</strong>.<br><br>Berechnen Sie die tatsächlich zugeführte Luftmenge.`,
-        correct: L,
-        unit: 'm³ Luft',
-        steps: `L = Lt · λ\nL = ${fmtN(Lt)} · ${fmtN(lambda)}\nL = ${fmtN(L)} m³ Luft`
-      };
-    },
-
-    () => {
-      const abgas = rnd(10, 40, 5);
-      const co2 = parseFloat((abgas * 0.117).toFixed(2));
-      return {
-        cat: '🔥 Verbrennung',
-        question: `Im Abgas entstehen maximal <strong>11,7 Prozent Kohlendioxid</strong>.<br><br>Berechnen Sie die Kohlendioxidmenge bei <strong>${abgas} Kubikmetern Abgas</strong>.`,
-        correct: co2,
-        unit: 'm³ CO₂',
-        steps: `CO₂ = Abgas · 0,117\nCO₂ = ${abgas} · 0,117\nCO₂ = ${fmtN(co2)} m³ CO₂`
-      };
-    },
-
-    () => {
-      const gas = rnd(4, 10, 1);
-      const O2 = parseFloat((gas * 2).toFixed(2));
-      return {
-        cat: '🔥 Verbrennung',
-        question: `Berechnen Sie den Sauerstoffbedarf für <strong>${gas} Kubikmeter Methan</strong>.`,
-        correct: O2,
-        unit: 'm³ O₂',
-        steps: `O₂ = V · 2\nO₂ = ${gas} · 2\nO₂ = ${fmtN(O2)} m³ O₂`
-      };
-    },
-
-    () => {
-      const Lt = rnd(9, 11, 0.5);
-      const L = rnd(12, 16, 0.5);
-      const lambda = parseFloat((L / Lt).toFixed(2));
-      return {
-        cat: '🔥 Verbrennung',
-        question: `Der theoretische Luftbedarf beträgt <strong>${fmtN(Lt)} Kubikmeter</strong>. Tatsächlich werden <strong>${fmtN(L)} Kubikmeter Luft</strong> zugeführt.<br><br>Berechnen Sie den Luftfaktor.`,
-        correct: lambda,
-        unit: 'λ',
-        steps: `λ = L / Lt\nλ = ${fmtN(L)} / ${fmtN(Lt)}\nλ = ${fmtN(lambda)}`
-      };
-    },
-
-    () => {
-      const gas = rnd(2, 6, 1);
-      const luft = parseFloat((gas * 10).toFixed(2));
-      return {
-        cat: '🔥 Verbrennung',
-        question: `Für Flüssiggas werden etwa <strong>10 Kubikmeter Luft pro Kubikmeter Gas</strong> benötigt.<br><br>Berechnen Sie den Luftbedarf für <strong>${gas} Kubikmeter Gas</strong>.`,
-        correct: luft,
-        unit: 'm³ Luft',
-        steps: `L = V · 10\nL = ${gas} · 10\nL = ${fmtN(luft)} m³ Luft`
-      };
-    }
-  ],
-
-  feuchte: [
-    () => {
-      const W1 = rnd(10, 25, 1);
-      const W2 = rnd(3, 8, 1);
-      const W = W1 - W2;
-      return {
-        cat: '💧 Feuchte',
-        question: `Eine keramische Masse enthält anfangs <strong>${W1} Kilogramm Wasser</strong>. Nach der Trocknung sind noch <strong>${W2} Kilogramm Wasser</strong> vorhanden.<br><br>Wie viel Wasser wurde entfernt?`,
-        correct: W,
-        unit: 'kg',
-        steps: `W = W₁ − W₂\nW = ${W1} − ${W2}\nW = ${W} kg`
-      };
-    },
-
-    () => {
-      const m = rnd(3, 12, 1);
-      const energie = m * 2257;
-      return {
-        cat: '💧 Feuchte',
-        question: `Bei der Trocknung werden <strong>${m} Kilogramm Wasser</strong> verdampft.<br><br>Berechnen Sie die dafür benötigte Verdampfungsenergie.`,
-        correct: energie,
-        unit: 'kJ',
-        steps: `Q = m · r\nQ = ${m} · 2257\nQ = ${energie} kJ`
-      };
-    },
-
-    () => {
-      const W = rnd(5, 20, 1);
-      const zeit = rnd(2, 6, 1);
-      const rate = parseFloat((W / zeit).toFixed(2));
-      return {
-        cat: '💧 Feuchte',
-        question: `Während der Trocknung werden <strong>${W} Kilogramm Wasser</strong> in <strong>${zeit} Stunden</strong> entfernt.<br><br>Berechnen Sie die Trocknungsrate.`,
-        correct: rate,
-        unit: 'kg/h',
-        steps: `Rate = Wasser / Zeit\nRate = ${W} / ${zeit}\nRate = ${fmtN(rate)} kg/h`
-      };
-    },
-
-    () => {
-      const luft = rnd(200, 500, 50);
-      const feuchte = rnd(5, 20, 1);
-      const wasser = parseFloat((luft * feuchte / 100).toFixed(2));
-      return {
-        cat: '💧 Feuchte',
-        question: `Ein Luftstrom von <strong>${luft} Kilogramm Luft</strong> enthält <strong>${feuchte} Prozent Wasser</strong>.<br><br>Berechnen Sie die enthaltene Wassermenge.`,
-        correct: wasser,
-        unit: 'kg',
-        steps: `mW = Luft · Feuchte / 100\nmW = ${luft} · ${feuchte} / 100\nmW = ${fmtN(wasser)} kg`
-      };
-    },
-
-    () => {
-      const W = rnd(8, 20, 2);
-      const energie = W * 2257;
-      return {
-        cat: '💧 Feuchte',
-        question: `Beim Trocknen werden <strong>${W} Kilogramm Wasser</strong> entfernt.<br><br>Berechnen Sie die dafür benötigte Verdampfungsenergie.`,
-        correct: energie,
-        unit: 'kJ',
-        steps: `Q = m · r\nQ = ${W} · 2257\nQ = ${energie} kJ`
-      };
-    },
-
-    () => {
-      const luft = rnd(200, 500, 50);
-      const x = rnd(5, 15, 1);
-      const wasser = parseFloat((luft * x / 1000).toFixed(2));
-      return {
-        cat: '💧 Feuchte',
-        question: `Ein Luftstrom von <strong>${luft} Kilogramm trockener Luft</strong> enthält eine absolute Feuchte von <strong>${x} Gramm pro Kilogramm</strong>.<br><br>Berechnen Sie die enthaltene Wassermenge.`,
-        correct: wasser,
-        unit: 'kg',
-        steps: `mW = Luft · x / 1000\nmW = ${luft} · ${x} / 1000\nmW = ${fmtN(wasser)} kg`
-      };
-    },
-
-    () => {
-      const luft = rnd(300, 600, 50);
-      const x1 = rnd(6, 10, 1);
-      const x2 = rnd(12, 18, 1);
-      const wasser = parseFloat((luft * (x2 - x1) / 1000).toFixed(2));
-      return {
-        cat: '💧 Feuchte',
-        question: `Ein Luftstrom von <strong>${luft} Kilogramm Luft</strong> wird von <strong>${x1} Gramm pro Kilogramm</strong> auf <strong>${x2} Gramm pro Kilogramm</strong> befeuchtet.<br><br>Berechnen Sie die aufgenommene Wassermenge.`,
-        correct: wasser,
-        unit: 'kg',
-        steps: `mW = Luft · (x₂ − x₁) / 1000\nmW = ${luft} · (${x2} − ${x1}) / 1000\nmW = ${fmtN(wasser)} kg`
-      };
-    },
-
-    () => {
-      const luft = rnd(200, 400, 50);
-      const x = rnd(8, 16, 1);
-      const wasser = parseFloat((luft * x / 1000).toFixed(2));
-      return {
-        cat: '💧 Feuchte',
-        question: `Ein Trockner fördert <strong>${luft} Kilogramm Luft pro Stunde</strong>. Die Luft enthält <strong>${x} Gramm Wasser pro Kilogramm Luft</strong>.<br><br>Berechnen Sie die Wassermenge pro Stunde.`,
-        correct: wasser,
-        unit: 'kg/h',
-        steps: `mW = Luft · x / 1000\nmW = ${luft} · ${x} / 1000\nmW = ${fmtN(wasser)} kg/h`
-      };
-    },
-
-    () => {
-      const wasser = rnd(5, 20, 1);
-      const energie = wasser * 2257;
-      return {
-        cat: '💧 Feuchte',
-        question: `Beim Trocknen werden <strong>${wasser} Kilogramm Wasser</strong> verdampft.<br><br>Berechnen Sie die benötigte Verdampfungsenergie.`,
-        correct: energie,
-        unit: 'kJ',
-        steps: `Q = m · r\nQ = ${wasser} · 2257\nQ = ${energie} kJ`
-      };
-    },
-
-    () => {
-      const luft = rnd(150, 400, 50);
-      const delta = rnd(4, 10, 1);
-      const wasser = parseFloat((luft * delta / 1000).toFixed(2));
-      return {
-        cat: '💧 Feuchte',
-        question: `Ein Luftstrom von <strong>${luft} Kilogramm Luft</strong> nimmt <strong>${delta} Gramm Wasser pro Kilogramm Luft</strong> auf.<br><br>Berechnen Sie die insgesamt aufgenommene Wassermenge.`,
-        correct: wasser,
-        unit: 'kg',
-        steps: `mW = Luft · Δx / 1000\nmW = ${luft} · ${delta} / 1000\nmW = ${fmtN(wasser)} kg`
-      };
-    },
-
-    () => {
-      const wasser = rnd(8, 25, 1);
-      const zeit = rnd(2, 6, 1);
-      const rate = parseFloat((wasser / zeit).toFixed(2));
-      return {
-        cat: '💧 Feuchte',
-        question: `Während der Trocknung werden <strong>${wasser} Kilogramm Wasser</strong> in <strong>${zeit} Stunden</strong> entfernt.<br><br>Berechnen Sie die Trocknungsrate.`,
-        correct: rate,
-        unit: 'kg/h',
-        steps: `Rate = Wasser / Zeit\nRate = ${wasser} / ${zeit}\nRate = ${fmtN(rate)} kg/h`
-      };
-    }
-  ],
-
-  getriebe: [
-    () => {
-      const n1 = rnd(900, 1800, 100);
-      const i = rnd(2, 6, 0.5);
-      const n2 = parseFloat((n1 / i).toFixed(1));
-      return {
-        cat: '⚙️ Getriebe',
-        question: `Ein Antriebsmotor läuft mit <strong>${n1} Umdrehungen pro Minute</strong>. Das nachgeschaltete Getriebe besitzt ein Übersetzungsverhältnis von <strong>${fmtN(i)}</strong>.<br><br>Berechnen Sie die Abtriebsdrehzahl.`,
-        correct: n2,
-        unit: '1/min',
-        steps: `n₂ = n₁ / i\nn₂ = ${n1} / ${fmtN(i)}\nn₂ = ${fmtN(n2)} 1/min`
-      };
-    }
-  ]
-};
-
-for (const key in EXTRA_AUFGABEN) {
-  if (AUFGABEN[key]) AUFGABEN[key].push(...EXTRA_AUFGABEN[key]);
-}
