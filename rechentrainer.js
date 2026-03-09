@@ -1623,4 +1623,249 @@ const AUFGABEN = {
   ()=>{const z1=rndInt(10,25),z2=rndInt(40,120);const i=parseFloat((z2/z1).toFixed(3));return{cat:'⚙️ Getriebe',question:`Zahnradpaar: z₁=<strong>${z1}</strong>, z₂=<strong>${z2}</strong>. Übersetzung <em>i</em>?`,hint:'i=z₂/z₁',correct:i,unit:'',tol:0.02,steps:`i=${z2}/${z1}=${fmtN(i)}`};}
 
   ],
+    trockentechnik:[
+
+() => {
+  const luft = rnd(200,500,50)
+  const x = rnd(6,14,1)
+  const wasser = parseFloat((luft*x/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg trockener Luft enthält eine absolute Feuchte von ${x} g/kg. Berechnen Sie die enthaltene Wassermenge.`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const luft = rnd(300,600,50)
+  const x1 = rnd(5,9,1)
+  const x2 = rnd(12,18,1)
+  const wasser = parseFloat((luft*(x2-x1)/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg Luft wird von ${x1} g/kg auf ${x2} g/kg absolute Feuchte befeuchtet. Berechnen Sie die aufgenommene Wassermenge.`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const luft = rnd(250,450,50)
+  const x1 = rnd(4,8,1)
+  const x2 = rnd(10,16,1)
+  const wasser = parseFloat((luft*(x2-x1)/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Trockner führt ${luft} kg Luft zu. Die absolute Feuchte steigt von ${x1} g/kg auf ${x2} g/kg. Wie viel Wasser nimmt die Luft auf?`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const luft = rnd(200,400,50)
+  const delta = rnd(5,12,1)
+  const wasser = parseFloat((luft*delta/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg Luft nimmt ${delta} g Wasser pro kg Luft auf. Berechnen Sie die gesamte Wassermenge.`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const luft = rnd(300,600,50)
+  const x = rnd(8,16,1)
+  const wasser = parseFloat((luft*x/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg trockener Luft besitzt eine absolute Feuchte von ${x} g/kg. Berechnen Sie die enthaltene Wassermenge.`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const wasser = rnd(6,18,1)
+  const zeit = rnd(2,6,1)
+  const rate = parseFloat((wasser/zeit).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Während der Trocknung werden ${wasser} kg Wasser in ${zeit} Stunden entfernt. Berechnen Sie die Trocknungsrate.`,
+    correct:rate,
+    unit:'kg/h'
+  }
+},
+
+() => {
+  const luft = rnd(200,500,50)
+  const x1 = rnd(6,10,1)
+  const x2 = rnd(12,18,1)
+  const wasser = parseFloat((luft*(x2-x1)/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg trockener Luft wird von ${x1} g/kg auf ${x2} g/kg absolute Feuchte befeuchtet. Berechnen Sie die Wasseraufnahme.`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const wasser = rnd(5,15,1)
+  const energie = wasser*2257
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Bei der Trocknung werden ${wasser} kg Wasser verdampft. Berechnen Sie die benötigte Verdampfungsenergie.`,
+    correct:energie,
+    unit:'kJ'
+  }
+},
+
+() => {
+  const luft = rnd(300,700,50)
+  const x = rnd(6,14,1)
+  const wasser = parseFloat((luft*x/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg Luft enthält ${x} g Wasser pro kg Luft. Berechnen Sie die gesamte Wassermenge.`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const luft = rnd(200,500,50)
+  const delta = rnd(4,10,1)
+  const wasser = parseFloat((luft*delta/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg Luft nimmt ${delta} g Wasser pro kg Luft auf. Berechnen Sie die Gesamtwassermenge.`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const wasser = rnd(8,25,1)
+  const zeit = rnd(2,5,1)
+  const rate = parseFloat((wasser/zeit).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Während eines Trocknungsprozesses werden ${wasser} kg Wasser in ${zeit} Stunden entfernt. Wie groß ist die Trocknungsleistung?`,
+    correct:rate,
+    unit:'kg/h'
+  }
+},
+
+() => {
+  const luft = rnd(250,600,50)
+  const x1 = rnd(6,9,1)
+  const x2 = rnd(14,18,1)
+  const wasser = parseFloat((luft*(x2-x1)/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg Luft wird von ${x1} g/kg auf ${x2} g/kg absolute Feuchte erhöht. Berechnen Sie die Wasseraufnahme.`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const wasser = rnd(10,30,1)
+  const energie = wasser*2257
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Beim Trocknen werden ${wasser} kg Wasser verdampft. Berechnen Sie die benötigte Verdampfungswärme.`,
+    correct:energie,
+    unit:'kJ'
+  }
+},
+
+() => {
+  const luft = rnd(200,450,50)
+  const x = rnd(7,15,1)
+  const wasser = parseFloat((luft*x/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg trockener Luft enthält ${x} g Wasser pro kg Luft. Berechnen Sie die enthaltene Wassermenge.`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const luft = rnd(300,650,50)
+  const delta = rnd(6,12,1)
+  const wasser = parseFloat((luft*delta/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg Luft nimmt ${delta} g Wasser pro kg Luft auf. Berechnen Sie die gesamte Wasseraufnahme.`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const wasser = rnd(6,20,1)
+  const zeit = rnd(3,6,1)
+  const rate = parseFloat((wasser/zeit).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Trockner entfernt ${wasser} kg Wasser in ${zeit} Stunden. Wie groß ist die Verdampfungsrate?`,
+    correct:rate,
+    unit:'kg/h'
+  }
+},
+
+() => {
+  const luft = rnd(250,550,50)
+  const x1 = rnd(5,8,1)
+  const x2 = rnd(11,16,1)
+  const wasser = parseFloat((luft*(x2-x1)/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg trockener Luft wird von ${x1} g/kg auf ${x2} g/kg befeuchtet. Berechnen Sie die aufgenommene Wassermenge.`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const wasser = rnd(7,22,1)
+  const energie = wasser*2257
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Beim Verdampfen von ${wasser} kg Wasser wird Verdampfungsenergie benötigt. Berechnen Sie die erforderliche Energie.`,
+    correct:energie,
+    unit:'kJ'
+  }
+},
+
+() => {
+  const luft = rnd(300,600,50)
+  const x = rnd(6,14,1)
+  const wasser = parseFloat((luft*x/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg Luft enthält ${x} g Wasser pro kg Luft. Bestimmen Sie die gesamte Wassermenge.`,
+    correct:wasser,
+    unit:'kg'
+  }
+},
+
+() => {
+  const luft = rnd(200,500,50)
+  const delta = rnd(5,11,1)
+  const wasser = parseFloat((luft*delta/1000).toFixed(2))
+  return {
+    cat:'🌬️ Trockentechnik',
+    question:`Ein Luftstrom von ${luft} kg Luft nimmt ${delta} g Wasser pro kg Luft auf. Berechnen Sie die Wasseraufnahme.`,
+    correct:wasser,
+    unit:'kg'
+  }
+}
+
+],
 };
