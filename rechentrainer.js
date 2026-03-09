@@ -29,7 +29,7 @@ const AUFGABEN = {
       const Q = parseFloat((m * c * (T2 - T1)).toFixed(2));
       return {
         cat: '🔥 Wärmelehre',
-        question: `In einem Industriebetrieb sollen <strong>${fmtN(m)} Kilogramm Wasser</strong> von <strong>${T1} Grad Celsius</strong> auf <strong>${T2} Grad Celsius</strong> erwärmt werden. Die spezifische Wärmekapazität von Wasser beträgt 4,18 Kilojoule pro Kilogramm und Kelvin.<br><br>Wie viel Wärmeenergie wird für diesen Vorgang insgesamt benötigt? Geben Sie das Ergebnis in Kilojoule an.`,
+        question: `In einem Industriebetrieb sollen <strong>${fmtN(m)} Kilogramm Wasser</strong> von <strong>${T1} Grad Celsius</strong> auf <strong>${T2} Grad Celsius</strong> erwärmt werden. Die spezifische Wärmekapazität von Wasser beträgt 4,18 Kilojoule pro Kilogramm und Kelvin.<br><br>Berechnen Sie die insgesamt benötigte Wärmeenergie. Geben Sie das Ergebnis in Kilojoule an.`,
         correct: Q, unit: 'kJ',
         steps: `Gegeben: m = ${fmtN(m)} kg, T₁ = ${T1} °C, T₂ = ${T2} °C, c = 4,18 kJ/(kg·K)\nTemperaturdifferenz = ${T2} − ${T1} = ${T2 - T1} K\nQ = ${fmtN(m)} · 4,18 · ${T2 - T1}\nQ = ${fmtN(Q)} kJ`
       };
@@ -1022,7 +1022,7 @@ const AUFGABEN = {
       const m = parseFloat((rho * V).toFixed(1));
       return {
         cat: '⚖️ Dichte',
-        question: `Ein Keramikblock hat ein Volumen von <strong>${fmtN(V)} Kubikzentimeter</strong>. Die Dichte des Materials beträgt <strong>${fmtN(rho)} Gramm pro Kubikzentimeter</strong>.<br><br>Welche Masse hat dieser Block?`,
+        question: `Ein Keramikblock hat ein Volumen von <strong>${fmtN(V)} Kubikzentimeter</strong>. Die Dichte des Materials beträgt <strong>${fmtN(rho)} Gramm pro Kubikzentimeter</strong>.<br><br>Berechnen Sie die Masse dieses Blocks.`,
         correct: m, unit: 'g',
         steps: `Masse = Dichte · Volumen\nm = ${fmtN(rho)} · ${fmtN(V)}\nm = ${fmtN(m)} g`
       };
@@ -1034,7 +1034,7 @@ const AUFGABEN = {
       const V = parseFloat((m / rho).toFixed(2));
       return {
         cat: '⚖️ Dichte',
-        question: `Eine Rohstoffcharge hat eine Masse von <strong>${fmtN(m)} Gramm</strong>. Die Rohdichte des Materials beträgt <strong>${fmtN(rho)} Gramm pro Kubikzentimeter</strong>.<br><br>Welches Volumen nimmt diese Charge ein?`,
+        question: `Eine Rohstoffcharge hat eine Masse von <strong>${fmtN(m)} Gramm</strong>. Die Rohdichte des Materials beträgt <strong>${fmtN(rho)} Gramm pro Kubikzentimeter</strong>.<br><br>Berechnen Sie das Volumen dieser Charge.`,
         correct: V, unit: 'cm³',
         steps: `Volumen = Masse / Dichte\nV = ${fmtN(m)} / ${fmtN(rho)}\nV = ${fmtN(V)} cm³`
       };
@@ -1247,7 +1247,7 @@ const AUFGABEN = {
     const V_th=rnd(8,15,0.5); const lambda=rnd(0.8,0.95,0.01);
     const V_real=parseFloat((lambda*V_th).toFixed(2));
     return { cat:'💨 Verbrennung',
-      question:`Der theoretische Luftbedarf beträgt <strong>${fmtN(V_th)} m³/m³</strong>. Tatsächlich werden <strong>${fmtN(V_real)} m³/m³</strong> zugeführt.<br><br>Welche Verbrennungsart liegt vor? Berechnen Sie λ.`,
+      question:`Der theoretische Luftbedarf beträgt <strong>${fmtN(V_th)} m³/m³</strong>. Tatsächlich werden <strong>${fmtN(V_real)} m³/m³</strong> zugeführt.<br><br>Bestimmen Sie den Luftfaktor λ und ordnen Sie die Verbrennungsart zu.`,
       hint:'λ = V_real / V_th  (λ<1 = reduzierend)', correct:lambda, unit:'',
       tol:0.02,
       steps:`λ = ${fmtN(V_real)}/${fmtN(V_th)} = ${fmtN(lambda)}\nλ < 1 → Reduzierende Verbrennung (Luftmangel, CO-Bildung, Schwarze Kerne möglich)` };
@@ -1267,7 +1267,7 @@ const AUFGABEN = {
     const p_gas=rnd(10,30,1); const p_luft=rnd(1,8,0.5);
     const ratio=parseFloat((p_luft/p_gas).toFixed(2));
     return { cat:'💨 Verbrennung',
-      question:`Einem Gebläsebrenner werden <strong>${fmtN(p_gas)} m³/h Gas</strong> und <strong>${fmtN(p_luft*10)} m³/h Primärluft</strong> zugeführt.<br><br>Wie groß ist das Primärluft-Gas-Verhältnis?`,
+      question:`Einem Gebläsebrenner werden <strong>${fmtN(p_gas)} m³/h Gas</strong> und <strong>${fmtN(p_luft*10)} m³/h Primärluft</strong> zugeführt.<br><br>Berechnen Sie das Primärluft-Gas-Verhältnis.`,
       hint:'Verhältnis = V_Luft / V_Gas', correct:parseFloat((p_luft*10/p_gas).toFixed(2)), unit:'',
       tol:0.02,
       steps:`Verhältnis = ${fmtN(p_luft*10)} / ${fmtN(p_gas)} = ${fmtN(p_luft*10/p_gas)}` };
@@ -1352,7 +1352,7 @@ const AUFGABEN = {
     const mfeucht=rnd(200,2000,50); const w=rnd(12,40,1);
     const mWasser=parseFloat((mfeucht*w/(100+w)).toFixed(2));
     return { cat:'💧 Feuchte & AW',
-      question:`Eine feuchte Masse wiegt <strong>${mfeucht} g</strong>. Der Feuchtegehalt beträgt <strong>w = ${w} %</strong> (auf Trockenmasse).<br><br>Wie viel Gramm Wasser <em>m<sub>W</sub></em> sind enthalten?`,
+      question:`Eine feuchte Masse wiegt <strong>${mfeucht} g</strong>. Der Feuchtegehalt beträgt <strong>w = ${w} %</strong> (auf Trockenmasse).<br><br>Berechnen Sie die enthaltene Wassermasse <em>m<sub>W</sub></em> in Gramm.`,
       hint:'m_tr = m_f·100/(100+w),  m_W = m_f − m_tr', correct:mWasser, unit:'g',
       steps:`m_tr = ${mfeucht}·100/(100+${w}) = ${fmtN(mfeucht*100/(100+w))} g\nm_W = ${mfeucht} − ${fmtN(mfeucht*100/(100+w))} = ${fmtN(mWasser)} g` };
   },
@@ -1374,7 +1374,7 @@ const AUFGABEN = {
     const mf2=parseFloat((mTr*(100+w2)/100).toFixed(2));
     const mAbgabe=parseFloat((mf1-mf2).toFixed(2));
     return { cat:'💧 Feuchte & AW',
-      question:`Eine Tonmasse (Trockenmasse: <strong>${mTr} g</strong>) wird vom Feuchtegehalt <strong>w₁ = ${w1} %</strong> auf <strong>w₂ = ${w2} %</strong> getrocknet.<br><br>Wie viel Wasser <em>m<sub>ab</sub></em> wird abgegeben?`,
+      question:`Eine Tonmasse (Trockenmasse: <strong>${mTr} g</strong>) wird vom Feuchtegehalt <strong>w₁ = ${w1} %</strong> auf <strong>w₂ = ${w2} %</strong> getrocknet.<br><br>Berechnen Sie die beim Trocknen abgegebene Wassermasse <em>m<sub>ab</sub></em>.`,
       hint:'m_ab = m_feucht(w₁) − m_feucht(w₂)', correct:mAbgabe, unit:'g',
       steps:`m_f1 = ${mTr}·(100+${w1})/100 = ${fmtN(mf1)} g\nm_f2 = ${mTr}·(100+${w2})/100 = ${fmtN(mf2)} g\nm_ab = ${fmtN(mf1)} − ${fmtN(mf2)} = ${fmtN(mAbgabe)} g` };
   },
@@ -1395,7 +1395,7 @@ const AUFGABEN = {
     // TS% = m_tr/m_schlicker*100; m_schlicker = V*rho
     // Litergewicht direkt gegeben
     return { cat:'💧 Feuchte & AW',
-      question:`Ein Schlicker hat ein Litergewicht von <strong>${rhoSchl} g/l</strong> und einen Trockensubstanzgehalt von <strong>${TSgehalt} %</strong>.<br><br>Wie viel Gramm Wasser enthält <strong>1 Liter</strong> dieses Schlickers?`,
+      question:`Ein Schlicker hat ein Litergewicht von <strong>${rhoSchl} g/l</strong> und einen Trockensubstanzgehalt von <strong>${TSgehalt} %</strong>.<br><br>Berechnen Sie die Wassermasse in <strong>1 Liter</strong> dieses Schlickers.`,
       hint:'m_Wasser = m_Schlicker − m_Trocken', correct:parseFloat((rhoSchl*(1-TSgehalt/100)).toFixed(1)), unit:'g',
       steps:`m_Schlicker = ${rhoSchl} g\nm_Trocken = ${rhoSchl}·${TSgehalt}/100 = ${fmtN(rhoSchl*TSgehalt/100)} g\nm_Wasser = ${rhoSchl} − ${fmtN(rhoSchl*TSgehalt/100)} = ${fmtN(rhoSchl*(1-TSgehalt/100))} g` };
   },
@@ -1465,7 +1465,7 @@ const AUFGABEN = {
     const n1=rnd(500,3000,100); const i=rnd(2,15,0.5);
     const n2=parseFloat((n1/i).toFixed(2));
     return { cat:'⚙️ Getriebe',
-      question:`Ein Untersetzungsgetriebe hat die Übersetzung <strong>i = ${fmtN(i)}</strong>. Die Antriebsdrehzahl beträgt <strong>n₁ = ${n1} min⁻¹</strong>.<br><br>Wie groß ist die Abtriebsdrehzahl <em>n₂</em>?`,
+      question:`Ein Untersetzungsgetriebe hat die Übersetzung <strong>i = ${fmtN(i)}</strong>. Die Antriebsdrehzahl beträgt <strong>n₁ = ${n1} min⁻¹</strong>.<br><br>Berechnen Sie die Abtriebsdrehzahl <em>n₂</em>.`,
       hint:'n₂ = n₁ / i', correct:n2, unit:'min⁻¹',
       steps:`n₂ = n₁/i = ${n1}/${fmtN(i)} = ${fmtN(n2)} min⁻¹` };
   },
@@ -1474,7 +1474,7 @@ const AUFGABEN = {
     const n1=rnd(200,1000,50); const n2=rnd(1000,5000,100);
     const i=parseFloat((n1/n2).toFixed(3));
     return { cat:'⚙️ Getriebe',
-      question:`Ein Übersetzungsgetriebe (Ins-Schnelle) hat n₁ = <strong>${n1} min⁻¹</strong> (Antrieb) und n₂ = <strong>${n2} min⁻¹</strong> (Abtrieb).<br><br>Wie groß ist die Übersetzung <em>i</em>?`,
+      question:`Ein Übersetzungsgetriebe (Ins-Schnelle) hat n₁ = <strong>${n1} min⁻¹</strong> (Antrieb) und n₂ = <strong>${n2} min⁻¹</strong> (Abtrieb).<br><br>Berechnen Sie die Übersetzung <em>i</em>.`,
       hint:'i = n₁ / n₂  (i < 1 = ins Schnelle)', correct:i, unit:'',
       tol:0.02,
       steps:`i = ${n1}/${n2} = ${fmtN(i)}\n(i < 1 → Übersetzung ins Schnelle)` };
@@ -1498,7 +1498,7 @@ const AUFGABEN = {
     const v_umfang=rnd(1,10,0.1); // m/s an Abtriebswelle
     const r=parseFloat((v_umfang/(2*Math.PI*n2/60)).toFixed(3));
     return { cat:'⚙️ Getriebe',
-      question:`Stirnradgetriebe: z₁ = ${z1}, z₂ = ${z2}, n₁ = ${n1} min⁻¹. Die Abtriebswelle trägt eine Riemenscheibe.<br><br>Wie groß ist die Abtriebsdrehzahl <em>n₂</em>?`,
+      question:`Stirnradgetriebe: z₁ = ${z1}, z₂ = ${z2}, n₁ = ${n1} min⁻¹. Die Abtriebswelle trägt eine Riemenscheibe.<br><br>Berechnen Sie die Abtriebsdrehzahl <em>n₂</em>.`,
       hint:'n₂ = n₁ · z₁/z₂', correct:n2, unit:'min⁻¹',
       steps:`n₂ = ${n1}·${z1}/${z2} = ${fmtN(n2)} min⁻¹` };
   },
@@ -1519,7 +1519,7 @@ const AUFGABEN = {
     const r1=rnd(50,200,10); const r2=rnd(100,400,10); const n1=rnd(500,2000,100);
     const n2=parseFloat((n1*r1/r2).toFixed(1));
     return { cat:'⚙️ Getriebe',
-      question:`Ein Riemengetriebe: Antriebsscheibe Ø<sub>1</sub> = <strong>${r1*2} mm</strong>, Abtriebsscheibe Ø<sub>2</sub> = <strong>${r2*2} mm</strong>. Antriebsdrehzahl n₁ = ${n1} min⁻¹. (Schlupf vernachlässigt)<br><br>Wie groß ist die Abtriebsdrehzahl <em>n₂</em>?`,
+      question:`Ein Riemengetriebe: Antriebsscheibe Ø<sub>1</sub> = <strong>${r1*2} mm</strong>, Abtriebsscheibe Ø<sub>2</sub> = <strong>${r2*2} mm</strong>. Antriebsdrehzahl n₁ = ${n1} min⁻¹. (Schlupf vernachlässigt)<br><br>Berechnen Sie die Abtriebsdrehzahl <em>n₂</em>.`,
       hint:'n₂ = n₁ · d₁/d₂ (Umfangsgeschwindigkeit gleich)', correct:n2, unit:'min⁻¹',
       steps:`n₂ = n₁·d₁/d₂ = ${n1}·${r1*2}/${r2*2} = ${fmtN(n2)} min⁻¹` };
   },
@@ -1584,3 +1584,678 @@ const AUFGABEN = {
 
   ],
 };
+
+
+// ════════════════════════════════════════════════════════════
+//  ZUSÄTZLICHE PRÜFUNGSNAHE AUFGABEN
+//  Stilistisch an die vorhandenen Textaufgaben angepasst
+// ════════════════════════════════════════════════════════════
+const EXTRA_AUFGABEN = {
+  verbrennung: [
+    () => {
+      const V = rnd(2,8,1)
+      const luft = parseFloat((V*9.52).toFixed(2))
+      return {
+        cat:'🔥 Verbrennung',
+        question:`Berechnen Sie den theoretischen Luftbedarf für <strong>${V} m³ Methan</strong>. Für 1 m³ Methan werden etwa 9,52 m³ Luft benötigt.`,
+        correct:luft,
+        unit:'m³ Luft',
+        steps:`L = V × 9,52\nL = ${V} × 9,52 = ${fmtN(luft)} m³ Luft`
+      }
+    },
+
+    () => {
+      const Lt = rnd(8,12,0.5)
+      const L = rnd(10,16,0.5)
+      const lambda = parseFloat((L/Lt).toFixed(2))
+      return {
+        cat:'🔥 Verbrennung',
+        question:`Ein Brenner benötigt theoretisch <strong>${fmtN(Lt)} m³ Luft</strong>. Tatsächlich werden <strong>${fmtN(L)} m³ Luft</strong> zugeführt. Berechnen Sie den Luftfaktor <em>λ</em>.`,
+        correct:lambda,
+        unit:'λ',
+        steps:`λ = L / Lₜ\nλ = ${fmtN(L)} / ${fmtN(Lt)} = ${fmtN(lambda)}`
+      }
+    },
+
+    () => {
+      const V = rnd(3,10,1)
+      const O2 = parseFloat((V*2).toFixed(2))
+      return {
+        cat:'🔥 Verbrennung',
+        question:`Bei der vollständigen Verbrennung von Methan werden pro Kubikmeter Gas etwa <strong>2 m³ Sauerstoff</strong> benötigt. Berechnen Sie den Sauerstoffbedarf für <strong>${V} m³ Methan</strong>.`,
+        correct:O2,
+        unit:'m³ O₂',
+        steps:`V(O₂) = V(CH₄) × 2\nV(O₂) = ${V} × 2 = ${fmtN(O2)} m³ O₂`
+      }
+    },
+
+    () => {
+      const abgas = rnd(10,30,2)
+      const co2 = parseFloat((abgas*0.117).toFixed(2))
+      return {
+        cat:'🔥 Verbrennung',
+        question:`Bei vollständiger Verbrennung von Erdgas entstehen im Abgas maximal etwa <strong>11,7 % CO₂</strong>. Berechnen Sie die CO₂-Menge in <strong>${abgas} m³ Abgas</strong>.`,
+        correct:co2,
+        unit:'m³ CO₂',
+        steps:`V(CO₂) = V(Abgas) × 0,117\nV(CO₂) = ${abgas} × 0,117 = ${fmtN(co2)} m³ CO₂`
+      }
+    },
+
+    () => {
+      const gas = rnd(4,12,1)
+      const luft = parseFloat((gas*10).toFixed(2))
+      return {
+        cat:'🔥 Verbrennung',
+        question:`Für die Verbrennung von Flüssiggas werden etwa <strong>10 m³ Luft pro m³ Gas</strong> benötigt. Berechnen Sie den Luftbedarf für <strong>${gas} m³ Flüssiggas</strong>.`,
+        correct:luft,
+        unit:'m³ Luft',
+        steps:`L = V(Gas) × 10\nL = ${gas} × 10 = ${fmtN(luft)} m³ Luft`
+      }
+    },
+
+    () => {
+      const Lt = rnd(9,11,0.5)
+      const lambda = rnd(1.1,1.5,0.1)
+      const L = parseFloat((Lt*lambda).toFixed(2))
+      return {
+        cat:'🔥 Verbrennung',
+        question:`Der theoretische Luftbedarf beträgt <strong>${fmtN(Lt)} m³</strong>. Der Luftfaktor beträgt <strong>λ = ${fmtN(lambda)}</strong>. Berechnen Sie die tatsächlich zugeführte Luftmenge.`,
+        correct:L,
+        unit:'m³ Luft',
+        steps:`L = λ × Lₜ\nL = ${fmtN(lambda)} × ${fmtN(Lt)} = ${fmtN(L)} m³ Luft`
+      }
+    },
+
+    () => {
+      const gas = rnd(3,8,1)
+      const luft = parseFloat((gas*9.52).toFixed(2))
+      return {
+        cat:'🔥 Verbrennung',
+        question:`Berechnen Sie den theoretischen Luftbedarf für <strong>${gas} m³ Methan</strong>.`,
+        correct:luft,
+        unit:'m³ Luft'
+      }
+    },
+
+    () => {
+      const Lt = rnd(8,12,0.5)
+      const lambda = rnd(1.1,1.4,0.1)
+      const L = parseFloat((Lt*lambda).toFixed(2))
+      return {
+        cat:'🔥 Verbrennung',
+        question:`Der theoretische Luftbedarf beträgt <strong>${fmtN(Lt)} m³</strong>. Der Luftfaktor beträgt <strong>λ = ${fmtN(lambda)}</strong>. Berechnen Sie die tatsächlich zugeführte Luftmenge.`,
+        correct:L,
+        unit:'m³ Luft'
+      }
+    },
+
+    () => {
+      const abgas = rnd(10,40,5)
+      const co2 = parseFloat((abgas*0.117).toFixed(2))
+      return {
+        cat:'🔥 Verbrennung',
+        question:`Im Abgas entstehen maximal <strong>11,7 % CO₂</strong>. Berechnen Sie die CO₂-Menge bei <strong>${abgas} m³ Abgas</strong>.`,
+        correct:co2,
+        unit:'m³ CO₂'
+      }
+    },
+
+    () => {
+      const gas = rnd(4,10,1)
+      const O2 = parseFloat((gas*2).toFixed(2))
+      return {
+        cat:'🔥 Verbrennung',
+        question:`Berechnen Sie den Sauerstoffbedarf für <strong>${gas} m³ Methan</strong>.`,
+        correct:O2,
+        unit:'m³ O₂'
+      }
+    },
+
+    () => {
+      const Lt = rnd(9,11,0.5)
+      const L = rnd(12,16,0.5)
+      const lambda = parseFloat((L/Lt).toFixed(2))
+      return {
+        cat:'🔥 Verbrennung',
+        question:`Der theoretische Luftbedarf beträgt <strong>${fmtN(Lt)} m³</strong>. Tatsächlich werden <strong>${fmtN(L)} m³ Luft</strong> zugeführt. Berechnen Sie den Luftfaktor.`,
+        correct:lambda,
+        unit:'λ'
+      }
+    },
+
+    () => {
+      const gas = rnd(2,6,1)
+      const luft = parseFloat((gas*10).toFixed(2))
+      return {
+        cat:'🔥 Verbrennung',
+        question:`Für Flüssiggas werden etwa <strong>10 m³ Luft pro m³ Gas</strong> benötigt. Berechnen Sie den Luftbedarf für <strong>${gas} m³ Gas</strong>.`,
+        correct:luft,
+        unit:'m³ Luft'
+      }
+    }
+  ],
+
+  feuchte: [
+    () => {
+      const W1 = rnd(10,25,1)
+      const W2 = rnd(3,8,1)
+      const W = W1-W2
+      return {
+        cat:'💧 Feuchte',
+        question:`Eine keramische Masse enthält anfangs <strong>${W1} kg Wasser</strong>. Nach der Trocknung sind noch <strong>${W2} kg Wasser</strong> vorhanden. Berechnen Sie die beim Trocknen entfernte Wassermenge.`,
+        correct:W,
+        unit:'kg',
+        steps:`m(W,entfernt) = m(W,anfangs) − m(W,Rest)\n${W1} − ${W2} = ${W} kg`
+      }
+    },
+
+    () => {
+      const m = rnd(3,12,1)
+      const energie = m*2257
+      return {
+        cat:'💧 Feuchte',
+        question:`Bei der Trocknung werden <strong>${m} kg Wasser</strong> verdampft. Berechnen Sie die benötigte Verdampfungsenergie. Verwenden Sie <strong>r = 2257 kJ/kg</strong>.`,
+        correct:energie,
+        unit:'kJ',
+        steps:`Q = m × r\nQ = ${m} × 2257 = ${fmtN(energie)} kJ`
+      }
+    },
+
+    () => {
+      const W = rnd(5,20,1)
+      const zeit = rnd(2,6,1)
+      const rate = parseFloat((W/zeit).toFixed(2))
+      return {
+        cat:'💧 Feuchte',
+        question:`Während der Trocknung werden <strong>${W} kg Wasser</strong> in <strong>${zeit} Stunden</strong> entfernt. Berechnen Sie die Trocknungsrate.`,
+        correct:rate,
+        unit:'kg/h',
+        steps:`Trocknungsrate = Wassermenge / Zeit\n${W} / ${zeit} = ${fmtN(rate)} kg/h`
+      }
+    },
+
+    () => {
+      const luft = rnd(200,500,50)
+      const feuchte = rnd(5,20,1)
+      const wasser = parseFloat((luft*feuchte/100).toFixed(2))
+      return {
+        cat:'💧 Feuchte',
+        question:`Ein Luftstrom von <strong>${luft} kg</strong> Luft enthält <strong>${feuchte} % Wasser</strong>. Berechnen Sie die enthaltene Wassermenge.`,
+        correct:wasser,
+        unit:'kg',
+        steps:`m(W) = m(Luft) × Feuchte\nm(W) = ${luft} × ${feuchte}/100 = ${fmtN(wasser)} kg`
+      }
+    },
+
+    () => {
+      const W = rnd(8,20,2)
+      const energie = W*2257
+      return {
+        cat:'💧 Feuchte',
+        question:`Beim Trocknen werden <strong>${W} kg Wasser</strong> entfernt. Berechnen Sie die dafür benötigte Verdampfungsenergie.`,
+        correct:energie,
+        unit:'kJ'
+      }
+    },
+
+    () => {
+      const luft = rnd(200,500,50)
+      const x = rnd(5,15,1)
+      const wasser = parseFloat((luft*x/1000).toFixed(2))
+      return {
+        cat:'💧 Feuchte',
+        question:`Ein Luftstrom von <strong>${luft} kg trockener Luft</strong> enthält eine absolute Feuchte von <strong>${x} g/kg</strong>. Berechnen Sie die enthaltene Wassermenge.`,
+        correct:wasser,
+        unit:'kg'
+      }
+    },
+
+    () => {
+      const luft = rnd(300,600,50)
+      const x1 = rnd(6,10,1)
+      const x2 = rnd(12,18,1)
+      const wasser = parseFloat((luft*(x2-x1)/1000).toFixed(2))
+      return {
+        cat:'💧 Feuchte',
+        question:`Ein Luftstrom von <strong>${luft} kg Luft</strong> wird von <strong>${x1} g/kg</strong> auf <strong>${x2} g/kg</strong> befeuchtet. Berechnen Sie die aufgenommene Wassermenge.`,
+        correct:wasser,
+        unit:'kg'
+      }
+    },
+
+    () => {
+      const luft = rnd(200,400,50)
+      const x = rnd(8,16,1)
+      const wasser = parseFloat((luft*x/1000).toFixed(2))
+      return {
+        cat:'💧 Feuchte',
+        question:`Ein Trockner fördert <strong>${luft} kg Luft pro Stunde</strong>. Die Luft enthält <strong>${x} g Wasser pro kg Luft</strong>. Berechnen Sie die Wassermenge pro Stunde.`,
+        correct:wasser,
+        unit:'kg/h'
+      }
+    },
+
+    () => {
+      const wasser = rnd(5,20,1)
+      const energie = wasser*2257
+      return {
+        cat:'💧 Feuchte',
+        question:`Beim Trocknen werden <strong>${wasser} kg Wasser</strong> verdampft. Berechnen Sie die benötigte Verdampfungsenergie.`,
+        correct:energie,
+        unit:'kJ'
+      }
+    },
+
+    () => {
+      const luft = rnd(150,400,50)
+      const delta = rnd(4,10,1)
+      const wasser = parseFloat((luft*delta/1000).toFixed(2))
+      return {
+        cat:'💧 Feuchte',
+        question:`Ein Luftstrom von <strong>${luft} kg Luft</strong> nimmt <strong>${delta} g Wasser pro kg Luft</strong> auf. Berechnen Sie die Gesamtwassermenge.`,
+        correct:wasser,
+        unit:'kg'
+      }
+    },
+
+    () => {
+      const wasser = rnd(8,25,1)
+      const zeit = rnd(2,6,1)
+      const rate = parseFloat((wasser/zeit).toFixed(2))
+      return {
+        cat:'💧 Feuchte',
+        question:`Während der Trocknung werden <strong>${wasser} kg Wasser</strong> in <strong>${zeit} Stunden</strong> entfernt. Berechnen Sie die Trocknungsrate.`,
+        correct:rate,
+        unit:'kg/h'
+      }
+    }
+  ],
+
+  porositaet: [
+    () => {
+      const V = rnd(1,5,0.5)
+      const pore = rnd(0.2,1.5,0.1)
+      const P = parseFloat((pore/V*100).toFixed(1))
+      return {
+        cat:'🧱 Porosität',
+        question:`Ein keramischer Körper hat ein Gesamtvolumen von <strong>${fmtN(V)} dm³</strong>. Das Porenvolumen beträgt <strong>${fmtN(pore)} dm³</strong>. Berechnen Sie die Porosität.`,
+        correct:P,
+        unit:'%',
+        steps:`P = V(Poren) / V(gesamt) × 100\nP = ${fmtN(pore)} / ${fmtN(V)} × 100 = ${fmtN(P)} %`
+      }
+    },
+
+    () => {
+      const V = rnd(2,6,0.5)
+      const P = rnd(10,35,5)
+      const pore = parseFloat((V*P/100).toFixed(2))
+      return {
+        cat:'🧱 Porosität',
+        question:`Ein keramischer Körper besitzt eine Porosität von <strong>${P} %</strong>. Das Gesamtvolumen beträgt <strong>${fmtN(V)} dm³</strong>. Berechnen Sie das Porenvolumen.`,
+        correct:pore,
+        unit:'dm³',
+        steps:`V(Poren) = V(gesamt) × P / 100\nV(Poren) = ${fmtN(V)} × ${P}/100 = ${fmtN(pore)} dm³`
+      }
+    },
+
+    () => {
+      const V = rnd(2,6,1)
+      const solid = rnd(1,4,0.5)
+      const pore = parseFloat((V-solid).toFixed(2))
+      return {
+        cat:'🧱 Porosität',
+        question:`Ein keramischer Körper hat ein Gesamtvolumen von <strong>${fmtN(V)} dm³</strong> und ein Feststoffvolumen von <strong>${fmtN(solid)} dm³</strong>. Berechnen Sie das Porenvolumen.`,
+        correct:pore,
+        unit:'dm³',
+        steps:`V(Poren) = V(gesamt) − V(Feststoff)\n${fmtN(V)} − ${fmtN(solid)} = ${fmtN(pore)} dm³`
+      }
+    },
+
+    () => {
+      const pore = rnd(0.3,1.2,0.1)
+      const V = rnd(2,5,0.5)
+      const P = parseFloat((pore/V*100).toFixed(1))
+      return {
+        cat:'🧱 Porosität',
+        question:`Ein keramischer Körper besitzt <strong>${fmtN(pore)} dm³ Porenvolumen</strong> bei einem Gesamtvolumen von <strong>${fmtN(V)} dm³</strong>. Bestimmen Sie die Porosität.`,
+        correct:P,
+        unit:'%'
+      }
+    },
+
+    () => {
+      const V = rnd(2,5,0.5)
+      const pore = rnd(0.3,1.2,0.1)
+      const P = parseFloat((pore/V*100).toFixed(1))
+      return {
+        cat:'🧱 Porosität',
+        question:`Ein keramischer Körper besitzt <strong>${fmtN(pore)} dm³ Porenvolumen</strong> bei einem Gesamtvolumen von <strong>${fmtN(V)} dm³</strong>. Berechnen Sie die Porosität.`,
+        correct:P,
+        unit:'%'
+      }
+    },
+
+    () => {
+      const V = rnd(2,6,0.5)
+      const P = rnd(10,35,5)
+      const pore = parseFloat((V*P/100).toFixed(2))
+      return {
+        cat:'🧱 Porosität',
+        question:`Ein keramischer Körper besitzt eine Porosität von <strong>${P} %</strong>. Das Gesamtvolumen beträgt <strong>${fmtN(V)} dm³</strong>. Berechnen Sie das Porenvolumen.`,
+        correct:pore,
+        unit:'dm³'
+      }
+    },
+
+    () => {
+      const pore = rnd(0.4,1.5,0.1)
+      const V = rnd(2,5,0.5)
+      const P = parseFloat((pore/V*100).toFixed(1))
+      return {
+        cat:'🧱 Porosität',
+        question:`Ein keramischer Körper besitzt ein Porenvolumen von <strong>${fmtN(pore)} dm³</strong> bei einem Gesamtvolumen von <strong>${fmtN(V)} dm³</strong>. Bestimmen Sie die Porosität.`,
+        correct:P,
+        unit:'%'
+      }
+    }
+  ],
+
+  schwindung: [
+    () => {
+      const L1 = rnd(100,200,10)
+      const L2 = rnd(80,150,10)
+      const S = parseFloat(((L1-L2)/L1*100).toFixed(1))
+      return {
+        cat:'📉 Schwindung',
+        question:`Ein keramisches Werkstück ist im feuchten Zustand <strong>${L1} mm</strong> lang und nach dem Brennen <strong>${L2} mm</strong> lang. Berechnen Sie die lineare Schwindung.`,
+        correct:S,
+        unit:'%',
+        steps:`S = (L₁ − L₂) / L₁ × 100\nS = (${L1} − ${L2}) / ${L1} × 100 = ${fmtN(S)} %`
+      }
+    },
+
+    () => {
+      const L = rnd(120,200,10)
+      const S = rnd(5,12,1)
+      const L2 = parseFloat((L*(1-S/100)).toFixed(1))
+      return {
+        cat:'📉 Schwindung',
+        question:`Ein Werkstück besitzt eine lineare Schwindung von <strong>${S} %</strong>. Die ursprüngliche Länge beträgt <strong>${L} mm</strong>. Berechnen Sie die Länge nach dem Brennen.`,
+        correct:L2,
+        unit:'mm',
+        steps:`L₂ = L₁ × (1 − S/100)\nL₂ = ${L} × (1 − ${S}/100) = ${fmtN(L2)} mm`
+      }
+    },
+
+    () => {
+      const V1 = rnd(100,200,10)
+      const V2 = rnd(60,150,10)
+      const S = parseFloat(((V1-V2)/V1*100).toFixed(1))
+      return {
+        cat:'📉 Schwindung',
+        question:`Das Volumen eines keramischen Körpers verringert sich von <strong>${V1} cm³</strong> auf <strong>${V2} cm³</strong>. Berechnen Sie die Volumenschwindung.`,
+        correct:S,
+        unit:'%',
+        steps:`Sᵥ = (V₁ − V₂) / V₁ × 100\nSᵥ = (${V1} − ${V2}) / ${V1} × 100 = ${fmtN(S)} %`
+      }
+    },
+
+    () => {
+      const L1 = rnd(150,250,10)
+      const L2 = rnd(110,200,10)
+      const S = parseFloat(((L1-L2)/L1*100).toFixed(1))
+      return {
+        cat:'📉 Schwindung',
+        question:`Ein keramisches Werkstück schrumpft von <strong>${L1} mm</strong> auf <strong>${L2} mm</strong>. Berechnen Sie die lineare Schwindung.`,
+        correct:S,
+        unit:'%'
+      }
+    },
+
+    () => {
+      const L1 = rnd(120,200,10)
+      const L2 = rnd(100,170,10)
+      const S = parseFloat(((L1-L2)/L1*100).toFixed(1))
+      return {
+        cat:'📉 Schwindung',
+        question:`Ein Werkstück schrumpft von <strong>${L1} mm</strong> auf <strong>${L2} mm</strong>. Berechnen Sie die lineare Schwindung.`,
+        correct:S,
+        unit:'%'
+      }
+    },
+
+    () => {
+      const V1 = rnd(120,200,10)
+      const V2 = rnd(80,150,10)
+      const S = parseFloat(((V1-V2)/V1*100).toFixed(1))
+      return {
+        cat:'📉 Schwindung',
+        question:`Das Volumen eines keramischen Körpers sinkt von <strong>${V1} cm³</strong> auf <strong>${V2} cm³</strong>. Berechnen Sie die Volumenschwindung.`,
+        correct:S,
+        unit:'%'
+      }
+    },
+
+    () => {
+      const L = rnd(150,250,10)
+      const S = rnd(6,12,1)
+      const L2 = parseFloat((L*(1-S/100)).toFixed(1))
+      return {
+        cat:'📉 Schwindung',
+        question:`Ein keramisches Werkstück besitzt eine lineare Schwindung von <strong>${S} %</strong>. Die ursprüngliche Länge beträgt <strong>${L} mm</strong>. Berechnen Sie die Länge nach dem Brennen.`,
+        correct:L2,
+        unit:'mm'
+      }
+    }
+  ],
+
+  dichte: [
+    () => {
+      const m = rnd(2,6,0.5)
+      const V = rnd(1,3,0.2)
+      const rho = parseFloat((m/V).toFixed(2))
+      return {
+        cat:'⚖️ Dichte',
+        question:`Ein keramischer Rohling besitzt eine Masse von <strong>${fmtN(m)} kg</strong> und ein Volumen von <strong>${fmtN(V)} dm³</strong>. Berechnen Sie die Dichte.`,
+        correct:rho,
+        unit:'kg/dm³',
+        steps:`ρ = m / V\nρ = ${fmtN(m)} / ${fmtN(V)} = ${fmtN(rho)} kg/dm³`
+      }
+    },
+
+    () => {
+      const rho = rnd(1.8,2.6,0.1)
+      const V = rnd(1,4,0.5)
+      const m = parseFloat((rho*V).toFixed(2))
+      return {
+        cat:'⚖️ Dichte',
+        question:`Ein keramischer Werkstoff besitzt eine Dichte von <strong>${fmtN(rho)} kg/dm³</strong>. Das Volumen beträgt <strong>${fmtN(V)} dm³</strong>. Berechnen Sie die Masse.`,
+        correct:m,
+        unit:'kg',
+        steps:`m = ρ × V\nm = ${fmtN(rho)} × ${fmtN(V)} = ${fmtN(m)} kg`
+      }
+    },
+
+    () => {
+      const m = rnd(3,8,1)
+      const rho = rnd(2,3,0.1)
+      const V = parseFloat((m/rho).toFixed(2))
+      return {
+        cat:'⚖️ Dichte',
+        question:`Ein keramischer Körper besitzt eine Masse von <strong>${m} kg</strong> und eine Dichte von <strong>${fmtN(rho)} kg/dm³</strong>. Berechnen Sie das Volumen.`,
+        correct:V,
+        unit:'dm³',
+        steps:`V = m / ρ\nV = ${m} / ${fmtN(rho)} = ${fmtN(V)} dm³`
+      }
+    },
+
+    () => {
+      const m = rnd(3,7,0.5)
+      const V = rnd(1,3,0.2)
+      const rho = parseFloat((m/V).toFixed(2))
+      return {
+        cat:'⚖️ Dichte',
+        question:`Ein keramischer Rohling besitzt eine Masse von <strong>${fmtN(m)} kg</strong> und ein Volumen von <strong>${fmtN(V)} dm³</strong>. Berechnen Sie die Dichte.`,
+        correct:rho,
+        unit:'kg/dm³'
+      }
+    },
+
+    () => {
+      const rho = rnd(1.8,2.6,0.1)
+      const V = rnd(1,4,0.5)
+      const m = parseFloat((rho*V).toFixed(2))
+      return {
+        cat:'⚖️ Dichte',
+        question:`Ein keramischer Werkstoff besitzt eine Dichte von <strong>${fmtN(rho)} kg/dm³</strong> und ein Volumen von <strong>${fmtN(V)} dm³</strong>. Berechnen Sie die Masse.`,
+        correct:m,
+        unit:'kg'
+      }
+    }
+  ],
+
+  waerme: [
+    () => {
+      const m = rnd(100,300,50)
+      const dT = rnd(400,900,100)
+      const Q = m*dT
+      return {
+        cat:'🔥 Wärmelehre',
+        question:`Eine keramische Charge mit <strong>${m} kg Masse</strong> wird im Ofen um <strong>${dT} K</strong> erwärmt. Die spezifische Wärmekapazität beträgt <strong>1 kJ/(kg·K)</strong>. Berechnen Sie die benötigte Wärmemenge.`,
+        correct:Q,
+        unit:'kJ',
+        steps:`Q = m · c · ΔT\nQ = ${m} · 1 · ${dT} = ${Q} kJ`
+      }
+    },
+
+    () => {
+      const m = rnd(200,600,50)
+      const P = rnd(10,25,1)
+      const t = parseFloat((m/P).toFixed(1))
+      return {
+        cat:'🔥 Wärmelehre',
+        question:`Ein Ofen liefert eine Heizleistung von <strong>${P} kW</strong>. Wie lange dauert es, um <strong>${m} kWh</strong> Energie einzubringen?`,
+        correct:t,
+        unit:'h',
+        steps:`t = E / P\n${m} / ${P} = ${fmtN(t)} h`
+      }
+    },
+
+    () => {
+      const Q = rnd(20000,60000,5000)
+      const m = rnd(200,600,50)
+      const dT = parseFloat((Q/m).toFixed(0))
+      return {
+        cat:'🔥 Wärmelehre',
+        question:`Ein Ofen überträgt <strong>${Q} kJ Wärme</strong> auf eine keramische Masse von <strong>${m} kg</strong>. Die spezifische Wärmekapazität beträgt <strong>1 kJ/(kg·K)</strong>. Um wie viele Kelvin steigt die Temperatur?`,
+        correct:dT,
+        unit:'K',
+        steps:`ΔT = Q / (m · c)\nΔT = ${Q} / (${m} · 1) = ${fmtN(dT)} K`
+      }
+    },
+
+    () => {
+      const E = rnd(20,60,5)
+      const P = rnd(5,15,1)
+      const t = parseFloat((E/P).toFixed(2))
+      return {
+        cat:'🔥 Wärmelehre',
+        question:`Ein Brenner liefert <strong>${P} kW Leistung</strong>. Wie lange dauert es, um <strong>${E} kWh Energie</strong> einzubringen?`,
+        correct:t,
+        unit:'h'
+      }
+    },
+
+    () => {
+      const m = rnd(100,500,50)
+      const c = 1
+      const dT = rnd(300,800,100)
+      const Q = m*c*dT
+      return {
+        cat:'🔥 Wärmelehre',
+        question:`Eine keramische Charge mit <strong>${m} kg</strong> wird um <strong>${dT} K</strong> erwärmt. Die spezifische Wärmekapazität beträgt <strong>1 kJ/(kg·K)</strong>. Berechnen Sie die Wärmemenge.`,
+        correct:Q,
+        unit:'kJ'
+      }
+    }
+  ],
+
+  wak: [
+    () => {
+      const L0 = rnd(500,1200,50)
+      const alpha = rnd(4,8,0.5)
+      const dT = rnd(400,900,50)
+      const dL = parseFloat((L0 * alpha * 1e-6 * dT).toFixed(2))
+      return {
+        cat:'📏 WAK',
+        question:`Ein keramisches Rohr besitzt bei Raumtemperatur eine Länge von <strong>${L0} mm</strong>. Der Wärmeausdehnungskoeffizient beträgt <strong>${fmtN(alpha)} · 10⁻⁶/K</strong>. Das Bauteil wird um <strong>${dT} K</strong> erwärmt. Berechnen Sie die Längenänderung.`,
+        correct:dL,
+        unit:'mm',
+        steps:`ΔL = L₀ · α · ΔT\nΔL = ${L0} · (${fmtN(alpha)}·10⁻⁶) · ${dT} = ${fmtN(dL)} mm`
+      }
+    },
+
+    () => {
+      const L0 = rnd(500,1500,100)
+      const dL = rnd(2,8,0.5)
+      const dT = rnd(400,1000,50)
+      const alpha = parseFloat((dL / (L0*dT) * 1e6).toFixed(2))
+      return {
+        cat:'📏 WAK',
+        question:`Ein Bauteil mit einer Ausgangslänge von <strong>${L0} mm</strong> verlängert sich bei einer Temperaturerhöhung von <strong>${dT} K</strong> um <strong>${fmtN(dL)} mm</strong>. Berechnen Sie den Wärmeausdehnungskoeffizienten in <strong>10⁻⁶/K</strong>.`,
+        correct:alpha,
+        unit:'10⁻⁶/K',
+        steps:`α = ΔL / (L₀ · ΔT)\nα = ${fmtN(dL)} / (${L0} · ${dT}) = ${fmtN(alpha)} · 10⁻⁶/K`
+      }
+    },
+
+    () => {
+      const alpha = rnd(4,9,0.5)
+      const dT = rnd(300,900,50)
+      const L0 = rnd(400,1200,50)
+      const L2 = parseFloat((L0 * (1 + alpha*1e-6*dT)).toFixed(2))
+      return {
+        cat:'📏 WAK',
+        question:`Ein keramisches Bauteil ist bei Raumtemperatur <strong>${L0} mm</strong> lang. Der Wärmeausdehnungskoeffizient beträgt <strong>${fmtN(alpha)} · 10⁻⁶/K</strong>. Das Teil wird um <strong>${dT} K</strong> erwärmt. Berechnen Sie die Endlänge.`,
+        correct:L2,
+        unit:'mm',
+        steps:`L₂ = L₀ · (1 + α·ΔT)\nL₂ = ${L0} · (1 + ${fmtN(alpha)}·10⁻⁶·${dT}) = ${fmtN(L2)} mm`
+      }
+    }
+  ],
+
+  physik: [
+    () => {
+      const m = rnd(2,6,0.5)
+      const V = rnd(1,3,0.2)
+      const rho = parseFloat((m/V).toFixed(2))
+      return {
+        cat:'⚡ Physik',
+        question:`Ein keramischer Rohling hat eine Masse von <strong>${fmtN(m)} kg</strong> und ein Volumen von <strong>${fmtN(V)} dm³</strong>. Berechnen Sie die Dichte des Materials.`,
+        correct:rho,
+        unit:'kg/dm³',
+        steps:`ρ = m / V\nρ = ${fmtN(m)} / ${fmtN(V)} = ${fmtN(rho)} kg/dm³`
+      }
+    }
+  ],
+
+  getriebe: [
+    () => {
+      const n1 = rnd(600,1500,50)
+      const i = rnd(2,6,0.5)
+      const n2 = parseFloat((n1/i).toFixed(1))
+      return {
+        cat:'⚙️ Getriebe',
+        question:`Ein Untersetzungsgetriebe besitzt die Übersetzung <strong>i = ${fmtN(i)}</strong>. Die Antriebsdrehzahl beträgt <strong>${n1} min⁻¹</strong>. Berechnen Sie die Abtriebsdrehzahl.`,
+        correct:n2,
+        unit:'min⁻¹',
+        steps:`i = n₁ / n₂  →  n₂ = n₁ / i\nn₂ = ${n1} / ${fmtN(i)} = ${fmtN(n2)} min⁻¹`
+      }
+    }
+  ]
+};
+
+for (const [k, arr] of Object.entries(EXTRA_AUFGABEN)) {
+  if (Array.isArray(AUFGABEN[k])) AUFGABEN[k].push(...arr);
+  else AUFGABEN[k] = arr;
+}
