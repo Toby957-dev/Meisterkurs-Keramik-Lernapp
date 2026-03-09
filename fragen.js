@@ -2166,6 +2166,776 @@ const BANK = [
   ], a:1,
   e:"Gipshalbhydrat (CaSO₄·½H₂O) → beim Abbinden entsteht poröses CaSO₄·2H₂O-Gefüge mit ~40–50 % offener Porosität. Kapillarkräfte saugen Wasser aus dem Schlicker → Feststoffpartikel werden an der Formwand abgelagert → Scherbenbildung. Nachteil: begrenzte Formstandzeit (~50–200 Abgüsse)."},
 
+{
+c:"Trocknung",
+d:1,
+q:"Welche Eigenschaft der Luft bestimmt, wie viel Wasserdampf sie maximal aufnehmen kann?",
+o:[
+"Der Luftdruck",
+"Die Lufttemperatur",
+"Die Luftgeschwindigkeit",
+"Die Luftdichte"
+],
+a:1,
+e:"Je höher die Lufttemperatur, desto mehr Wasserdampf kann die Luft aufnehmen."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Warum sollte keramische Ware möglichst gleichmäßig trocknen?",
+o:[
+"Um eine gleichmäßige Farbe zu erhalten",
+"Um Spannungen und Rissbildung zu vermeiden",
+"Um Energie zu sparen",
+"Um den Brennprozess zu verkürzen"
+],
+a:1,
+e:"Ungleichmäßige Trocknung führt zu Spannungen im Scherben und kann Risse oder Verformungen verursachen."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Welche Maßnahme kann helfen, Verformungen beim Trocknen zu vermeiden?",
+o:[
+"Sehr hohe Trocknungstemperaturen",
+"Sehr schnelle Luftbewegung",
+"Langsame und gleichmäßige Trocknung",
+"Direkte Sonneneinstrahlung"
+],
+a:2,
+e:"Eine langsame und gleichmäßige Trocknung reduziert Spannungen im Scherben."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Was beschreibt der Begriff 'relative Luftfeuchtigkeit'?",
+o:[
+"Die absolute Menge Wasser in der Luft",
+"Den Anteil der aktuell vorhandenen Feuchte im Verhältnis zur maximal möglichen",
+"Die Temperatur der Luft",
+"Den Luftdruck"
+],
+a:1,
+e:"Relative Luftfeuchte beschreibt das Verhältnis zwischen vorhandener und maximal möglicher Wasserdampfmenge."
+},
+
+{
+c:"Trocknung",
+d:3,
+q:"Warum wird in Trocknern häufig Luft bewegt?",
+o:[
+"Um den Sauerstoffgehalt zu erhöhen",
+"Um die Luftfeuchtigkeit schneller abzutransportieren",
+"Um die Ware zu kühlen",
+"Um den Luftdruck zu erhöhen"
+],
+a:1,
+e:"Luftbewegung transportiert feuchte Luft ab und ersetzt sie durch trockenere Luft."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Warum trocknen dünnwandige keramische Produkte schneller als dickwandige?",
+o:[
+"Weil sie schwerer sind",
+"Because they contain less water",
+"Weil der Weg für den Wassertransport kürzer ist",
+"Weil sie höhere Temperaturen haben"
+],
+a:2,
+e:"Bei dünnen Wandstärken ist der Weg für den Feuchtetransport kürzer."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Was versteht man unter 'Kapillarwasser' im keramischen Scherben?",
+o:[
+"Chemisch gebundenes Wasser",
+"Wasser in den Poren und Kapillaren",
+"Wasser in der Luft",
+"Oberflächenwasser nach dem Brennen"
+],
+a:1,
+e:"Kapillarwasser befindet sich in den Poren und wird durch Kapillarkräfte transportiert."
+},
+
+{
+c:"Trocknung",
+d:3,
+q:"Warum kann eine zu schnelle Oberflächentrocknung problematisch sein?",
+o:[
+"Die Oberfläche wird zu weich",
+"Die Oberfläche schrumpft schneller als das Innere",
+"Die Keramik wird zu schwer",
+"Die Temperatur sinkt"
+],
+a:1,
+e:"Wenn die Oberfläche schneller schrumpft als das Innere entstehen Spannungen."
+},
+
+{
+c:"h/x Diagramm",
+d:1,
+q:"Was zeigt eine Linie konstanter relativer Feuchte im h/x-Diagramm?",
+o:[
+"Die maximale Temperatur",
+"Den Verlauf gleicher relativer Feuchtewerte",
+"Den Luftdruck",
+"Die Luftgeschwindigkeit"
+],
+a:1,
+e:"Linien gleicher relativer Feuchte zeigen Zustände mit gleichem Feuchteverhältnis."
+},
+
+{
+c:"h/x Diagramm",
+d:2,
+q:"Was passiert mit der relativen Luftfeuchte, wenn Luft erwärmt wird ohne Wasser zuzuführen?",
+o:[
+"Sie steigt",
+"Sie sinkt",
+"Sie bleibt konstant",
+"Sie wird 100%"
+],
+a:1,
+e:"Warme Luft kann mehr Wasserdampf aufnehmen, daher sinkt die relative Feuchte."
+},
+
+{
+c:"h/x Diagramm",
+d:2,
+q:"Was bedeutet eine Bewegung entlang einer h-Linie im h/x-Diagramm?",
+o:[
+"Konstante Enthalpie",
+"Konstante Temperatur",
+"Konstanter Druck",
+"Konstante Luftgeschwindigkeit"
+],
+a:0,
+e:"Die h-Linie beschreibt Zustände gleicher Enthalpie."
+},
+
+{
+c:"h/x Diagramm",
+d:3,
+q:"Was passiert im h/x-Diagramm bei einer idealen Trocknung ohne Zwischenaufheizung?",
+o:[
+"Die Luft bewegt sich entlang einer Enthalpielinie",
+"Die Luft bleibt konstant",
+"Die Temperatur steigt ständig",
+"Die Feuchte bleibt konstant"
+],
+a:0,
+e:"Bei idealer Trocknung bleibt die Enthalpie theoretisch konstant."
+},
+
+{
+c:"h/x Diagramm",
+d:2,
+q:"Was zeigt der Nullpunkt im h/x-Diagramm?",
+o:[
+"Trockene Luft ohne Wasserdampf",
+"Luft bei 100°C",
+"Luft bei 100% Feuchte",
+"Den höchsten Energiegehalt"
+],
+a:0,
+e:"Der Nullpunkt beschreibt trockene Luft ohne Wasserdampf."
+},
+
+{
+c:"Messtechnik",
+d:1,
+q:"Was misst ein Psychrometer grundsätzlich?",
+o:[
+"Luftdruck",
+"Luftfeuchtigkeit",
+"Luftgeschwindigkeit",
+"Luftdichte"
+],
+a:1,
+e:"Psychrometer messen die Luftfeuchtigkeit über Temperaturdifferenzen."
+},
+
+{c:"Messtechnik",
+d:2,
+q:"Warum ist beim Psychrometer ein Luftstrom wichtig?",
+o:[
+"Er kühlt das Gerät",
+"Er sorgt für eine korrekte Verdunstung am Feuchtthermometer",
+"Er erhöht den Luftdruck",
+"Er erwärmt das Wasser"
+],
+a:1,
+e:"Der Luftstrom sorgt für eine definierte Verdunstung am Feuchtthermometer."
+},
+
+{
+c:"Messtechnik",
+d:2,
+q:"Was passiert mit der Feuchtkugeltemperatur bei trockener Luft?",
+o:[
+"Sie steigt",
+"Sie sinkt deutlich",
+"Sie bleibt gleich",
+"Sie erreicht 100°C"
+],
+a:1,
+e:"Bei trockener Luft verdunstet mehr Wasser, wodurch die Temperatur sinkt."
+},
+
+{
+c:"Messtechnik",
+d:2,
+q:"Was zeigt eine große Differenz zwischen Trocken- und Feuchtkugeltemperatur an?",
+o:[
+"Hohe Luftfeuchtigkeit",
+"Geringe Luftfeuchtigkeit",
+"Hohe Luftgeschwindigkeit",
+"Niedrigen Luftdruck"
+],
+a:1,
+e:"Je trockener die Luft, desto stärker ist die Verdunstung und damit die Temperaturdifferenz."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Warum wird in vielen Trocknern die Luft vorgewärmt?",
+o:[
+"Um die Ware zu kühlen",
+"Um die Wasseraufnahmefähigkeit der Luft zu erhöhen",
+"Um den Luftdruck zu erhöhen",
+"Um den Brennvorgang zu starten"
+],
+a:1,
+e:"Warme Luft kann mehr Wasserdampf aufnehmen und verbessert so die Trocknung."
+},
+
+{
+c:"Trocknung",
+d:3,
+q:"Warum wird Abluft aus Trocknern häufig abgeführt?",
+o:[
+"Um den Sauerstoff zu erhöhen",
+"Um feuchte Luft zu entfernen",
+"Um den Druck zu reduzieren",
+"Um Energie zu sparen"
+],
+a:1,
+e:"Die feuchte Luft muss entfernt werden, damit neue trockene Luft Feuchtigkeit aufnehmen kann."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Welche Größe beschreibt die Wasserdampfmenge pro kg trockener Luft?",
+o:[
+"Relative Feuchte",
+"Absolute Feuchte",
+"Temperatur",
+"Luftdruck"
+],
+a:1,
+e:"Absolute Feuchte gibt die Wasserdampfmenge pro kg trockene Luft an."
+},
+
+{
+c:"Trocknung",
+d:1,
+q:"Welchen Einfluss hat eine hohe Luftfeuchtigkeit auf die Verdampfung von Wasser?",
+o:[
+"Die Verdampfung wird beschleunigt",
+"Die Verdampfung wird verlangsamt",
+"Die Verdampfung bleibt unverändert",
+"Die Verdampfung stoppt vollständig"
+],
+a:1,
+e:"Je höher die relative Luftfeuchtigkeit, desto geringer ist das Aufnahmevermögen der Luft für weiteren Wasserdampf. Dadurch verlangsamt sich die Verdampfung."
+},
+
+{
+c:"Trocknung",
+d:1,
+q:"Bei welcher Temperatur beginnt Wasser zu verdunsten?",
+o:[
+"Erst ab 100°C",
+"Erst ab 50°C",
+"Bei jeder Temperatur oberhalb des Gefrierpunkts",
+"Erst ab 20°C"
+],
+a:2,
+e:"Verdunstung findet bei jeder Temperatur statt, solange Wasser vorhanden ist. Die Geschwindigkeit steigt jedoch mit der Temperatur."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Wo trocknet eine plastisch geformte keramische Ware zuerst?",
+o:[
+"Im Inneren des Scherbens",
+"An der Oberfläche des Scherbens",
+"Gleichmäßig im gesamten Scherben",
+"Nur an den dicksten Stellen"
+],
+a:1,
+e:"Die Verdunstung beginnt an der Oberfläche. Von dort wird Wasser durch Kapillarkräfte aus dem Inneren nachtransportiert."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Warum können beim Trocknen keramischer Ware Risse entstehen?",
+o:[
+"Weil sich die Oberfläche stärker ausdehnt als das Innere",
+"Weil unterschiedliche Trocknungsgeschwindigkeiten Spannungen erzeugen",
+"Weil die Keramik während der Trocknung schmilzt",
+"Weil Wasser chemisch gebunden wird"
+],
+a:1,
+e:"Wenn die Oberfläche schneller trocknet als das Innere, entstehen Spannungen im Scherben, die zu Rissen führen können."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Was geschieht beim Übertrocknen keramischer Scherben?",
+o:[
+"Die Ware wird mechanisch stabiler",
+"Der Scherben verliert seine Restfeuchte vollständig und wird spröde",
+"Die Ware beginnt zu schmelzen",
+"Der Scherben nimmt wieder Wasser auf"
+],
+a:1,
+e:"Beim Übertrocknen wird dem Scherben zu viel Wasser entzogen, wodurch er spröde wird und leicht beschädigt werden kann."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Was verbessert den Kapillartransport von Wasser im keramischen Scherben?",
+o:[
+"Kleinere Poren und Kapillaren",
+"Größere, zusammenhängende Poren",
+"Eine vollständig glatte Oberfläche",
+"Eine niedrigere Temperatur"
+],
+a:1,
+e:"Größere und zusammenhängende Poren erleichtern den Transport von Wasser durch Kapillarkräfte."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Welche Feuchte beeinflusst maßgeblich die Trocknungsgeschwindigkeit?",
+o:[
+"Absolute Feuchte der Luft",
+"Relative Feuchte der Luft",
+"Feuchte des Ofens",
+"Luftdruck"
+],
+a:1,
+e:"Die relative Luftfeuchtigkeit bestimmt, wie viel Wasserdampf die Luft noch aufnehmen kann."
+},
+
+{
+c:"Trocknung",
+d:3,
+q:"Welche drei Abschnitte treten typischerweise im Trocknungsprozess auf?",
+o:[
+"Aufheizen – Schmelzen – Abkühlen",
+"Anwärmen – Verdampfen – Kondensieren",
+"Aufheizphase – konstante Trocknungsphase – fallende Trocknungsphase",
+"Verdichten – Brennen – Abkühlen"
+],
+a:2,
+e:"Ein idealer Trocknungsprozess besteht aus Aufheizphase, konstanter Trocknungsrate und fallender Trocknungsrate."
+},
+
+{
+c:"Trocknung",
+d:2,
+q:"Was passiert mit der Trocknungsgeschwindigkeit bei steigender Lufttemperatur?",
+o:[
+"Sie nimmt ab",
+"Sie bleibt konstant",
+"Sie nimmt zu",
+"Sie wird unabhängig von der Luftfeuchte"
+],
+a:2,
+e:"Höhere Temperaturen erhöhen die Verdunstungsrate und beschleunigen die Trocknung."
+},
+
+{
+c:"h/x Diagramm",
+d:1,
+q:"Welche Größen sind im h/x-Diagramm dargestellt?",
+o:[
+"Temperatur und Druck",
+"Enthalpie und absolute Feuchte",
+"Relative Feuchte und Druck",
+"Temperatur und Luftgeschwindigkeit"
+],
+a:1,
+e:"Im h/x-Diagramm werden Enthalpie (h) und absolute Feuchte (x) dargestellt."
+},
+
+{
+c:"h/x Diagramm",
+d:1,
+q:"Was beschreibt die absolute Feuchte x der Luft?",
+o:[
+"Den Anteil Wasserdampf pro kg trockene Luft",
+"Den prozentualen Wassergehalt der Luft",
+"Die Temperatur der Luft",
+"Den Luftdruck"
+],
+a:0,
+e:"Absolute Feuchte beschreibt die Masse an Wasserdampf pro kg trockener Luft."
+},
+
+{
+c:"h/x Diagramm",
+d:2,
+q:"Welche Rolle spielt die Temperatur bei der Trocknung?",
+o:[
+"Sie hat keinen Einfluss",
+"Sie bestimmt die maximale Wasserdampfaufnahme der Luft",
+"Sie beeinflusst nur den Druck",
+"Sie verändert nur die Farbe der Ware"
+],
+a:1,
+e:"Mit steigender Temperatur kann Luft mehr Wasserdampf aufnehmen."
+},
+
+{
+c:"Messtechnik",
+d:2,
+q:"Wozu dient ein Assmann-Psychrometer?",
+o:[
+"Zur Messung der Luftgeschwindigkeit",
+"Zur Bestimmung der relativen Luftfeuchte",
+"Zur Messung der Lufttemperatur im Ofen",
+"Zur Bestimmung des Luftdrucks"
+],
+a:1,
+e:"Ein Assmann-Psychrometer misst Trocken- und Feuchtkugeltemperatur zur Bestimmung der relativen Luftfeuchte."
+},
+
+{
+c:"Messtechnik",
+d:2,
+q:"Welche zwei Temperaturen werden beim Assmann-Psychrometer gemessen?",
+o:[
+"Ofentemperatur und Umgebungstemperatur",
+"Trocken- und Feuchtkugeltemperatur",
+"Taupunkt und Siedepunkt",
+"Verdampfungs- und Kondensationstemperatur"
+],
+a:1,
+e:"Das Gerät misst Trocken- und Feuchtkugeltemperatur. Aus der Differenz wird die Luftfeuchte berechnet."
+},
+
+{
+c:"Messtechnik",
+d:3,
+q:"Was passiert, wenn der Baumwollstrumpf eines Assmann-Psychrometers austrocknet?",
+o:[
+"Die Messung wird genauer",
+"Die Feuchtkugeltemperatur wird zu hoch gemessen",
+"Die Luftfeuchte wird zu hoch berechnet",
+"Die Temperatur sinkt stark"
+],
+a:1,
+e:"Ist der Strumpf trocken, findet keine Verdunstung statt und die Feuchtkugel zeigt eine zu hohe Temperatur."
+}
+
+{
+c:"Verbrennung",
+d:1,
+q:"Was versteht man unter einer Verbrennung?",
+o:[
+"Eine physikalische Reaktion ohne Energieabgabe",
+"Eine chemische Reaktion eines Stoffes mit Sauerstoff unter Energieabgabe",
+"Eine Verdampfung von Wasser",
+"Eine mechanische Reaktion von Gasen"
+],
+a:1,
+e:"Verbrennung ist eine chemische Reaktion eines Brennstoffs mit Sauerstoff, bei der Wärme und meist auch Licht entstehen."
+},
+
+{
+c:"Verbrennung",
+d:1,
+q:"Welche drei Voraussetzungen müssen für eine Verbrennung erfüllt sein?",
+o:[
+"Brennstoff, Sauerstoff und Zündenergie",
+"Sauerstoff, Wasser und Druck",
+"Brennstoff, Wasser und Hitze",
+"Sauerstoff, Luftdruck und Temperatur"
+],
+a:0,
+e:"Das sogenannte 'Feuerdreieck' besteht aus Brennstoff, Sauerstoff und einer Zündquelle."
+},
+
+{
+c:"Verbrennung",
+d:2,
+q:"Was versteht man unter der Zündgrenze eines Gases?",
+o:[
+"Den Temperaturbereich eines Gases",
+"Den Konzentrationsbereich eines Gases, in dem es mit Luft zündfähig ist",
+"Die maximale Temperatur eines Gases",
+"Den Druckbereich eines Gases"
+],
+a:1,
+e:"Die Zündgrenze beschreibt den Konzentrationsbereich eines brennbaren Gases in Luft, in dem eine Explosion oder Verbrennung möglich ist."
+},
+
+{
+c:"Verbrennung",
+d:2,
+q:"In welchem Bereich liegen ungefähr die Zündgrenzen von Erdgas in Luft?",
+o:[
+1% – 5%",
+"5% – 15%",
+"15% – 30%",
+"30% – 50%"
+],
+a:1,
+e:"Erdgas ist etwa zwischen 5% und 15% Anteil in Luft zündfähig."
+},
+
+{
+c:"Verbrennung",
+d:2,
+q:"Was beschreibt der Heizwert eines Brennstoffes?",
+o:[
+"Die maximale Flammentemperatur",
+"Die nutzbare Wärmemenge bei vollständiger Verbrennung ohne Kondensation",
+"Die Verbrennungsgeschwindigkeit",
+"Den Sauerstoffgehalt eines Brennstoffes"
+],
+a:1,
+e:"Der Heizwert beschreibt die nutzbare Wärmemenge bei vollständiger Verbrennung ohne Kondensation des Wasserdampfes."
+},
+
+{
+c:"Verbrennung",
+d:2,
+q:"Was beschreibt der Brennwert eines Brennstoffes?",
+o:[
+"Die Wärmemenge ohne Kondensationswärme",
+"Die gesamte Wärmemenge inklusive Kondensationswärme",
+"Die Temperatur der Flamme",
+"Den Sauerstoffbedarf"
+],
+a:1,
+e:"Der Brennwert enthält zusätzlich die Kondensationswärme des Wasserdampfes."
+},
+
+{
+c:"Verbrennung",
+d:1,
+q:"Was ist ein Mol?",
+o:[
+"Eine Volumeneinheit für Gas",
+"Eine Stoffmenge mit einer bestimmten Anzahl Teilchen",
+"Eine Masseeinheit",
+"Eine Energieeinheit"
+],
+a:1,
+e:"Ein Mol enthält genau 6,023 × 10²³ Teilchen (Avogadro-Zahl)."
+},
+
+{
+c:"Verbrennung",
+d:2,
+q:"Was beschreibt der theoretische Sauerstoffbedarf?",
+o:[
+"Die tatsächlich verwendete Sauerstoffmenge",
+"Die minimale Sauerstoffmenge für vollständige Verbrennung",
+"Die maximale Sauerstoffmenge",
+"Die Sauerstoffmenge im Abgas"
+],
+a:1,
+e:"Der theoretische Sauerstoffbedarf ist die minimale Sauerstoffmenge für eine vollständige Verbrennung."
+},
+
+{
+c:"Verbrennung",
+d:2,
+q:"Was beschreibt der theoretische Luftbedarf?",
+o:[
+"Die minimale Luftmenge für vollständige Verbrennung",
+"Die maximale Luftmenge",
+"Die Luftmenge im Ofenraum",
+"Die Luftgeschwindigkeit"
+],
+a:0,
+e:"Der theoretische Luftbedarf beschreibt die Luftmenge, die zur vollständigen Verbrennung notwendig ist."
+},
+
+{
+c:"Verbrennung",
+d:2,
+q:"Woraus besteht Luft hauptsächlich?",
+o:[
+"Sauerstoff und Stickstoff",
+"Kohlendioxid und Sauerstoff",
+"Stickstoff und Wasserstoff",
+"Sauerstoff und Helium"
+],
+a:0,
+e:"Luft besteht zu etwa 78% aus Stickstoff und etwa 21% aus Sauerstoff."
+},
+
+{
+c:"Verbrennung",
+d:3,
+q:"Was beschreibt der Luftfaktor λ (Lambda)?",
+o:[
+"Die Luftgeschwindigkeit",
+"Das Verhältnis von tatsächlicher zu theoretischer Luftmenge",
+"Die Temperatur der Luft",
+"Die Dichte der Luft"
+],
+a:1,
+e:"λ beschreibt das Verhältnis der zugeführten Luft zur theoretisch notwendigen Luftmenge."
+},
+
+{
+c:"Verbrennung",
+d:2,
+q:"Was bedeutet λ = 1?",
+o:[
+"Zu wenig Luft",
+"Genau theoretische Luftmenge (neutrale Verbrennung)",
+"Zu viel Luft",
+"Keine Verbrennung"
+],
+a:1,
+e:"λ = 1 bedeutet stöchiometrische bzw. neutrale Verbrennung."
+},
+
+{
+c:"Verbrennung",
+d:2,
+q:"Was bedeutet eine reduzierende Brennatmosphäre?",
+o:[
+"Zu viel Sauerstoff",
+"Zu wenig Sauerstoff",
+"Sehr hohe Temperatur",
+"Sehr niedrige Temperatur"
+],
+a:1,
+e:"Bei reduzierender Atmosphäre ist weniger Sauerstoff vorhanden als für vollständige Verbrennung nötig."
+},
+
+{
+c:"Verbrennung",
+d:2,
+q:"Warum wird keramische Ware bis etwa 600–700°C oxidierend gebrannt?",
+o:[
+"Um Energie zu sparen",
+"Um organische Bestandteile vollständig zu verbrennen",
+"Um die Temperatur zu erhöhen",
+"Um die Brenndauer zu verkürzen"
+],
+a:1,
+e:"Organische Bestandteile und Bindemittel müssen zunächst vollständig oxidierend verbrannt werden."
+},
+
+{
+c:"Verbrennung",
+d:2,
+q:"Woran erkennt man eine reduzierende Ofenatmosphäre?",
+o:[
+"An starkem Sauerstoffüberschuss",
+"An unverbrannten Gasen im Abgas",
+"An niedrigem Luftdruck",
+"An niedriger Temperatur"
+],
+a:1,
+e:"Bei reduzierender Atmosphäre entstehen unverbrannte Gase wie CO."
+},
+
+{
+c:"Ofentechnik",
+d:2,
+q:"Was versteht man unter Primärluft?",
+o:[
+"Luft, die direkt mit dem Brennstoff gemischt wird",
+"Luft außerhalb des Ofens",
+"Luft zur Kühlung",
+"Abgasluft"
+],
+a:0,
+e:"Primärluft wird direkt mit dem Brennstoff gemischt und ist für die Verbrennung notwendig."
+},
+
+{
+c:"Ofentechnik",
+d:2,
+q:"Was versteht man unter Sekundärluft?",
+o:[
+"Luft zur Nachverbrennung außerhalb der Flamme",
+"Luft im Gasnetz",
+"Luft im Abgas",
+"Luft im Brenner"
+],
+a:0,
+e:"Sekundärluft dient zur vollständigen Verbrennung außerhalb der Primärflamme."
+},
+
+{
+c:"Ofentechnik",
+d:2,
+q:"Was ist Diffusionsluft?",
+o:[
+"Luft, die sich durch Diffusion mit dem Brenngas mischt",
+"Luft im Abgasrohr",
+"Luft im Brennstoff",
+"Kühlungsluft"
+],
+a:0,
+e:"Diffusionsluft mischt sich erst im Ofenraum mit dem Brenngas."
+},
+
+{
+c:"Ofentechnik",
+d:3,
+q:"Warum wird nicht einfach sehr viel Primärluft zugegeben?",
+o:[
+"Die Flamme würde instabil werden",
+"Die Temperatur würde sinken",
+"Die Verbrennung würde langsamer",
+"Alle Antworten sind richtig"
+],
+a:3,
+e:"Zu viel Primärluft kann Flammeninstabilität und niedrigere Flammentemperaturen verursachen."
+},
+
+{
+c:"Ofentechnik",
+d:2,
+q:"Wie sollte der Ofendruck in einem Brennofen eingestellt sein?",
+o:[
+"Stark negativ",
+"Leicht positiv",
+"Sehr stark positiv",
+"Unabhängig vom Prozess"
+],
+a:1,
+e:"Ein leicht positiver Ofendruck verhindert das Eindringen von Falschluft."
+}
+
+  
 ];
 
 // Gesamt: 441 Fragen
