@@ -2933,9 +2933,133 @@ o:[
 ],
 a:1,
 e:"Ein leicht positiver Ofendruck verhindert das Eindringen von Falschluft."
-}
-
+},
   
+// ════════════════════════════════════════════════════════════
+//  NEUE CHEMIE-FRAGEN – Meisterkurs Keramik
+//  Themen: Bindungsarten, Säuren & Basen, Reaktionstypen,
+//          Periodensystem, Thermochemie
+//  Schwierigkeit: d:1 / d:2 / d:3
+// ════════════════════════════════════════════════════════════
+
+// ── BINDUNGSARTEN ───────────────────────────────────────────
+
+{c:"Chemie", d:1, q:"Was kennzeichnet eine metallische Bindung?",
+  o:["Elektronen werden übertragen", "Elektronen werden geteilt", "Frei bewegliche Elektronen (Elektronengas) umgeben positive Metallionen", "Ionen ziehen sich elektrostatisch an"], a:2,
+  e:"Metallische Bindung: Valenzelektronen sind delokalisiert (Elektronengas) → gute elektrische Leitfähigkeit, Duktilität."},
+
+{c:"Chemie", d:1, q:"Was ist der Unterschied zwischen Ionen- und Atombindung?",
+  o:["Ionenbindung: Elektronen geteilt; Atombindung: übertragen", "Ionenbindung: Elektronen übertragen (Metall→Nichtmetall); Atombindung: Elektronen geteilt (Nichtmetall+Nichtmetall)", "Beide sind identisch", "Ionenbindung nur in Gasen; Atombindung nur in Festkörpern"], a:1,
+  e:"Ionenbindung: Elektronenübertragung → Ionen. Atombindung (kovalent): gemeinsame Elektronenpaare zwischen Nichtmetallen."},
+
+{c:"Chemie", d:2, q:"Welche Bindungsart liegt in SiO₂ (Quarz) vor?",
+  o:["Ionenbindung", "Metallische Bindung", "Van-der-Waals-Bindung", "Kovalente (polare) Atombindung in einem Netzwerk"], a:3,
+  e:"SiO₂: kovalentes Netzwerk. Si und O teilen Elektronen, bilden ein dreidimensionales Gerüst → extrem hart, hoher Schmelzpunkt."},
+
+{c:"Chemie", d:2, q:"Was sind Van-der-Waals-Kräfte?",
+  o:["Starke chemische Bindungen zwischen Ionen", "Schwache intermolekulare Kräfte durch temporäre Dipole", "Kovalente Bindungen in Gasen", "Elektrostatische Anziehung in Ionengittern"], a:1,
+  e:"Van-der-Waals-Kräfte: schwache Anziehungskräfte zwischen Molekülen durch temporäre/induzierte Dipole. Wichtig für Siedepunkte."},
+
+{c:"Chemie", d:3, q:"Warum hat Al₂O₃ (Korund) einen sehr hohen Schmelzpunkt trotz kovalentem Anteil?",
+  o:["Wegen seiner niedrigen Dichte", "Wegen des hohen kovalenten und ionischen Bindungsanteils in einem stabilen Kristallgitter", "Wegen der Van-der-Waals-Kräfte", "Wegen der metallischen Leitfähigkeit"], a:1,
+  e:"Al₂O₃: gemischter Bindungscharakter (ionisch + kovalent) in einem dichten Korundgitter → sehr hohe Bindungsenergie → Schmelzpunkt ~2050°C."},
+
+{c:"Chemie", d:2, q:"Was versteht man unter einer polaren Atombindung?",
+  o:["Bindung mit vollständiger Elektronenübertragung", "Bindung mit gleicher Elektronenverteilung", "Bindung mit ungleichmäßiger Elektronenverteilung durch Elektronegativitätsunterschied", "Bindung nur in Metallen"], a:2,
+  e:"Polare Atombindung: ungleiche Elektronegativität → Elektronen liegen näher am elektronegativeren Atom → Dipolcharakter (z.B. H–O in Wasser)."},
+
+// ── SÄUREN & BASEN ───────────────────────────────────────────
+
+{c:"Chemie", d:1, q:"Was ist eine Säure nach Brønsted-Lowry?",
+  o:["Ein Stoff, der Elektronen aufnimmt", "Ein Stoff, der Protonen (H⁺) abgibt", "Ein Stoff, der OH⁻-Ionen bildet", "Ein Stoff, der Elektronen abgibt"], a:1,
+  e:"Brønsted-Säure: Protonendonator – gibt H⁺ ab. Beispiel: HCl → H⁺ + Cl⁻."},
+
+{c:"Chemie", d:1, q:"Was ist eine Base nach Brønsted-Lowry?",
+  o:["Ein Stoff, der H⁺ abgibt", "Ein Stoff, der OH⁻-Ionen aufnimmt", "Ein Stoff, der Protonen (H⁺) aufnimmt", "Ein Stoff, der Elektronen überträgt"], a:2,
+  e:"Brønsted-Base: Protonenakzeptor – nimmt H⁺ auf. Beispiel: NH₃ + H⁺ → NH₄⁺."},
+
+{c:"Chemie", d:2, q:"Was entsteht bei der Neutralisation von HCl und NaOH?",
+  o:["NaCl + H₂O", "NaOH + HCl bleibt unverändert", "Na₂O + H₂Cl", "NaCl + H₂"], a:0,
+  e:"HCl + NaOH → NaCl + H₂O. Säure + Base → Salz + Wasser. pH des Produkts: 7 (neutrales Salz)."},
+
+{c:"Chemie", d:2, q:"Welcher pH-Wert entspricht einer starken Säure (z.B. HCl, 0,1 mol/l)?",
+  o:["pH = 7", "pH = 1", "pH = 13", "pH = 4"], a:1,
+  e:"HCl ist eine starke Säure → vollständige Dissoziation. Bei 0,1 mol/l: pH = –log(0,1) = 1."},
+
+{c:"Chemie", d:3, q:"Was ist ein Puffersystem und wie funktioniert es?",
+  o:["Ein System, das pH-Änderungen durch Zugabe von Säuren oder Basen weitgehend abpuffert", "Ein System, das Gase filtert", "Ein System, das Ionen aus Lösungen entfernt", "Ein System, das Temperatur konstant hält"], a:0,
+  e:"Puffer: Gemisch aus schwacher Säure und konjugierter Base. Zusatz von H⁺ oder OH⁻ wird durch Gleichgewichtsverschiebung abgefangen → pH bleibt stabil. Wichtig in der Keramik für Schlickerstabilität."},
+
+{c:"Chemie", d:2, q:"Was passiert, wenn CO₂ in Wasser gelöst wird?",
+  o:["Es entsteht eine starke Säure", "Es entsteht H₂CO₃ (Kohlensäure), eine schwache Säure", "Es entsteht eine Base", "CO₂ löst sich nicht in Wasser"], a:1,
+  e:"CO₂ + H₂O ⇌ H₂CO₃ ⇌ H⁺ + HCO₃⁻. Kohlensäure ist eine schwache, zweiprotonige Säure. Relevant bei Carbonat-Zersetzung in der Keramik."},
+
+// ── REAKTIONSTYPEN ───────────────────────────────────────────
+
+{c:"Chemie", d:1, q:"Was ist eine Synthese (Kombinationsreaktion)?",
+  o:["Ein Stoff zerfällt in zwei oder mehr Produkte", "Zwei oder mehr Stoffe verbinden sich zu einem neuen Stoff", "Ein Stoff ersetzt einen anderen", "Elektronen werden übertragen"], a:1,
+  e:"Synthese: A + B → AB. Beispiel: 2 H₂ + O₂ → 2 H₂O. Mehrere Edukte bilden ein Produkt."},
+
+{c:"Chemie", d:1, q:"Was ist eine Analyse (Zersetzungsreaktion)?",
+  o:["Zwei Stoffe verbinden sich", "Ein Stoff zerfällt in zwei oder mehr einfachere Stoffe", "Elektronen werden ausgetauscht", "Atome werden neu angeordnet ohne Bindungsbruch"], a:1,
+  e:"Analyse: AB → A + B. Beispiel: CaCO₃ → CaO + CO₂ (Kalzinierung). Ein Stoff zerfällt in einfachere Produkte."},
+
+{c:"Chemie", d:2, q:"Was ist eine Redoxreaktion?",
+  o:["Nur eine Oxidation ohne Reduktion", "Gleichzeitige Oxidation und Reduktion – Elektronen werden übertragen", "Säure-Base-Reaktion mit Protonentransfer", "Reaktion ohne Energieänderung"], a:1,
+  e:"Redoxreaktion: immer gleichzeitig Oxidation (Elektronenabgabe) und Reduktion (Elektronenaufnahme). Beispiel: Fe₂O₃ + 3CO → 2Fe + 3CO₂."},
+
+{c:"Chemie", d:2, q:"Was ist eine Fällungsreaktion?",
+  o:["Ein Gas entweicht aus einer Lösung", "Ein unlöslicher Feststoff (Niederschlag) bildet sich aus zwei Lösungen", "Eine Lösung verdampft", "Ein Salz löst sich auf"], a:1,
+  e:"Fällungsreaktion: zwei lösliche Salze reagieren → unlösliches Salz fällt aus. Beispiel: BaCl₂ + Na₂SO₄ → BaSO₄↓ + 2NaCl."},
+
+{c:"Chemie", d:3, q:"Was ist eine Disproportionierung?",
+  o:["Ein Stoff reagiert mit zwei verschiedenen Partnern", "Ein Stoff wird gleichzeitig oxidiert und reduziert (reagiert mit sich selbst)", "Zwei gleiche Stoffe reagieren zu einem Produkt", "Ein Stoff zerfällt ohne Redoxreaktion"], a:1,
+  e:"Disproportionierung: ein Stoff reagiert mit sich selbst → ein Teil wird oxidiert, ein Teil reduziert. Beispiel: 2H₂O₂ → 2H₂O + O₂."},
+
+// ── PERIODENSYSTEM ───────────────────────────────────────────
+
+{c:"Chemie", d:1, q:"Was sind Edelgase und warum sind sie reaktionsträge?",
+  o:["Metalle mit hohem Schmelzpunkt", "Nichtmetalle der VII. Hauptgruppe mit 7 Valenzelektronen", "Elemente der VIII. Hauptgruppe mit vollständig besetzter Außenschale (8 Elektronen)", "Radioaktive Elemente"], a:2,
+  e:"Edelgase (He, Ne, Ar, Kr, Xe): vollständig besetzte Außenschale → keine Tendenz zur Bindungsbildung → extrem reaktionsträge."},
+
+{c:"Chemie", d:2, q:"Warum nimmt die Atomgröße innerhalb einer Periode (Zeile) von links nach rechts ab?",
+  o:["Weil mehr Elektronen hinzukommen und den Kern abstoßen", "Weil die Kernladungszahl steigt und die Elektronen stärker angezogen werden", "Weil die Anzahl der Schalen abnimmt", "Weil die Masse zunimmt"], a:1,
+  e:"Mit steigender Kernladungszahl wird die Anziehungskraft auf die Elektronen stärker → Atomradius nimmt ab (bei gleicher Schalenanzahl)."},
+
+{c:"Chemie", d:2, q:"Was versteht man unter Elektronegativität?",
+  o:["Die Fähigkeit eines Atoms, Protonen abzugeben", "Die Fähigkeit eines Atoms, Elektronen in einer Bindung anzuziehen", "Die Anzahl der Valenzelektronen", "Die Ionisierungsenergie eines Elements"], a:1,
+  e:"Elektronegativität (EN): Maß für die Fähigkeit eines Atoms, Bindungselektronen anzuziehen. Fluor hat die höchste EN (4,0). Steigt von links nach rechts und von unten nach oben im PSE."},
+
+{c:"Chemie", d:3, q:"Warum sind Übergangsmetalle (d-Block) besonders für Farbpigmente in Keramikglasuren geeignet?",
+  o:["Wegen ihrer niedrigen Schmelzpunkte", "Wegen ihrer d-Orbitale, die Licht im sichtbaren Bereich absorbieren und Farbe erzeugen", "Wegen ihrer hohen Reaktivität mit Sauerstoff", "Wegen ihrer metallischen Leitfähigkeit"], a:1,
+  e:"Übergangsmetalle (Fe, Co, Cr, Cu, Mn): unvollständig besetzte d-Orbitale → Elektronen können Licht im sichtbaren Bereich absorbieren → Farberscheinung. Fe₂O₃ = rot, CoO = blau, Cr₂O₃ = grün."},
+
+// ── THERMOCHEMIE ─────────────────────────────────────────────
+
+{c:"Chemie", d:1, q:"Was ist die Aktivierungsenergie?",
+  o:["Die Energie, die bei einer Reaktion freigesetzt wird", "Die Mindestenergie, die nötig ist, damit eine chemische Reaktion startet", "Die Gesamtenergie eines Systems", "Die Wärme eines Schmelzvorgangs"], a:1,
+  e:"Aktivierungsenergie: Mindestenergie um eine Reaktion in Gang zu setzen (Energiebarriere). Katalysatoren senken sie."},
+
+{c:"Chemie", d:2, q:"Was ist Reaktionsenthalpie ΔH?",
+  o:["Die Temperatur einer Reaktion", "Die Druckänderung bei einer Reaktion", "Die Wärmemenge die bei konstanten Druck aufgenommen oder abgegeben wird", "Die Geschwindigkeit einer Reaktion"], a:2,
+  e:"ΔH: Reaktionsenthalpie bei konstantem Druck. ΔH < 0: exotherm (Wärme frei). ΔH > 0: endotherm (Wärme verbraucht)."},
+
+{c:"Chemie", d:2, q:"Was besagt der Satz von Hess?",
+  o:["Die Reaktionsenthalpie ist abhängig vom Reaktionsweg", "Die Gesamtenthalpie einer Reaktion ist gleich – egal welchen Weg die Reaktion nimmt (Zustandsgröße)", "Jede Reaktion verläuft exotherm", "Enthalpie kann nicht gemessen werden"], a:1,
+  e:"Hess'scher Satz: ΔH einer Gesamtreaktion = Summe der ΔH-Werte der Teilreaktionen – unabhängig vom Weg. Wichtig für Berechnungen."},
+
+{c:"Chemie", d:3, q:"Was ist der Unterschied zwischen kinetischer und thermodynamischer Kontrolle einer Reaktion?",
+  o:["Kinetisch = schnelle Reaktion bildet stabilstes Produkt; thermodynamisch = langsame Reaktion bildet instabiles Produkt", "Kinetisch = Produkt wird durch Reaktionsgeschwindigkeit bestimmt; thermodynamisch = Produkt wird durch Stabilität (ΔG) bestimmt", "Beide sind identisch – nur unterschiedliche Begriffe", "Kinetik gilt nur bei hohen Temperaturen"], a:1,
+  e:"Kinetische Kontrolle (niedrige T): schnellstes Produkt gewinnt (metastabil). Thermodynamische Kontrolle (hohe T): stabilstes Produkt gewinnt (ΔG minimal). Relevant beim Sintern und Phasenumwandlungen in der Keramik."},
+
+{c:"Chemie", d:2, q:"Was versteht man unter einem Katalysator?",
+  o:["Ein Stoff, der bei der Reaktion verbraucht wird", "Ein Stoff, der die Reaktionstemperatur erhöht", "Ein Stoff, der die Aktivierungsenergie senkt ohne selbst verbraucht zu werden", "Ein Stoff, der die Reaktion verlangsamt"], a:2,
+  e:"Katalysator: senkt die Aktivierungsenergie → Reaktion läuft schneller ab. Wird nicht verbraucht. Beispiel: Platinkatalysator bei Abgasreinigung (SCR-Entstickung)."},
+
+{c:"Chemie", d:2, q:"Was ist freie Enthalpie (Gibbs-Energie) ΔG und was sagt das Vorzeichen aus?",
+  o:["ΔG = Wärmemenge bei konstantem Volumen; ΔG > 0 = exotherm", "ΔG = ΔH – T·ΔS; ΔG < 0: Reaktion freiwillig (spontan); ΔG > 0: nicht spontan", "ΔG beschreibt nur die Enthalpie ohne Entropieanteil", "ΔG ist nur bei Gasen relevant"], a:1,
+  e:"ΔG = ΔH – T·ΔS. ΔG < 0: Reaktion läuft spontan ab. ΔG = 0: Gleichgewicht. ΔG > 0: nicht spontan (benötigt Energiezufuhr). Wichtig für Sinterreaktionen und Phasenumwandlungen."}
+
 ];
 
-// Gesamt: 441 Fragen
+// Gesamt: 511 Fragen
