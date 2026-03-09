@@ -2653,7 +2653,7 @@ o:[
 ],
 a:1,
 e:"Ist der Strumpf trocken, findet keine Verdunstung statt und die Feuchtkugel zeigt eine zu hohe Temperatur."
-}
+},
 
 {
 c:"Verbrennung",
@@ -2702,7 +2702,7 @@ c:"Verbrennung",
 d:2,
 q:"In welchem Bereich liegen ungefähr die Zündgrenzen von Erdgas in Luft?",
 o:[
-1% – 5%",
+"1% – 5%",
 "5% – 15%",
 "15% – 30%",
 "30% – 50%"
