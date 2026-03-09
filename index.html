@@ -3003,7 +3003,10 @@ showView = function(name, tabEl) {
 let reportCurrentQ = null;
 
 function openReport() {
-  const q = questions[qIndex];
+  // Im Review-Modus die angezeigte History-Frage nehmen, sonst aktuelle Quiz-Frage
+  const q = reviewMode
+    ? (questionHistory[questionHistory.length - 1]?.q || null)
+    : questions[qIndex];
   if (!q) return;
   reportCurrentQ = q;
   // Build form fresh every time
@@ -3742,31 +3745,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')wClose();});
 <!-- ═══ FEHLER MELDEN MODAL ═════════════════════════════════ -->
 <div id="report-modal-overlay">
   <div class="report-modal" id="report-modal-inner">
-    <h3>⚠️ Frage melden</h3>
-    <p>Was stimmt nicht mit dieser Frage?</p>
-    <div class="report-q-preview" id="report-q-preview"></div>
-    <div class="report-options" id="report-options">
-      <label class="report-option">
-        <input type="radio" name="report-type" value="Antwort falsch"> Richtige Antwort ist falsch
-      </label>
-      <label class="report-option">
-        <input type="radio" name="report-type" value="Mehrere Antworten richtig"> Mehrere Antworten wären richtig
-      </label>
-      <label class="report-option">
-        <input type="radio" name="report-type" value="Frage unklar"> Frage ist unklar formuliert
-      </label>
-      <label class="report-option">
-        <input type="radio" name="report-type" value="Rechenaufgabe"> Gehört eher in den Rechentrainer
-      </label>
-      <label class="report-option">
-        <input type="radio" name="report-type" value="Sonstiges"> Sonstiges
-      </label>
-    </div>
-    <textarea class="report-detail" id="report-detail" rows="3" placeholder="Optionaler Kommentar (z.B. welche Antwort richtig sein sollte)..."></textarea>
-    <div class="report-actions">
-      <button class="report-cancel" onclick="closeReport()">Abbrechen</button>
-      <button class="report-send" onclick="submitReport()">Meldung absenden</button>
-    </div>
+    <!-- Inhalt wird dynamisch per openReport() gesetzt -->
   </div>
 </div>
 </body>
